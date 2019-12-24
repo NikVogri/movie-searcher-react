@@ -8,17 +8,34 @@
 }
 
 .Input {
-  width: 375px;
+  width: 425px;
   display: block;
   border: none;
+  border-radius: 5px 0 0 5px;
   padding: 10px 15px;
-  border-radius: 5px;
   transition: all .2s ease;
+  flex: 8;
 }
 .Input:focus, .Input:active {
-  width: 400px;
+  width: 450px;
 }
 
+form {
+  display: flex;
+}
+
+.SearchButton{
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  background: blue;
+  border: none;
+  color: #fff;
+  flex: 2;
+}
+
+.SearchIcon{
+  font-size: 35px;
+}
 
 @media only screen and (max-width: 1024px){
   .Header{
@@ -30,7 +47,7 @@
     width: 95%;
   }
   .Input:focus, .Input:active {
-  width: 96%;
+  width: 98%;
   }
 }
 

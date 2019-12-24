@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import classes from './Header.module.css'
 
-const Header = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const onInputHandler = (e) => {
-    setSearchQuery(e.target.value);
-  };
+const Header = (props) => {
+  const [query, setQuery] = useState('');
+
   return (
     <div className={classes.Header}>
-      <input className={classes.Input} placeholder="Find your favourite movies..." onChange={(e) => onInputHandler(e)} value={searchQuery} />
-    </div>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input className={classes.Input} placeholder="Find your favourite movies..." onChange={(e) => setQuery(e.target.value)} />
+        <button className={classes.SearchButton} type="submit"><i className="fas fa-search SearchIcon" onClick={() => props.getQuery(query)} /></button>
+      </form>
+    </div >
   );
 }
 
