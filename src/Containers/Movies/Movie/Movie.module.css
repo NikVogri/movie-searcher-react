@@ -1,0 +1,61 @@
+.Movie {
+  margin: 10px;
+  width: 250px;
+  min-height: 450px;
+  text-align: center;
+  padding: 10px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  position: relative;
+}
+
+@media only screen and (max-width: 650px) {
+  .Movie{
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .Movie{
+    width: 98vw;
+  }
+}
+
+
+.Sm {
+  margin: 5px;
+}
+
+
+.Icons {
+  font-size: 25px;
+  margin: 5px auto 0 auto;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Image{
+  width: 150px;
+  height: 250px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 650px) {
+  .Image{
+  width: 75%;
+  height: auto;
+  margin-bottom: 5px;
+}
+.Icons{
+  font-size: 35px;
+  margin-top: 30px;
+}
+}
+
+@media only screen and (max-width: 500px) {
+  .Image{
+  width: 100%;
+  margin-bottom: 5px;
+}
+}
