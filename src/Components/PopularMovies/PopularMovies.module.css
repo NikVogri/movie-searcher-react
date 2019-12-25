@@ -1,0 +1,7 @@
+.TopContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  justify-content: center;
+  padding-bottom: 100px;
+}

@@ -1,0 +1,33 @@
+.TopImage {
+  height: 350px;
+  width: 250px;
+  transition: all .2s ease;
+}
+
+.TopItem{
+  min-height: 375px;
+  width: 250px;
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+  margin: 20px; 
+  transition: all .2s ease;
+}
+
+.TopImage:hover{
+  filter: brightness(30%)
+}
+
+@media only screen and (max-width: 650px) {
+.TopImage {
+  height: 450px;
+  width: 350px;
+}
+
+.TopItem{
+  min-height: 375px;
+  min-width: 350px;
+  color: #fff;
+
+}
+}

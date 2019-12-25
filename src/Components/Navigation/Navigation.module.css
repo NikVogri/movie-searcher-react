@@ -1,0 +1,67 @@
+.Navigation {
+  height: 60px;
+  width: 100%;
+  background: black;
+  position: relative;
+  z-index: 99999;
+  /* border-bottom: solid 2px red; */
+}
+
+.InnerNav {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Navigation h3 {
+  font-family: "roboto";
+  font-weight: normal;
+  font-size: 45px;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.NavList {
+  display: flex;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.NavList li {
+  margin: 0 8px;
+}
+
+.NavList li a:hover {
+  color: red;
+}
+
+@media only screen and (max-width: 1200px) {
+  .InnerNav {
+  width: 100%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .Navigation {
+    height: 100px;
+  }
+  .InnerNav {
+    flex-direction: column;
+   align-items: center;
+  }
+  .NavList {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .NavList {
+    font-size: 16px;
+  }
+}

@@ -1,63 +1,87 @@
-.Header{
+.Header{ 
+  position: relative;
+  z-index: 99;
   width: 100%;
-  height: 7vh;
-  background: orangered;
-  display: flex; 
-  align-items: center;
-  justify-content: center;
+  height: calc(100vh - 60px);
+  background: black;
+  overflow: hidden;
 }
 
-.Input {
-  width: 425px;
-  display: block;
-  border: none;
-  border-radius: 5px 0 0 5px;
-  padding: 10px 15px;
-  transition: all .2s ease;
-  flex: 8;
-}
-.Input:focus, .Input:active {
-  width: 450px;
+.Header:hover .Image{
+  transform: scale(1.05);
 }
 
-form {
-  display: flex;
+.Image {
+  height: 100%;
+  width: 100%;
+  filter: brightness(40%);
+  transition: all .3s ease-in;
 }
 
-.SearchButton{
-  cursor: pointer;
-  border-radius: 0 5px 5px 0;
-  background: blue;
-  border: none;
+h1 {
+  position: absolute;
+  display: inline-block;
+  width: 45%;
+  z-index: 9999;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #fff;
-  flex: 2;
+  font-size: 77px;
+  text-align: center;
+  border-bottom: solid 3px red;
 }
 
-.SearchIcon{
-  font-size: 35px;
+.ScrollDown::before{
+  content: '╲╱';
+  color: #fff;
+  position: absolute;
+  opacity: 0.8;
+  text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  width: 6rem;
+  font-size: 2rem;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  bottom: 2rem;
+  margin-left: -3rem;
+  left: 50%;
+  animation: bounce 3s ease infinite;
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 1024px){
-  .Header{
-    height: 10vh;
+@keyframes bounce {
+  50% {
+    transform: translateY(-50%);
   }
- .Input{
-    padding: 10px 10px;
-    font-size: 22px;
-    width: 95%;
-  }
-  .Input:focus, .Input:active {
-  width: 98%;
+  100% {
+    transform: translateY(0);
   }
 }
 
-@media only screen and (max-width: 450px){
- .Input{
-    padding: 5px 10px;
-    font-size: 22px;
-    width: 95%;
+
+.ScrollDown {
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 1200px) {
+  h1 {
+    font-size: 60px;
   }
-  .Input:focus, .Input:active {
-  width: 96%;
+}
+
+@media only screen and (max-width: 750px) {
+  .Image{
+    object-fit: cover;
+  }
+  h1 {
+    font-size: 45px;
+    width: 65%;
   }
 }

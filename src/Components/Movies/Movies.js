@@ -14,8 +14,8 @@ const Movies = (props) => {
 
   const movieListHandler = () => {
     setLoading(true);
-    Axios.get(`http://www.omdbapi.com/?s=${props.renderData}&apikey=95024015`)
-      .then(res => { setmovieList(res.data.Search); setLoading(false); })
+    Axios.get(`https://api.themoviedb.org/3/search/movie?api_key=dce6a338a810ffe30be7528d9a32bf13&query=${props.renderData}`)
+      .then(res => { setmovieList(res.data.results); setLoading(false); console.log(res); })
       .catch(err => { setLoading(false) });
   }
   let render = null;
@@ -25,7 +25,7 @@ const Movies = (props) => {
   else {
     if (movieList !== undefined) {
       render = movieList.map(movie => (
-        <Movie key={movie.imdbID} title={movie.Title} year={movie.Year} imdbID={movie.imdbID} poster={movie.Poster} />
+        <Movie key={movie.id} title={movie.original_title} year={movie.release_date.slice(0, 4)} poster={movie.poster_path} />
       ));
     }
   }

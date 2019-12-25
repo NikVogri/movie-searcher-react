@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Header.module.css'
-
+import Navigation from '../../Components/Navigation/Navigation';
+import HeaderImage from '../../img/header.png';
 const Header = (props) => {
-  const [query, setQuery] = useState('');
+
 
   return (
-    <div className={classes.Header}>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input className={classes.Input} placeholder="Find your favourite movies..." onChange={(e) => setQuery(e.target.value)} />
-        <button className={classes.SearchButton} type="submit"><i className="fas fa-search SearchIcon" onClick={() => props.getQuery(query)} /></button>
-      </form>
-    </div >
+    <React.Fragment>
+      <Navigation />
+      <div className={classes.Header}>
+        <h1>Find your favourite films!</h1>
+        <img src={HeaderImage} alt="Header" className={classes.Image} />
+        <div className={classes.ScrollDown}></div>
+      </div >
+    </React.Fragment>
   );
 }
 
