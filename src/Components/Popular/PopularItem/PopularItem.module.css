@@ -1,0 +1,109 @@
+.TopImage {
+  height: 350px;
+  width: 250px;
+  transition: all .2s ease;
+  position: relative;
+  z-index: 9;
+}
+
+.TopItem{
+  position: relative;
+  z-index: 999;
+  min-height: 375px;
+  width: 250px;
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+  margin: 20px; 
+  transition: all .2s ease;
+  display: flex;
+}
+
+.TopItem:hover .TopInformation, .TopItem:active .TopInformation {
+  opacity: 0.75;
+}
+
+.TopInformation{
+  height: 350px;
+  width: 250px;
+  background: #000;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-5%, -5%);
+  z-index: 99;
+  opacity: 0;
+  transition: all .5s ease;
+  padding: 0 10px;
+  text-align: center;
+  color: #ccc;
+}
+
+.HeartIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.HeartIcon:hover {
+  color: red;
+}
+
+
+.TopDescription {
+  font-size: 16px;
+}
+
+.Rating{
+  margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 32px;
+}
+.TopRating {
+  margin-left: 3px;
+}
+
+.TopVotes {
+  font-size: 14px;
+}
+.TopViews{
+  font-size: 10px;
+}
+
+.TopDescription{
+  margin: 30px 0 15px 0;
+}
+
+@media only screen and (max-width: 650px) {
+.TopInformation {
+  transform: translate(0);
+  width: 100%;
+  height: 450px;
+  }
+  .HeartIcon{
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+  }
+  .TopImage {
+  height: 450px;
+  width: 350px;
+}
+
+.TopItem{
+  min-height: 375px;
+  min-width: 350px;
+  color: #fff;
+
+  }
+}
+
+@media only screen and (max-width: 350px) {
+ .TopImage {
+  height: 450px;
+  width: 100vw;
+}
+}

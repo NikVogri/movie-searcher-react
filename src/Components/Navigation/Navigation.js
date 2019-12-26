@@ -10,7 +10,7 @@ const Navigation = () => {
           <li><a href="/">Find</a></li>
           <li><a href="/">Discover</a></li>
           <li><a href="/">Favourites</a></li>
-          <li><a href="/">Watched</a></li>
+          <li><a href="/">About</a></li>
         </ul>
       </div>
     </div>
