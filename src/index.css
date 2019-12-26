@@ -30,3 +30,7 @@ code {
 .ActiveWatched {
   color: blue;
 }
+
+.active{
+  color: red;
+}

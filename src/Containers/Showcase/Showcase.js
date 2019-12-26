@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './Showcase.module.css';
 import Popular from '../../Components/Popular/Popular';
 import PopularTV from '../../Components/Popular/PopularTV/PopularTV';
+import Header from '../Header/Header';
 import Axios from 'axios';
 import Spinner from '../../Components/Spinner/Spinner';
 
@@ -50,9 +51,12 @@ const Showcase = () => {
     render = <p style={{ color: 'white', fontSize: '25px' }}>Error getting data, please try refreshing the page!</p>
   }
   return (
-    <div className={classes.Showcase}>
-      {render}
-    </div>
+    <React.Fragment>
+      <Header />
+      <div className={classes.Showcase}>
+        {render}
+      </div>
+    </React.Fragment>
   );
 }
 
