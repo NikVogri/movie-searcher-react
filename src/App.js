@@ -3,6 +3,7 @@ import Showcase from './Containers/Showcase/Showcase';
 import Footer from './Components/Footer/Footer';
 import Search from './Containers/Search/Search';
 import Navigation from './Components/Navigation/Navigation';
+import Favourites from './Containers/Favourites/Favourites';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
         <Navigation />
         <Route path="/" exact component={Showcase} />
         <Route path="/search" component={Search} />
-        {/* <Route path="/favourites" component={Showcase} />
-        <Route path="/about" component={Showcase} /> */}
+        <Route path="/favourites" component={Favourites} />
+        {/* <Route path="/about" component={Showcase} />  */}
       </BrowserRouter>
       <Footer />
     </React.Fragment>

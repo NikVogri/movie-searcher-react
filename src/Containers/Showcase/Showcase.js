@@ -34,8 +34,6 @@ const Showcase = () => {
 
   let render = null;
   if (topList.length !== 0 && TVtopList.length !== 0 && loading === false) {
-    console.log('fulfilled')
-    console.log(topList, TVtopList)
     render = (
       <div className={classes.TopContainer}>
         <h2 style={{ color: 'white' }}>Trending movies now</h2>
