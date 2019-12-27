@@ -21,10 +21,10 @@ const Showcase = () => {
     setLoading(true);
     try {
       if (topList.length === 0) {
-        const movieData = await Axios.get('https://api.themoviedb.org/3/discover/movie?api_key=dce6a338a810ffe30be7528d9a32bf13&sort_by=popularity.desc&include_adult=false&&page=1');
+        const movieData = await Axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
         settopList(movieData.data.results.splice(0, 5))
       };
-      const tvData = await Axios.get('https://api.themoviedb.org/3/discover/tv?api_key=dce6a338a810ffe30be7528d9a32bf13&sort_by=popularity.desc&include_adult=false&&page=1');
+      const tvData = await Axios.get('https://api.themoviedb.org/3/trending/tv/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
       setTVtopList(tvData.data.results.splice(0, 5))
     } catch (err) {
       setError(true);

@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './PopularItem.module.css';
-
-const PopularItem = (props) => {
+import classes from './Item.module.css';
+import MissingPoster from '../../img/noPoster.jpeg';
+const Item = (props) => {
   return (
     <div className={classes.TopItem}>
       <div className={classes.TopContainer}>
-        <img src={`https://image.tmdb.org/t/p/w500${props.image}`} alt="movie poster" className={classes.TopImage} />
+        <img src={props.image ? `https://image.tmdb.org/t/p/w500${props.image}` : MissingPoster} alt="movie poster" className={classes.TopImage} />
         <h3>{props.title}</h3>
       </div>
       <div className={classes.TopInformation}>
@@ -27,4 +27,4 @@ const PopularItem = (props) => {
   );
 }
 
-export default PopularItem;
+export default Item;

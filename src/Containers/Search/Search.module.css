@@ -1,0 +1,76 @@
+.Search {
+  padding: 50px;
+  min-height: calc(100vh - 135px);
+  background: #212020;
+}
+
+.MovieList {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 350px;
+  justify-content: center;
+}
+
+/* @media only screen and (max-width: 650px) {
+  .MovieList {
+    width: 100%;
+  }
+} */
+.Search select {
+  font-size: 20px;
+  background: #000;
+  color: #fff;
+  height: 45px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.Search button:hover{
+  background: #ccc;
+}
+.Search form {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.Input {
+  font-size: 20px;
+  width: 350px;
+  height: 45px;
+  border: none;
+  background: #000;
+  color: #fff;
+  padding: 0 15px;
+  border-left: 2px solid #212020;
+  border-radius:0 5px 5px 0;
+  transition: all .2s ease;
+}
+
+.Input:hover {
+  width: 355px;
+}
+
+@media only screen and (max-width: 500px) {
+  .Search form {
+    flex-direction: column;
+    height: 100px;
+  }
+  .Input {
+  margin-bottom: 5px;
+  height: 35px;
+  width: 80%; 
+  order: 1;
+}
+
+.Input:hover {
+  width: 75%
+}
+.Search select {
+  order: 2;
+  height: 30px;
+  width: 80%;
+  text-align: center;
+}
+}
