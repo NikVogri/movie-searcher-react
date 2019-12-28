@@ -5,10 +5,11 @@ import Search from './Containers/Search/Search';
 import Navigation from './Components/Navigation/Navigation';
 import Favourites from './Containers/Favourites/Favourites';
 import { BrowserRouter, Route } from 'react-router-dom';
-
+import CookieWarning from './Components/CookieWarning/CookieWarning';
 function App() {
   return (
     <React.Fragment>
+      <CookieWarning />
       <BrowserRouter>
         <Navigation />
         <Route path="/" exact component={Showcase} />

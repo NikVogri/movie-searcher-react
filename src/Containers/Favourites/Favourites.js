@@ -1,9 +1,9 @@
 import React from 'react';
-
+import CookieWarning from '../../Components/CookieWarning/CookieWarning';
 const Favourites = () => {
   return (
     <div>
-      COMING SOON
+      <CookieWarning />
     </div>
   );
 }
