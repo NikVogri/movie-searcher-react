@@ -3,6 +3,7 @@ import classes from './Search.module.css';
 import Item from '../../Components/Item/Item';
 import axios from 'axios';
 import Spinner from '../../Components/Spinner/Spinner';
+import Pagination from '../../Components/Pagination/Pagination';
 
 const Search = () => {
   const [results, setResults] = useState([]);
@@ -11,6 +12,7 @@ const Search = () => {
   const [firstMount, setfirstMount] = useState(true)
   const [loading, setLoading] = useState(false);
   const [noResults, setnoResults] = useState(false);
+  const [totalPages, setTotalpages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -19,13 +21,14 @@ const Search = () => {
       inputChangeHandler();
     }
     setfirstMount(false);
-  }, [inputValue, selectValue])
+  }, [inputValue, selectValue, currentPage])
 
   const inputChangeHandler = () => {
     setLoading(true);
-    axios.get(`https://api.themoviedb.org/3/search/${selectValue}?api_key=dce6a338a810ffe30be7528d9a32bf13&query=${inputValue}&page=1&include_adult=false`)
+    axios.get(`https://api.themoviedb.org/3/search/${selectValue}?api_key=dce6a338a810ffe30be7528d9a32bf13&query=${inputValue}&page=${currentPage}&include_adult=false`)
       .then(res => {
         setResults(res.data.results);
+        setTotalpages(res.data.total_pages);
         setLoading(false);
         setnoResults(false);
         if (res.data.total_results === 0) {
@@ -35,7 +38,12 @@ const Search = () => {
       .catch(err => { console.log(err); setLoading(false); });
   };
 
+  const getPageHandler = (id) => {
+    setCurrentPage(id);
+  };
+
   let render = null;
+  let pages = [];
   // check if state has any results
   if (results) {
     render = results.map(el => {
@@ -45,6 +53,16 @@ const Search = () => {
       }
       return null;
     })
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    }
+    pages = pages.slice(0, 5);
+  }
+  let pagesRender = null;
+  if (pages.length > 1) {
+    pagesRender = pages.map(el => <Pagination key={el} pageNumber={el} clickHandler={() => getPageHandler(el)} page={currentPage} />)
   }
 
   if (loading) {
@@ -66,6 +84,9 @@ const Search = () => {
       </form>
       <div className={classes.MovieList}>
         {render}
+      </div>
+      <div className={classes.Pagination}>
+        {pagesRender}
       </div>
     </div>
   );

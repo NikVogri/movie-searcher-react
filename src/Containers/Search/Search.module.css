@@ -52,6 +52,9 @@
   width: 355px;
 }
 
+.Pagination {
+  text-align: center;
+}
 @media only screen and (max-width: 500px) {
   .Search form {
     flex-direction: column;
