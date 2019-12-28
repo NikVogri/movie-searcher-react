@@ -1,0 +1,65 @@
+.About {
+  height: calc(100vh - 135px);
+  background: #212020;
+  color: #fff;
+}
+
+.About p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+.About h4 {
+  font-size: 22px;
+  padding-top: 20px;
+}
+
+.About a{
+  background: #fff;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.About a:hover {
+  background: #eee;
+}
+.InnerAbout{
+  width: 350px;
+  margin: 0 auto;
+}
+
+.InnerAbout {
+  padding-top: 15px;
+}
+
+.AboutForm {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.AboutForm input {
+  height: 30px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.AboutForm input {
+  height: 30px;
+  margin-bottom: 5px;
+  color: #000;
+  padding: 5px;
+}
+.AboutForm textarea {
+  padding: 5px;
+}
+
+.AboutForm button {
+border: none;
+  background: red;
+  color: #fff;
+  margin-top: 10px;
+  height: 30px;
+  cursor: pointer;
+}

@@ -10,7 +10,7 @@ const Navigation = () => {
         <ul className={classes.NavList}>
           <li><NavLink exact to="/">Home</NavLink></li>
           <li><NavLink to="/search">Search</NavLink></li>
-          <li><NavLink to="/favourites">Favourites</NavLink></li>
+          {/* <li><NavLink to="/favourites">Favourites</NavLink></li> */}
           <li><NavLink to="/about">About</NavLink></li>
         </ul>
       </div>

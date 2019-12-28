@@ -1,9 +1,15 @@
 import React from 'react';
-import CookieWarning from '../../Components/CookieWarning/CookieWarning';
+import classes from './Favourites.module.css';
 const Favourites = () => {
   return (
-    <div>
-      <CookieWarning />
+    <div className={classes.Favourites}>
+      <p>Coming Soon</p>
+      <p>Coming Soon</p>
+      <p>Coming Soon</p>
+      <p>Coming Soon</p>
+      <p>Coming Soon</p>
+      <p>Coming Soon</p>
+      <p>Coming Soon</p>
     </div>
   );
 }
