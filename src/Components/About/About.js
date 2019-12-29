@@ -1,23 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './About.module.css';
 
 const About = () => {
-  const [name, setname] = useState('');
-  const [email, setemail] = useState('');
-  const [body, setbody] = useState('');
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.target;
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("name"),
-        ...this.state
-      })
-    })
-      .catch(error => alert(error));
-  };
+
 
   return (
     <div className={classes.About}>
@@ -29,15 +14,15 @@ const About = () => {
           <p>I used react, react hooks, axios for fetching data, react router dom, The MovieDB API - I strongly recommend it.</p>
           <h4>Contact</h4>
         </div>
-        <form className={classes.AboutForm} name="contact" method="post" data-netlify="true" onSubmit={(e) => handleSubmit(e)}>
+        <form className={classes.AboutForm} name="contact" method="post" data-netlify="true" >
           <input type="hidden" name="bot-field" />
           <input type="hidden" name="contact" value="contact" />
           <label>Name</label>
-          <input required type="text" name="name" placeholder='Name' onChange={(e) => setname(e.target.value)} />
+          <input required type="text" name="name" placeholder='Name' />
           <label>Email</label>
-          <input required type="email" name="email" placeholder='Email' onChange={(e) => setemail(e.target.value)} />
+          <input required type="email" name="email" placeholder='Email' />
           <label>Comment</label>
-          <textarea required name="comment" name="body" placeholder='Comment' rows="3" onChange={(e) => setbody(e.target.value)}></textarea>
+          <textarea required placeholder='Comment' rows="3"></textarea>
           <button type='submit'>Submit</button>
         </form>
       </div>

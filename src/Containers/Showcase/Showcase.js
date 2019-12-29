@@ -52,7 +52,10 @@ const Showcase = () => {
     <React.Fragment>
       <Header />
       <div className={classes.Showcase}>
-        {render}
+        <div className={classes.InnerShowcase}>
+          {render}
+        </div>
+
       </div>
     </React.Fragment>
   );

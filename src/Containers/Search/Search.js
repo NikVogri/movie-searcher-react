@@ -49,7 +49,7 @@ const Search = () => {
     render = results.map(el => {
       // check if the movie has been recently updated and or has any traction at all. This is mostly for fetching sake.
       if (el.popularity >= 1) {
-        return <Item key={el.id} id={el.id} title={el.title} image={el.poster_path} voteAverage={el.vote_average} votes={el.vote_count} popularity={el.popularity} description={el.overview} releaseDate={el.release_date} />
+        return <Item key={el.id} id={el.id} title={el.title ? el.title : el.name} image={el.poster_path} voteAverage={el.vote_average} votes={el.vote_count} popularity={el.popularity} description={el.overview} releaseDate={el.release_date} />
       }
       return null;
     })

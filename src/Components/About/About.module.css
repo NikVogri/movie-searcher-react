@@ -2,6 +2,7 @@
   height: calc(100vh - 135px);
   background: #212020;
   color: #fff;
+  padding-bottom: 30px;
 }
 
 .About p {
