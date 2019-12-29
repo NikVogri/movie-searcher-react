@@ -10,7 +10,7 @@ const Item = (props) => {
       </div>
       <div className={classes.TopInformation}>
         <i className={`${classes.HeartIcon} fa fa-heart`} aria-hidden="true" />
-        <div>
+        <div className={classes.MainRating}>
           <div className={classes.Rating}>
             <i className={`${classes.StarIcon} fa fa-star`} id="star" aria-hidden="true" />
             <p className={classes.TopRating}>{props.voteAverage}</p>

@@ -80,9 +80,17 @@
   width: 100%;
   border-radius: 5px;
 }
+.MovieList {
+  min-width: 100%;
+}
 }
 
 @media only screen and (max-width: 350px) {
+  .Search {
+    padding: 0;
+    padding-bottom: 50px;
+    justify-content: center;
+  }
   .Search form {
     width: 95%;
   }

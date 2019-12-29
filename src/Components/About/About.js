@@ -12,13 +12,13 @@ const About = () => {
           <p>I used react, react hooks, axios for fetching data, react router dom, The MovieDB API - I strongly recommend it.</p>
           <h4>Contact</h4>
         </div>
-        <form className={classes.AboutForm}>
+        <form className={classes.AboutForm} method="POST" data-netlify="true">
           <label>Name</label>
-          <input required type="text" placeholder='Name' />
+          <input required type="text" name="name" placeholder='Name' />
           <label>Email</label>
-          <input required type="email" placeholder='Email' />
+          <input required type="email" name="email" placeholder='Email' />
           <label>Comment</label>
-          <textarea required name="comment" placeholder='Comment' rows="3"></textarea>
+          <textarea required name="comment" name="body" placeholder='Comment' rows="3"></textarea>
           <button type='submit'>Submit</button>
         </form>
       </div>

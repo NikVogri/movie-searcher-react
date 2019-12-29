@@ -16,7 +16,6 @@
   font-size: 25px;
   margin: 20px; 
   transition: all .2s ease;
-  display: flex;
 }
 
 .TopItem:hover .TopInformation, .TopItem:active .TopInformation {
@@ -76,12 +75,17 @@
 .TopDescription{
   margin: 30px 0 15px 0;
 }
-
+.TopContainer {
+  margin-bottom: 30px;
+}
 @media only screen and (max-width: 650px) {
 .TopInformation {
-  transform: translate(0);
-  width: 100%;
+  transform: translate(0, 0);
   height: 450px;
+  margin: 0;
+  left: 13%;
+  padding: 0;
+  width: 75%;
   }
   .HeartIcon{
     top: 15px;
@@ -90,20 +94,14 @@
   }
   .TopImage {
   height: 450px;
-  width: 350px;
+  width: 75%;
 }
 
 .TopItem{
   min-height: 375px;
-  min-width: 350px;
   color: #fff;
-
+  width: 99vw;;
+  justify-content: center;
+  margin: 0;
   }
-}
-
-@media only screen and (max-width: 350px) {
- .TopImage {
-  height: 450px;
-  width: 100vw;
-}
 }

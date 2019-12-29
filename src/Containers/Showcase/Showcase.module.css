@@ -2,4 +2,24 @@
   padding: 50px;
   min-height: 300px;
   background: #212020;
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 550px) {
+  .Showcase {
+    font-size: 22px;
+    padding: 10px;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .Showcase {
+    font-size: 14px;
+    padding: 0;
+  }
+ .TopContainer {
+   width: 100vw;
+   text-align: center;
+ }
 }
