@@ -5,3 +5,9 @@
   justify-content: center;
   padding-bottom: 20px;
 }
+
+@media only screen and (min-width: 1920px) {
+  .TopContainer {
+    width: 1450px !important;
+  }
+}

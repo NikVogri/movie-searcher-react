@@ -18,25 +18,24 @@ const Search = () => {
 
   useEffect(() => {
     if (!firstMount && inputValue !== '') {
+      const inputChangeHandler = () => {
+        setLoading(true);
+        axios.get(`https://api.themoviedb.org/3/search/${selectValue}?api_key=dce6a338a810ffe30be7528d9a32bf13&query=${inputValue}&page=${currentPage}&include_adult=false`)
+          .then(res => {
+            setResults(res.data.results);
+            setTotalpages(res.data.total_pages);
+            setLoading(false);
+            setnoResults(false);
+            if (res.data.total_results === 0) {
+              setnoResults(true);
+            }
+          })
+          .catch(err => { console.log(err); setLoading(false); });
+      };
       inputChangeHandler();
     }
     setfirstMount(false);
-  }, [inputValue, selectValue, currentPage])
-
-  const inputChangeHandler = () => {
-    setLoading(true);
-    axios.get(`https://api.themoviedb.org/3/search/${selectValue}?api_key=dce6a338a810ffe30be7528d9a32bf13&query=${inputValue}&page=${currentPage}&include_adult=false`)
-      .then(res => {
-        setResults(res.data.results);
-        setTotalpages(res.data.total_pages);
-        setLoading(false);
-        setnoResults(false);
-        if (res.data.total_results === 0) {
-          setnoResults(true);
-        }
-      })
-      .catch(err => { console.log(err); setLoading(false); });
-  };
+  }, [inputValue, selectValue, currentPage, firstMount])
 
   const getPageHandler = (id) => {
     setCurrentPage(id);

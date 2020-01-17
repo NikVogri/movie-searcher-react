@@ -4,3 +4,9 @@
   margin: 0 auto;
   justify-content: center;
 }
+
+@media only screen and (min-width: 1920px) {
+  .TopContainer {
+    width: 1450px !important;
+  }
+}

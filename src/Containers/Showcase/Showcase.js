@@ -17,25 +17,26 @@ const Showcase = () => {
   const [showButtonClickedTV, setShowButtonClickedTV] = useState(false);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        if (topList.length === 0) {
+          const movieData = await Axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
+          setFetchedMovie(movieData.data.results);
+          setTopList(movieData.data.results.slice(0, 5));
+        };
+        const tvData = await Axios.get('https://api.themoviedb.org/3/trending/tv/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
+        setTVtopList(tvData.data.results.slice(0, 5));
+        setFetchedTv(tvData.data.results);
+      } catch (err) {
+        setError(true);
+      }
+      setLoading(false);
+    };
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      if (topList.length === 0) {
-        const movieData = await Axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
-        setFetchedMovie(movieData.data.results);
-        setTopList(movieData.data.results.slice(0, 5));
-      };
-      const tvData = await Axios.get('https://api.themoviedb.org/3/trending/tv/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
-      setTVtopList(tvData.data.results.slice(0, 5));
-      setFetchedTv(tvData.data.results);
-    } catch (err) {
-      setError(true);
-    }
-    setLoading(false);
-  };
+    fetchData();
+  }, [topList]);
+
 
   const showNext = (type) => {
     if (type === 'movie') {
@@ -60,13 +61,13 @@ const Showcase = () => {
   if (fetchedMovie.length !== 0 && fetchedTV.length !== 0 && loading === false) {
     render = (
       <div className={classes.TopContainer}>
-        <h2 style={{ color: 'white' }}>Trending movies now</h2>
+        <h2 style={{ color: 'white' }}>Trending weekly movies</h2>
         <div className={classes.TopMovieSection}>
           <Popular movieTopList={topList} />
           <p className={classes.NextButton} onClick={() => showNext('movie')}>Show {showButtonClickedMovie ? 'Less' : 'More'}</p>
         </div>
 
-        <h2 style={{ color: 'white' }}>Trending TV now</h2>
+        <h2 style={{ color: 'white' }}>Trending weekly TV</h2>
         <div className={classes.TopTVSection}>
           <PopularTV tvTopList={TVtopList} />
           <p className={classes.NextButton} onClick={() => showNext('tv')}>Show {showButtonClickedTV ? 'Less' : 'More'}</p>
