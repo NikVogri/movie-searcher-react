@@ -7,11 +7,14 @@ import Axios from 'axios';
 import Spinner from '../../Components/Spinner/Spinner';
 
 const Showcase = () => {
-  const [topList, settopList] = useState([]);
+  const [fetchedMovie, setFetchedMovie] = useState([]);
+  const [fetchedTV, setFetchedTv] = useState([]);
+  const [topList, setTopList] = useState([]);
   const [TVtopList, setTVtopList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const [showButtonClickedMovie, setShowButtonClickedMovie] = useState(false);
+  const [showButtonClickedTV, setShowButtonClickedTV] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -22,24 +25,52 @@ const Showcase = () => {
     try {
       if (topList.length === 0) {
         const movieData = await Axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
-        settopList(movieData.data.results.splice(0, 5))
+        setFetchedMovie(movieData.data.results);
+        setTopList(movieData.data.results.slice(0, 5));
       };
       const tvData = await Axios.get('https://api.themoviedb.org/3/trending/tv/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
-      setTVtopList(tvData.data.results.splice(0, 5))
+      setTVtopList(tvData.data.results.slice(0, 5));
+      setFetchedTv(tvData.data.results);
     } catch (err) {
       setError(true);
     }
     setLoading(false);
   };
 
+  const showNext = (type) => {
+    if (type === 'movie') {
+      setTopList(fetchedMovie.slice(0, 20));
+      setShowButtonClickedMovie(true);
+      if (showButtonClickedMovie) {
+        setTopList(fetchedMovie.slice(0, 5));
+        setShowButtonClickedMovie(false);
+      }
+    }
+    if (type === 'tv') {
+      setTVtopList(fetchedTV.slice(0, 20));
+      setShowButtonClickedTV(true);
+      if (showButtonClickedTV) {
+        setTVtopList(fetchedTV.slice(0, 5));
+        setShowButtonClickedTV(false);
+      }
+    }
+  };
+
   let render = null;
-  if (topList.length !== 0 && TVtopList.length !== 0 && loading === false) {
+  if (fetchedMovie.length !== 0 && fetchedTV.length !== 0 && loading === false) {
     render = (
       <div className={classes.TopContainer}>
         <h2 style={{ color: 'white' }}>Trending movies now</h2>
-        <Popular movieTopList={topList} />
+        <div className={classes.TopMovieSection}>
+          <Popular movieTopList={topList} />
+          <p className={classes.NextButton} onClick={() => showNext('movie')}>Show {showButtonClickedMovie ? 'Less' : 'More'}</p>
+        </div>
+
         <h2 style={{ color: 'white' }}>Trending TV now</h2>
-        <PopularTV tvTopList={TVtopList} />
+        <div className={classes.TopTVSection}>
+          <PopularTV tvTopList={TVtopList} />
+          <p className={classes.NextButton} onClick={() => showNext('tv')}>Show {showButtonClickedTV ? 'Less' : 'More'}</p>
+        </div>
       </div>);
   } else {
     render = <Spinner />

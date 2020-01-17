@@ -7,7 +7,7 @@ const CookieWarning = () => {
     renderModal = (
       <div className={classes.CookieWarning}>
         <div className={classes.InnerCookieWarning}>
-          <p> <i className="fas fa-cookie" /> This site uses cookies. If you consent please click "I Agree" below. <i className="fas fa-cookie" /></p>
+          <p>This site uses cookies. If you consent please click "I Agree" below.</p>
           <p onClick={() => agreeHandler()} className={classes.AgreeButton}>I Agree</p>
         </div>
       </div>

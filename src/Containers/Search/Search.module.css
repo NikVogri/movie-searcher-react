@@ -48,9 +48,6 @@
   transition: all .2s ease;
 }
 
-.Input:hover {
-  width: 355px;
-}
 
 .Pagination {
   text-align: center;

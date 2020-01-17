@@ -7,7 +7,7 @@
   font-size: 22px;
 }
 .InnerCookieWarning {
-  background: #fff;
+  background: #000;
   width: 45%;
   min-height: 100px;
   text-align: center;
@@ -15,6 +15,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding-bottom: 15px;
 }
 
 @media only screen and (max-width: 550px) {
@@ -24,17 +25,17 @@
 }
 .InnerCookieWarning p {
   margin-top: 15px;
+  color: #fff;
 }
 
 .AgreeButton {
-  color: red;
+  color: red !important;
+  border: solid 1px red;
   font-size: 24px;
+  padding: 5px 0;
+  width: 50%;
+  margin: 0 auto;
   cursor: pointer;
-  padding-bottom: 15px;
-}
-
-.AgreeButton:hover {
-  color: green;
 }
 
 .CookieWarning i {

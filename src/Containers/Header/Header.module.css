@@ -7,15 +7,14 @@
   overflow: hidden;
 }
 
-.Header:hover .Image{
-  transform: scale(1.05);
-}
+
 
 .Image {
   height: 100%;
   width: 100%;
   filter: brightness(40%);
-  transition: all .3s ease-in;
+  transform: scale(1.05);
+  animation: zoomIn 5s ease;
 }
 
 h1 {
@@ -84,4 +83,8 @@ h1 {
     font-size: 45px;
     width: 65%;
   }
+}
+@keyframes zoomIn {
+  0% {transform: scale(1)}
+  100% {transform: scale(1.05)}
 }

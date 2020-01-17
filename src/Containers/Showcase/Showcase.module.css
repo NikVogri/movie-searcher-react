@@ -5,10 +5,20 @@
   display: flex;
   justify-content: center;
 }
+.NextButton {
+  font-size: 22px;
+  color: red;
+  margin-bottom: 35px;
+  border: solid 1px red;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+
+}
 
 @media only screen and (max-width: 700px) {
-  .InnerShowcase {
-    width: 65%;
+  .Showcase {
+    padding: 50px 10px;
   }
 }
 @media only screen and (max-width: 550px) {
@@ -20,15 +30,4 @@
   .InnerShowcase {
     width: 75%;
   }
-}
-@media only screen and (max-width: 320px) {
-  .Showcase {
-    font-size: 14px;
-    padding: 0;
-  }
- .TopContainer {
-   width: 60vw;
-   text-align: center;
- }
- 
 }
