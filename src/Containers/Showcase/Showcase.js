@@ -58,6 +58,7 @@ const Showcase = () => {
   };
 
   let render = null;
+  // This is for initial render, check if anything loaded & show spinner if it did not.
   if (fetchedMovie.length !== 0 && fetchedTV.length !== 0 && loading === false) {
     render = (
       <div className={classes.TopContainer}>
@@ -66,7 +67,6 @@ const Showcase = () => {
           <Popular movieTopList={topList} />
           <p className={classes.NextButton} onClick={() => showNext('movie')}>Show {showButtonClickedMovie ? 'Less' : 'More'}</p>
         </div>
-
         <h2 style={{ color: 'white' }}>Trending weekly TV</h2>
         <div className={classes.TopTVSection}>
           <PopularTV tvTopList={TVtopList} />
@@ -76,10 +76,11 @@ const Showcase = () => {
   } else {
     render = <Spinner />
   }
-
+  // checks if theres an error.
   if (error) {
     render = <p style={{ color: 'white', fontSize: '25px' }}>Error getting data, please try refreshing the page!</p>
   }
+
   return (
     <React.Fragment>
       <Header />
