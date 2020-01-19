@@ -1,0 +1,14 @@
+.Similar {
+  background: #161515;
+}
+
+.SimilarContent {
+  padding: 50px;
+}
+
+.SimilarContentContainer {
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

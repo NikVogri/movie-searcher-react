@@ -1,0 +1,17 @@
+.SimilarContent {
+  width: 145px;
+  height: 280px;
+  margin-top: 15px;
+}
+.SimilarImage {
+  width: 145px;
+  height: 250px;
+}
+
+.MovieName {
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  margin-top: 6px;
+  font-weight: bold;
+}
