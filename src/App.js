@@ -14,9 +14,10 @@ function App() {
       <CookieWarning />
       <BrowserRouter>
         <Navigation />
-        <Route path="/" exact component={Detail} />
+        <Route path="/" exact component={Showcase} />
         <Route path="/search" component={Search} />
         <Route path="/about" component={About} />
+        <Route path="/details/:id" component={Detail} />
       </BrowserRouter>
       <Footer />
     </React.Fragment>

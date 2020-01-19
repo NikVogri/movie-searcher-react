@@ -1,17 +1,16 @@
-import React from 'react';
-import classes from './detail.module.css';
+import React, { useEffect } from 'react';
 import ContentDetails from './content-details/content-details';
 import ContentCast from './content-cast/content-cast';
 import Reviews from './reviews/reviews';
 import Similar from './similar/similar';
 
-const Detail = () => {
+const Detail = (props) => {
   return (
     <div>
-      <ContentDetails />
-      <ContentCast />
-      <Reviews />
-      <Similar />
+      <ContentDetails contentId={props.match.params.id} />
+      <ContentCast contentId={props.match.params.id} />
+      <Reviews contentId={props.match.params.id} />
+      <Similar contentId={props.match.params.id} />
     </div>
   );
 }

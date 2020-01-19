@@ -1,31 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './content-details.module.css';
-import Image from '../../../img/joker.png';
-const ContentDetails = () => {
+import axios from 'axios';
+import MissingPoster from '../../../img/noPoster.jpeg';
+
+const ContentDetails = (props) => {
+  const [aboutData, setAboutData] = useState({});
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios.get(
+        `https://api.themoviedb.org/3/movie/${props.contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`)
+        .then(res => setAboutData(res.data));
+    }
+    getData();
+  }, [props.contentId]);
+
   return (
     <div className={classes.Detail}>
       <div className='container'>
         <div className={classes.TopDetails}>
           <div className={classes.TopDetailLeft}>
-            <img src={Image} className={classes.TopDetailImage} alt="movie image" />
-            <p className={classes.Date}>12/12/1948</p>
-            <p>Crime | Thriller | Drama</p>
+            <img src={aboutData.poster_path ? `https://image.tmdb.org/t/p/w500${aboutData.poster_path}` : MissingPoster} className={classes.TopDetailImage} alt="movie poster" />
+            <p className={classes.Date}>{aboutData.release_date}</p>
+            {aboutData.genres ? aboutData.genres.map(el => <p key={el.id}>{el.name}</p>) : null}
             <div className={classes.IconContainer}>
-              <i className="fab fa-imdb margin-top" aria-hidden="true"></i>
+              <a href='/'><i className="fab fa-imdb margin-top" aria-hidden="true"></i></a>
               <i className="fab fa-facebook" aria-hidden="true"></i>
               <i className="fab fa-twitter" aria-hidden="true"></i>
               <i className="fab fa-instagram" aria-hidden="true"></i>
             </div>
           </div>
           <div className={classes.TopDetailRight}>
-            <h2 className={classes.Title}>Joker</h2>
-            <p className={classes.Description}>During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.</p>
-            <p className='margin-top'>Popularity: 226.101</p>
-            <p>Average Rating: 8.3</p>
-            <p>Votes: 7991</p>
-            <p className='margin-top'>Budget: $55.000.000</p>
-            <p>Ravenue: $1.060.753.468</p>
-            <p>Homepage: https://www.jokermovie.net</p>
+            <h2 className={classes.Title}>{aboutData.title}</h2>
+            <p className={classes.Description}>{aboutData.overview}</p>
+            <p className='margin-top'>Popularity: {aboutData.popularity ? aboutData.popularity : '/'}</p>
+            <p>Average Rating: {aboutData.vote_average}</p>
+            <p>Votes: {aboutData.vote_count}</p>
+            <p className='margin-top'>Budget: ${aboutData.budget ? aboutData.budget : '/'}</p>
+            <p>Ravenue: ${aboutData.revenue ? aboutData.revenue : '/'}</p>
+            <p>Homepage: {aboutData.homepage ? aboutData.homepage : '/'}</p>
           </div>
         </div>
       </div>
