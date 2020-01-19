@@ -18,6 +18,10 @@
   transition: all .2s ease;
 }
 
+.TopItem p {
+  opacity: 1 !important;
+}
+
 .TopItem:hover .TopInformation, .TopItem:active .TopInformation {
   display: block;
 }

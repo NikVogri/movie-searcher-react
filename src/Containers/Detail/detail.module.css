@@ -1,0 +1,85 @@
+.Detail {
+  background: #212020;
+  color: #fff;
+}
+
+.TopDetails {
+  padding: 75px;
+  display: flex;
+}
+.TopDetailImage{
+  height: 375px;
+  width: 250px;
+}
+
+.TopDetailLeft {
+  text-align: center;
+}
+
+.TopDetailRight {
+margin-left: 15px;
+width: 600px;
+}
+.Description {
+  font-size: 22px;
+  line-height: 1.5;
+}
+.Title{
+  font-size: 55px;
+  padding-bottom: 15px;
+}
+
+.TopDetailLeft p {
+  margin: 5px 0 10px 0;
+  font-size: 20px;
+}
+.Detail i {
+  font-size: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+} 
+.Detail i:hover {
+  color: red;
+}
+
+@media only screen and (max-width: 1300px) {
+.TopDetailRight {
+width: 400px;
+  }
+  .Description {
+  font-size: 20px;
+  line-height: 1.3;
+}
+}
+
+@media only screen and (max-width: 1300px) {
+.TopDetails {
+  padding: 50px 10px 50px 10px;
+}
+}
+
+@media only screen and (max-width: 600px) {
+.TopDetails {
+  text-align: center;
+  flex-direction: column;
+
+}
+
+.TopDetailLeft {
+  margin: 30px 0 0 0;
+  width: 100%;
+  order: 1;
+}
+.TopDetailRight {
+margin: 0;
+  width: 100%;
+  text-align: center;
+}
+.Description {
+  font-size: 18px;
+}
+.Detail i {
+  font-size: 55px;
+  margin: 0 3%;
+}
+}

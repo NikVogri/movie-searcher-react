@@ -1,0 +1,19 @@
+.ContentCast {
+  background: #161515;
+  color: #fff;
+}
+
+.TopCast { 
+  padding: 50px;
+  
+}
+.CastContainer {
+ display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+@media only screen and (max-width: 1200px) {
+.TopCast { 
+  padding: 50px 0;
+}
+}

@@ -34,3 +34,24 @@ code {
 .active{
   color: red;
 }
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 1300px) {
+  .container {
+    width: 800px;
+}
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    width: 90%;
+}
+}
+
+
+.margin-top {
+  margin-top: 25px;
+}

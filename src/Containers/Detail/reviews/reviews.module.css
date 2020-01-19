@@ -1,0 +1,14 @@
+.Reviews {
+  background: #212020;
+  color: #fff;
+  
+}
+.UserReview {
+  padding: 75px;
+}
+
+@media only screen and (max-width: 600px) {
+  .UserReview {
+    padding: 50px 0;
+  }
+}
