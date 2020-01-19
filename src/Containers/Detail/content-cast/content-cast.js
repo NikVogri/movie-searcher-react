@@ -15,16 +15,19 @@ const ContentCast = (props) => {
     getData();
   }, [props.contentId]);
 
-  console.log(aboutData);
+  let render;
+  if (aboutData && aboutData.length !== 0) {
+    render = aboutData.map(castMember => <Actor key={castMember.id}{...castMember} />)
+  } else {
+    render = <p>No actors or actresses found</p>;
+  }
   return (
     <div className={classes.ContentCast}>
       <div className='container'>
         <div className={classes.TopCast}>
           <h2>Cast</h2>
           <div className={classes.CastContainer}>
-            {
-              aboutData ? aboutData.map(castMember => <Actor key={castMember.id}{...castMember} />) : null
-            }
+            {render}
           </div>
         </div>
       </div>

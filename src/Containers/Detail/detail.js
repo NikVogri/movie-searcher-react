@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ContentDetails from './content-details/content-details';
 import ContentCast from './content-cast/content-cast';
 import Reviews from './reviews/reviews';

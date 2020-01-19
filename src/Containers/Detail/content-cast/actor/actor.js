@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './actor.module.css';
-import Actor from '../../../../img/actor.jpg';
 import MissingPoster from '../../../../img/noPoster.jpeg';
 const actor = (props) => {
   return (

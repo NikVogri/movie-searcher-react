@@ -22,7 +22,6 @@ const Showcase = () => {
       try {
         if (topList.length === 0) {
           const movieData = await Axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=dce6a338a810ffe30be7528d9a32bf13');
-          console.log(movieData);
           setFetchedMovie(movieData.data.results);
           setTopList(movieData.data.results.slice(0, 5));
         };

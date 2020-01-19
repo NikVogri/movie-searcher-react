@@ -1,11 +1,16 @@
 .SimilarContent {
-  width: 145px;
-  height: 280px;
+  width: 160px;
+  height: 330px;
   margin: 15px;
+  transition: all .2s ease;
+}
+.SimilarContent:hover {
+  background: red;
+  padding: 5px;
 }
 .SimilarImage {
   width: 145px;
-  height: 250px;
+  height: 230px;
 }
 
 .MovieName {

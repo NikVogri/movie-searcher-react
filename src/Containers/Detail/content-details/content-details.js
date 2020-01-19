@@ -5,6 +5,7 @@ import MissingPoster from '../../../img/noPoster.jpeg';
 
 const ContentDetails = (props) => {
   const [aboutData, setAboutData] = useState({});
+  const [externalIdData, setExternalIdData] = useState({});
 
   useEffect(() => {
     const getData = async () => {
@@ -12,9 +13,14 @@ const ContentDetails = (props) => {
         `https://api.themoviedb.org/3/movie/${props.contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`)
         .then(res => setAboutData(res.data));
     }
+    const getExternalIds = async () => {
+      await axios.get(
+        `https://api.themoviedb.org/3/movie/${props.contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`)
+        .then(res => setExternalIdData(res.data));
+    }
     getData();
+    getExternalIds();
   }, [props.contentId]);
-
   return (
     <div className={classes.Detail}>
       <div className='container'>
@@ -22,12 +28,14 @@ const ContentDetails = (props) => {
           <div className={classes.TopDetailLeft}>
             <img src={aboutData.poster_path ? `https://image.tmdb.org/t/p/w500${aboutData.poster_path}` : MissingPoster} className={classes.TopDetailImage} alt="movie poster" />
             <p className={classes.Date}>{aboutData.release_date}</p>
-            {aboutData.genres ? aboutData.genres.map(el => <p key={el.id}>{el.name}</p>) : null}
+            <div className={classes.Genre}>
+              {aboutData.genres ? aboutData.genres.map(el => <p key={el.id}>{el.name}</p>) : null}
+            </div>
             <div className={classes.IconContainer}>
-              <a href='/'><i className="fab fa-imdb margin-top" aria-hidden="true"></i></a>
-              <i className="fab fa-facebook" aria-hidden="true"></i>
-              <i className="fab fa-twitter" aria-hidden="true"></i>
-              <i className="fab fa-instagram" aria-hidden="true"></i>
+              <a href={`https://www.imdb.com/title/${externalIdData.imdb_id}/`} aria-label='imdb'><span>hideme</span><i className="fab fa-imdb margin-top" aria-hidden="true" alt='imdb logo'></i></a>
+              <a href={`https://www.facebook.com/${externalIdData.facebook_id}/`} aria-label='facebook'><span>hideme</span><i className="fab fa-facebook" aria-hidden="true"></i></a>
+              <a href={`https://www.twitter.com/${externalIdData.twitter_id}/`} aria-label='twitter'><span>hideme</span><i className="fab fa-twitter" aria-hidden="true"></i></a>
+              <a href={`https://www.instagram.com/${externalIdData.instagram_id}/`} aria-label='instagram'><span>hideme</span><i className="fab fa-instagram" aria-hidden="true"></i></a>
             </div>
           </div>
           <div className={classes.TopDetailRight}>
@@ -36,8 +44,8 @@ const ContentDetails = (props) => {
             <p className='margin-top'>Popularity: {aboutData.popularity ? aboutData.popularity : '/'}</p>
             <p>Average Rating: {aboutData.vote_average}</p>
             <p>Votes: {aboutData.vote_count}</p>
-            <p className='margin-top'>Budget: ${aboutData.budget ? aboutData.budget : '/'}</p>
-            <p>Ravenue: ${aboutData.revenue ? aboutData.revenue : '/'}</p>
+            <p className='margin-top'>Budget: {aboutData.budget ? `$${aboutData.budget}` : '/'}</p>
+            <p>Ravenue: {aboutData.revenue ? `$${aboutData.revenue}` : '/'}</p>
             <p>Homepage: {aboutData.homepage ? aboutData.homepage : '/'}</p>
           </div>
         </div>
