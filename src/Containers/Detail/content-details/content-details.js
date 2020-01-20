@@ -47,7 +47,7 @@ const ContentDetails = (props) => {
             <p className='margin-top'>Budget: {aboutData.budget ? `$${aboutData.budget.toLocaleString()}` : '/'}</p>
             <p>Ravenue: {aboutData.revenue ? `$${aboutData.revenue.toLocaleString()}` : '/'}</p>
             {
-              aboutData.homepage ? <p>Homepage: <a href={aboutData.homepage} style={{ color: 'red' }}>{aboutData.homepage}</a></p> : null
+              aboutData.homepage ? <a href={aboutData.homepage} className={classes.Homepage}>Homepage</a> : null
             }
           </div>
         </div>

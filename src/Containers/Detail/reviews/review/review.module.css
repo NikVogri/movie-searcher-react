@@ -5,9 +5,19 @@
 .Username {
   font-size: 20px;
   font-weight: 600;
+  border-bottom: solid 2px red;
+  border-right: solid 2px red;
+  padding:0 5px 0 5px;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 .Comment {
   margin-top: 5px;
+}
+.ContinueReading {
+  color: red;
+  cursor: pointer;
+  display: block;
 }
 
 @media only screen and (max-width: 600px) {
