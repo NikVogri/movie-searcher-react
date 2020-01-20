@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './Showcase.module.css';
 import Popular from '../../Components/Popular/Popular';
 import PopularTV from '../../Components/Popular/PopularTV/PopularTV';
-import Header from '../Header/Header';
+import Header from '../../Components/Header/Header';
 import Axios from 'axios';
 import Spinner from '../../Components/Spinner/Spinner';
 

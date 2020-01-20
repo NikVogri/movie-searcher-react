@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classes from './content-cast.module.css';
 import Actor from './actor/actor';
-import axios from 'axios';
+import useFetch from '../../../Hooks/useFetch';
+import Spinner from '../../../Components/Spinner/Spinner';
 
 const ContentCast = (props) => {
-  const [aboutData, setAboutData] = useState(null);
-
-  useEffect(() => {
-    const getData = async () => {
-      await axios.get(
-        `https://api.themoviedb.org/3/movie/${props.contentId}/credits?api_key=dce6a338a810ffe30be7528d9a32bf13`)
-        .then(res => setAboutData(res.data.cast.slice(0, 10)));
-    }
-    getData();
-  }, [props.contentId]);
-
   let render;
-  if (aboutData && aboutData.length !== 0) {
-    render = aboutData.map(castMember => <Actor key={castMember.id}{...castMember} />)
+
+  const fetchedData = useFetch(
+    `/movie/${props.contentId}/credits?api_key=dce6a338a810ffe30be7528d9a32bf13`,
+    null);
+
+  if (fetchedData.data && fetchedData.data.cast !== 0) {
+    const cast = fetchedData.data.cast.slice(0, 10);
+    render = cast.map(castMember => <Actor key={castMember.id}{...castMember} />)
   } else {
     render = <p>No actors or actresses found</p>;
   }
+
+  if (!fetchedData.data) render = <Spinner />
+
   return (
     <div className={classes.ContentCast}>
       <div className='container'>

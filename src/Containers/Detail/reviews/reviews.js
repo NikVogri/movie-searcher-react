@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classes from './reviews.module.css';
 import Review from './review/review';
-import axios from 'axios';
+import useFetch from '../../../Hooks/useFetch';
+import Spinner from '../../../Components/Spinner/Spinner';
 
 const Reviews = (props) => {
-  const [aboutData, setAboutData] = useState(null);
+  const aboutData = useFetch(`/movie/${props.contentId}/reviews?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US&page=1`);
 
-  useEffect(() => {
-    const getData = async () => {
-      await axios.get(
-        `https://api.themoviedb.org/3/movie/${props.contentId}/reviews?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US&page=1`)
-        .then(res => setAboutData(res.data.results.slice(0, 5)));
-    }
-    getData();
-  }, [props.contentId]);
   let render;
-  if (aboutData && aboutData.length !== 0) {
-    render = aboutData.map(review => <Review key={review.id}{...review} />)
+  if (aboutData.data && aboutData.data.results !== 0) {
+    render = aboutData.data.results.map(review => <Review key={review.id}{...review} />)
   } else {
     render = <p>No reviews found</p>;
   }
+
+  if (!aboutData.data) render = <Spinner />
 
   return (
     <div className={classes.Reviews}>

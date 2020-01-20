@@ -45,7 +45,7 @@ const ContentDetails = (props) => {
             <p>Average Rating: {aboutData.vote_average}</p>
             <p>Votes: {aboutData.vote_count}</p>
             <p className='margin-top'>Budget: {aboutData.budget ? `$${aboutData.budget.toLocaleString()}` : '/'}</p>
-            <p>Ravenue: {aboutData.revenue ? `$${aboutData.revenue.toLocaleString()}` : '/'}</p>
+            <p>Revenue: {aboutData.revenue ? `$${aboutData.revenue.toLocaleString()}` : '/'}</p>
             {
               aboutData.homepage ? <a href={aboutData.homepage} className={classes.Homepage}>Homepage</a> : null
             }

@@ -13,8 +13,8 @@
   height: 100%;
   width: 100%;
   filter: brightness(40%);
-  transform: scale(1.05);
-  animation: zoomIn 5s ease;
+  transform: scale(1.25);
+  animation: zoomIn 30s ease;
 }
 
 h1 {
@@ -86,5 +86,5 @@ h1 {
 }
 @keyframes zoomIn {
   0% {transform: scale(1)}
-  100% {transform: scale(1.05)}
+  100% {transform: scale(1.25)}
 }
