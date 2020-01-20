@@ -2,9 +2,6 @@
   background: #212020;
   color: #fff;
 }
-a span {
-  display: none;
-}
 .TopDetails {
   padding: 75px;
   display: flex;
@@ -23,12 +20,13 @@ margin-left: 15px;
 width: 600px;
 }
 .Description {
-  font-size: 22px;
-  line-height: 1.5;
+  font-size: 20px;
+  line-height: 1.2;
 }
 .Title{
   font-size: 55px;
-  padding-bottom: 15px;
+  border-bottom: solid 1px red;
+  margin-bottom: 15px;
 }
 
 .TopDetailLeft p {
@@ -46,10 +44,18 @@ width: 600px;
 .Genre {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+color: red;
 }
 .Genre p {
   margin: 0 5px;
+  border: solid 1px red;
+  padding: 1px 5px;
+}
+.Date {
+  font-size: 24px !important;
+  margin: 10px 0 0 0;
 }
 @media only screen and (max-width: 1300px) {
 .TopDetailRight {

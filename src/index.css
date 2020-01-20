@@ -58,3 +58,6 @@ code {
 h2 {
   color: #fff;
 }
+.hideme {
+  display: none;
+}
