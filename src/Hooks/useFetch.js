@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const useFetch = (url, type) => {
   const [data, setData] = useState({
+    loading: true,
     data: null,
     error: false
   });
@@ -10,11 +11,10 @@ const useFetch = (url, type) => {
     const getData = () => {
       axios.get(
         `https://api.themoviedb.org/3${url}`)
-        .then(res => setData({ data: res.data })).catch(() => setData({ error: true }));
+        .then(res => setData({ data: res.data, loading: false })).catch(() => setData({ error: true, loading: false }));
     }
     getData();
   }, [url]);
-  console.log(data.data);
   return data;
 }
 

@@ -14,8 +14,8 @@ const Reviews = (props) => {
     render = <p>No reviews found</p>;
   }
 
-  if (!aboutData.data) render = <Spinner />
-
+  if (aboutData.error) render = <p>Error loading data, please refresh the page!</p>;
+  if (aboutData.loading) render = <Spinner />
   return (
     <div className={classes.Reviews}>
       <div className='container'>

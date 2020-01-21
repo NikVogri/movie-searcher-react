@@ -13,7 +13,9 @@ const Similar = (props) => {
   } else {
     render = <p>No similar content found</p>;
   }
-  if (!aboutData.data) render = <Spinner />
+
+  if (aboutData.error) render = <p>Error loading data, please refresh the page!</p>;
+  if (aboutData.loading) render = <Spinner />
 
   return (
     <div className={classes.Similar}>

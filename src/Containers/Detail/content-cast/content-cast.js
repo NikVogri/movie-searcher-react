@@ -18,7 +18,8 @@ const ContentCast = (props) => {
     render = <p>No actors or actresses found</p>;
   }
 
-  if (!fetchedData.data) render = <Spinner />
+  if (fetchedData.error) render = <p>Error loading data, please refresh the page!</p>;
+  if (fetchedData.loading) render = <Spinner />
 
   return (
     <div className={classes.ContentCast}>
