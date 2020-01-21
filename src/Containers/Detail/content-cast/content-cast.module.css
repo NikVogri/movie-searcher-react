@@ -7,6 +7,17 @@
   padding: 50px;
   
 }
+
+.Expand {
+  font-size: 22px;
+  color: red;
+  margin-bottom: 35px;
+  border: solid 1px red;
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+}
+
 .CastContainer {
  display: flex;
 flex-wrap: wrap;

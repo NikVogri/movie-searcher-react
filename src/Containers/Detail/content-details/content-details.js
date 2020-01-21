@@ -12,7 +12,7 @@ const ContentDetails = (props) => {
   if (aboutData.loading || externalIdData.loading) {
     render = <Spinner style={{height: '100vh'}}/>
   } else if (aboutData.error || externalIdData.error) {
-    render = <p className='error-message'>Error fetching data, please refresh the website!</p>
+    render = <p className='error-message '>Error fetching data, please refresh the website!</p>
   } else {
     let details;
     if (props.type === 'movie') {

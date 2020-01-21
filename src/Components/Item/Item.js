@@ -11,7 +11,6 @@ const Item = (props) => {
           <h3>{props.title}</h3>
         </div>
         <div className={classes.TopInformation}>
-          <i className={`${classes.HeartIcon} fa fa-heart`} aria-hidden="true" />
           <div className={classes.MainRating}>
             <div className={classes.Rating}>
               <i className={`${classes.StarIcon} fa fa-star`} id="star" aria-hidden="true" />
