@@ -4,7 +4,7 @@ import Item from '../Item/Item';
 
 const Popular = (props) => {
   const renderTopMovies = props.movieTopList.map(
-    movie => <Item key={movie.id} id={movie.id} title={movie.title} image={movie.poster_path} voteAverage={movie.vote_average} votes={movie.vote_count} popularity={movie.popularity} description={movie.overview} releaseDate={movie.release_date} />
+    movie => <Item type='movie' key={movie.id} id={movie.id} title={movie.title} image={movie.poster_path} voteAverage={movie.vote_average} votes={movie.vote_count} popularity={movie.popularity} description={movie.overview} releaseDate={movie.release_date} />
   );
   return (
     <div className={classes.TopContainer}>

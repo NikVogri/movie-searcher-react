@@ -8,17 +8,17 @@ const ContentCast = (props) => {
   let render;
 
   const fetchedData = useFetch(
-    `/movie/${props.contentId}/credits?api_key=dce6a338a810ffe30be7528d9a32bf13`,
+    `/${props.type}/${props.contentId}/credits?api_key=dce6a338a810ffe30be7528d9a32bf13`,
     null);
 
-  if (fetchedData.data && fetchedData.data.cast !== 0) {
+  if (fetchedData.data && fetchedData.data.cast.length !== 0) {
     const cast = fetchedData.data.cast.slice(0, 10);
     render = cast.map(castMember => <Actor key={castMember.id}{...castMember} />)
   } else {
-    render = <p>No actors or actresses found</p>;
+    render = <p className='error-message'>No actors or actresses found</p>;
   }
-
-  if (fetchedData.error) render = <p>Error loading data, please refresh the page!</p>;
+console.log(fetchedData);
+  if (fetchedData.error) render = <p className='error-message'>Error loading data, please refresh the page!</p>;
   if (fetchedData.loading) render = <Spinner />
 
   return (

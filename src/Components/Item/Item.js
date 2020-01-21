@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Item = (props) => {
   return (
     <div className={classes.TopItem}>
-      <Link to={`/details/${props.id}`}>
+      <Link to={`/${props.type}/${props.id}`}>
         <div className={classes.TopContainer}>
           <img src={props.image ? `https://image.tmdb.org/t/p/w500${props.image}` : MissingPoster} alt="movie poster" className={classes.TopImage} />
           <h3>{props.title}</h3>

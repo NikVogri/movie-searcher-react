@@ -17,7 +17,7 @@ function App() {
         <Route path="/" exact component={Showcase} />
         <Route path="/search" component={Search} />
         <Route path="/about" component={About} />
-        <Route path="/details/:id" component={Detail} />
+        <Route path="/:type/:id" component={Detail} />
       </BrowserRouter>
       <Footer />
     </React.Fragment>

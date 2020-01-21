@@ -8,12 +8,14 @@ const Detail = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [props]);
+  const contentId = props.match.params.id;
+  const type = props.match.params.type
   return (
     <div>
-      <ContentDetails contentId={props.match.params.id} />
-      <ContentCast contentId={props.match.params.id} />
-      <Reviews contentId={props.match.params.id} />
-      <Similar contentId={props.match.params.id} />
+      <ContentDetails contentId={contentId} type={type}/>
+      <ContentCast contentId={contentId} type={type} />
+      <Reviews contentId={contentId} type={type}/>
+      <Similar contentId={contentId} type={type} />
     </div>
   );
 }

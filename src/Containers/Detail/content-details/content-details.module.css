@@ -13,6 +13,7 @@
 
 .TopDetailLeft {
   text-align: center;
+  max-width: 250px;
 }
 
 .TopDetailRight {
@@ -52,7 +53,7 @@ width: 600px;
   justify-content: center;
   font-size: 16px;
   margin: 10px 0;
-color: red;
+  color: red;
 }
 .Genre p {
   margin: 0 5px;
