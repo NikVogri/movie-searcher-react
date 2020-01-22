@@ -87,7 +87,7 @@ width: 400px;
 .TopDetails {
   text-align: center;
   flex-direction: column;
-
+  align-items: center;
 }
 
 .TopDetailLeft {

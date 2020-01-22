@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classes from './content-cast.module.css';
 import Actor from './actor/actor';
 import useFetch from '../../../Hooks/useFetch';
@@ -26,7 +26,7 @@ const ContentCast = (props) => {
   } else {
     render = <p className='error-message'>No actors or actresses found</p>;
   }
-console.log(fetchedData);
+  console.log(fetchedData);
   if (fetchedData.error) render = <p className='error-message'>Error loading data, please refresh the page!</p>;
   if (fetchedData.loading) render = <Spinner />
 
@@ -37,14 +37,14 @@ console.log(fetchedData);
           <h2>Cast</h2>
           <div className={classes.CastContainer}>
             {render}
-            {
-            fetchedData.data ? fetchedData.data.cast.length > 10 ? 
-            <p onClick={viewMoreCast} className={classes.Expand}>{viewCastNumber === 10 ? `Show more` 
-            : `Show less` }</p>
-            : null 
-            : null
-            }
           </div>
+          {
+            fetchedData.data ? fetchedData.data.cast.length > 10 ?
+              <p onClick={viewMoreCast} className={classes.Expand}>{viewCastNumber === 10 ? `Show more`
+                : `Show less`}</p>
+              : null
+              : null
+          }
         </div>
       </div>
     </div>

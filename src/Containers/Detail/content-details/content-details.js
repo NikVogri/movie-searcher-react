@@ -3,35 +3,37 @@ import classes from './content-details.module.css';
 import MissingPoster from '../../../img/noPoster.jpeg';
 import Spinner from '../../../Components/Spinner/Spinner';
 import useFetch from '../../../Hooks/useFetch';
+import saveToLocalStorage from '../../../Util/saveToLocalStorage';
 
 const ContentDetails = (props) => {
   const aboutData = useFetch(`/${props.type}/${props.contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`);
   const externalIdData = useFetch(`/${props.type}/${props.contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`);
-  console.log(aboutData.data);
+
   let render;
   if (aboutData.loading || externalIdData.loading) {
-    render = <Spinner style={{height: '100vh'}}/>
+    render = <Spinner style={{ height: '100vh' }} />
   } else if (aboutData.error || externalIdData.error) {
     render = <p className='error-message '>Error fetching data, please refresh the website!</p>
   } else {
     let details;
     if (props.type === 'movie') {
-    details = (<><p className='margin-top'>Budget: {aboutData.data.budget ? `$${aboutData.data.budget.toLocaleString()}` : ' /'}</p>
-            <p>Revenue: {aboutData.data.revenue ? `$${aboutData.data.revenue.toLocaleString()}` : ' /'}</p>
-    {aboutData.data.homepage ? <a href={aboutData.data.homepage} className={classes.Homepage}>Homepage</a> : null} </>);
+      details = (<><p className='margin-top'>Budget: {aboutData.data.budget ? `$${aboutData.data.budget.toLocaleString()}` : ' /'}</p>
+        <p>Revenue: {aboutData.data.revenue ? `$${aboutData.data.revenue.toLocaleString()}` : ' /'}</p>
+        {aboutData.data.homepage ? <a href={aboutData.data.homepage} className={classes.Homepage}>Homepage</a> : null} </>);
     } else {
-      details = (<><p className='margin-top'>Episodes: {aboutData.data.number_of_episodes }</p>
-            <p>Seasons: {aboutData.data.number_of_seasons}</p>
-    {aboutData.data.homepage ? <a href={aboutData.data.homepage} className={classes.Homepage}>Homepage</a> : null} </>);
+      details = (<><p className='margin-top'>Episodes: {aboutData.data.number_of_episodes}</p>
+        <p>Seasons: {aboutData.data.number_of_seasons}</p>
+        {aboutData.data.homepage ? <a href={aboutData.data.homepage} className={classes.Homepage}>Homepage</a> : null} </>);
     }
-    
 
     render = (
       <div className='container'>
         <div className={classes.TopDetails}>
           <div className={classes.TopDetailLeft}>
             <img src={aboutData.data.poster_path ? `https://image.tmdb.org/t/p/w500${aboutData.data.poster_path}` : MissingPoster} className={classes.TopDetailImage} alt="movie poster" />
-            <p className={classes.Date}>{aboutData.data.release_date ? aboutData.data.release_date.split('-').reverse().join('/') : null || aboutData.data.last_air_date ? aboutData.data.last_air_date.split('-').reverse().join('/') : null }</p>
+            <p className={classes.Date}>{aboutData.data.release_date ? aboutData.data.release_date.split('-').reverse().join('/') : null || aboutData.data.last_air_date ? aboutData.data.last_air_date.split('-').reverse().join('/') : null}</p>
+            <i className="fa fa-heart" aria-hidden="true" title='Add to favourites' onClick={() => saveToLocalStorage(aboutData.data, 'favourites')}></i>
+            <i className="fa fa-eye" aria-hidden="true" title='Add to watched' onClick={() => saveToLocalStorage(aboutData.data, 'watched')}></i>
             <div className={classes.Genre}>
               {aboutData.data.genres ? aboutData.data.genres.slice(0, 3).map(el => <p key={el.id}>{el.name}</p>) : null}
             </div>

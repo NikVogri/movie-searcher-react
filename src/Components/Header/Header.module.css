@@ -8,7 +8,6 @@
 }
 
 
-
 .Image {
   height: 100%;
   width: 100%;
@@ -82,6 +81,9 @@ h1 {
   h1 {
     font-size: 45px;
     width: 65%;
+  }
+  .Header {
+    height:calc(100vh - 100px);
   }
 }
 @keyframes zoomIn {

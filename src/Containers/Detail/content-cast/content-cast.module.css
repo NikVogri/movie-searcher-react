@@ -5,7 +5,6 @@
 
 .TopCast { 
   padding: 50px;
-  
 }
 
 .Expand {
@@ -13,9 +12,9 @@
   color: red;
   margin-bottom: 35px;
   border: solid 1px red;
-  display: block;
   padding: 5px;
   cursor: pointer;
+  display: inline-block;
 }
 
 .CastContainer {
