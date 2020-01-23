@@ -13,7 +13,6 @@ const Reviews = (props) => {
   } else {
     render = <p className='error-message'>No reviews found</p>;
   }
-  console.log(aboutData);
   if (aboutData.error) render = <p className='error-message'>Error loading data, please refresh the page!</p>;
   if (aboutData.loading) render = <Spinner />
   return (

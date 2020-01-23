@@ -7,12 +7,8 @@ import About from './Components/About/About';
 import { BrowserRouter, Route } from 'react-router-dom';
 import CookieWarning from './Components/CookieWarning/CookieWarning';
 import Detail from './Containers/Detail/detail';
-import Favourites from './Containers/Favourites/Favourites';
+import Watched from './Containers/Watched/Watched';
 function App() {
-
-  if (!localStorage.getItem('favourites')) {
-    localStorage.setItem('favourites', [JSON.stringify([])]);
-  }
   if (!localStorage.getItem('watched')) {
     localStorage.setItem('watched', [JSON.stringify([])]);
   }
@@ -24,7 +20,7 @@ function App() {
         <Route path="/" exact component={Showcase} />
         <Route path="/search" component={Search} />
         <Route path="/about" component={About} />
-        <Route path="/favourites" component={Favourites} />
+        <Route path="/watched" component={Watched} />
         <Route path="/:type/:id" component={Detail} />
       </BrowserRouter>
       <Footer />

@@ -26,7 +26,6 @@ const ContentCast = (props) => {
   } else {
     render = <p className='error-message'>No actors or actresses found</p>;
   }
-  console.log(fetchedData);
   if (fetchedData.error) render = <p className='error-message'>Error loading data, please refresh the page!</p>;
   if (fetchedData.loading) render = <Spinner />
 

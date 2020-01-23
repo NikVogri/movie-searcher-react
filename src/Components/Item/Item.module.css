@@ -17,6 +17,9 @@
   transition: all .2s ease;
   margin: 0 20px 0 20px;
 }
+.TopItem:hover h3 {
+  color: red;
+}
 
 .TopItem p {
   opacity: 1 !important;

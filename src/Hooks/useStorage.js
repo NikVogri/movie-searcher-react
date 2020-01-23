@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
 
 const useStorage = () => {
-  const [data, setData] = useState({favourites: null, watched: null});
+  const [data, setData] = useState([]);
   useEffect(() => {
-    const getFavourites = localStorage.getItem('favourites');
     const getWatched = localStorage.getItem('watched');
-    let favourites = JSON.parse(getFavourites);
     let watched = JSON.parse(getWatched);
-    setData({favourites, watched});
+    setData(watched);
 
   }, []);
-  console.log(data);
   return data;
 }
 

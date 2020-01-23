@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './content-details.module.css';
 import MissingPoster from '../../../img/noPoster.jpeg';
 import Spinner from '../../../Components/Spinner/Spinner';
 import useFetch from '../../../Hooks/useFetch';
 import saveToLocalStorage from '../../../Util/saveToLocalStorage';
-
+import useStorage from '../../../Hooks/useStorage';
 const ContentDetails = (props) => {
+  const [addedToWatched, setAddedToWatched] = useState(false);
   const aboutData = useFetch(`/${props.type}/${props.contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`);
   const externalIdData = useFetch(`/${props.type}/${props.contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`);
+  const watchedData = useStorage();
+
+  const addToWatched = (data, type) => {
+    setAddedToWatched(true);
+    saveToLocalStorage(data, type);
+  }
 
   let render;
+  let renderWatchButton;
+
   if (aboutData.loading || externalIdData.loading) {
     render = <Spinner style={{ height: '100vh' }} />
   } else if (aboutData.error || externalIdData.error) {
@@ -25,15 +34,23 @@ const ContentDetails = (props) => {
         <p>Seasons: {aboutData.data.number_of_seasons}</p>
         {aboutData.data.homepage ? <a href={aboutData.data.homepage} className={classes.Homepage}>Homepage</a> : null} </>);
     }
-
+    if (watchedData) {
+      const alreadyWatched = watchedData.find(el => el.id === aboutData.data.id);
+      if (alreadyWatched || addedToWatched) {
+        renderWatchButton = <i className="fa fa-eye watched" aria-hidden="true" title='Already watched' />;
+      } else {
+        renderWatchButton = <i className="fa fa-eye" aria-hidden="true" title='Add to watched' onClick={() => addToWatched(aboutData.data, 'watched')} />;
+      }
+    }
     render = (
       <div className='container'>
         <div className={classes.TopDetails}>
           <div className={classes.TopDetailLeft}>
             <img src={aboutData.data.poster_path ? `https://image.tmdb.org/t/p/w500${aboutData.data.poster_path}` : MissingPoster} className={classes.TopDetailImage} alt="movie poster" />
+            <div className={classes.Watched}>
+              {renderWatchButton}
+            </div>
             <p className={classes.Date}>{aboutData.data.release_date ? aboutData.data.release_date.split('-').reverse().join('/') : null || aboutData.data.last_air_date ? aboutData.data.last_air_date.split('-').reverse().join('/') : null}</p>
-            <i className="fa fa-heart" aria-hidden="true" title='Add to favourites' onClick={() => saveToLocalStorage(aboutData.data, 'favourites')}></i>
-            <i className="fa fa-eye" aria-hidden="true" title='Add to watched' onClick={() => saveToLocalStorage(aboutData.data, 'watched')}></i>
             <div className={classes.Genre}>
               {aboutData.data.genres ? aboutData.data.genres.slice(0, 3).map(el => <p key={el.id}>{el.name}</p>) : null}
             </div>

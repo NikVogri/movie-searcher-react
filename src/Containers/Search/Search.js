@@ -47,7 +47,7 @@ const Search = () => {
   if (results) {
     render = results.map(el => {
       // check if the movie has been recently updated and or has any traction at all. This is mostly for fetching sake.
-      return <Item type={selectValue} key={el.id} id={el.id} title={el.title ? el.title : el.name} image={el.poster_path} voteAverage={el.vote_average} votes={el.vote_count} popularity={el.popularity} description={el.overview} releaseDate={el.release_date} />
+      return <Item type={selectValue} key={el.id} id={el.id} title={el.title ? el.title : el.name} image={el.poster_path} voteAverage={el.vote_average} votes={el.vote_count} popularity={el.popularity} description={el.overview} releaseDate={el.release_date || el.first_air_date} />
     })
     if (totalPages > 1) {
       for (let i = 1; i <= totalPages; i++) {
