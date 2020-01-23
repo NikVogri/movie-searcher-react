@@ -22,7 +22,7 @@ const Item = (props) => {
           <div className={classes.TopDescription}>
             <p>{props.description.slice(0, 215)}</p>
           </div>
-          <p className={classes.TopDate}>{props.releaseDate ? props.releaseDate.split('-').reverse().join('/') : null}</p>
+          <p className={classes.TopDate}>{props.releaseDate ? props.releaseDate.split('-').reverse().join('/') : props.firstAirDate.split('-').reverse().join('/')}</p>
         </div>
       </Link>
     </div>

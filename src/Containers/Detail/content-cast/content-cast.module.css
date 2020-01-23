@@ -5,14 +5,19 @@
 
 .TopCast { 
   padding: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .Expand {
-  font-size: 22px;
+  align-self: center;
+  width: 120px;
+  font-size: 16px;
+  margin-top: 20px;
   color: red;
-  margin-bottom: 35px;
   border: solid 1px red;
   padding: 5px;
+  text-align: center;
   cursor: pointer;
   display: inline-block;
 }
