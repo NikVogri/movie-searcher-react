@@ -1,5 +1,6 @@
 .WatchedWrapper {
   font-size: 54px;
+  min-height: calc(100vh - 135px);
   padding: 75px;
   width: 85%;
   margin: 0 auto;
@@ -33,6 +34,11 @@
   }
 .Watched{
   justify-content: center;
+}
+}
+@media only screen and (max-width: 600px) {
+.WatchedWrapper {
+  padding: 30px;
 }
 }
 

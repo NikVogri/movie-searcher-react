@@ -76,7 +76,7 @@ const Search = () => {
           <option value='movie'>Movies</option>
           <option value='tv'>TV</option>
         </select>
-        <input className={classes.Input} onChange={e => { setinputValue(e.target.value); setCurrentPage(1); }} />
+        <input className={classes.Input} onChange={e => { setinputValue(e.target.value); setCurrentPage(1); }} placeholder='Search now!' />
       </form>
       <div className={classes.MovieList}>
         {render}

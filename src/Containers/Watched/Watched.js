@@ -17,7 +17,7 @@ const Watched = () => {
   }
   return (
     <div className={classes.WatchedWrapper}>
-      <h4 className={classes.Title}>Watched</h4>
+<h4 className={classes.Title}>Watched ({data.length ? data.length : '0'})</h4>
       <div className={classes.Watched}>
         {renderWatched}
       </div>
