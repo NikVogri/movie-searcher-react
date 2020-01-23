@@ -7,11 +7,19 @@
 
 .About p {
   font-size: 16px;
-  margin: 5px 0;
+  margin: 5px 0 10px 0;
+}
+.Logo {
+  margin-top: 15px;
+  width: 100%;
+  width: 50%;
 }
 .About h4 {
   font-size: 22px;
-  padding-top: 20px;
+  margin-top: 20px;
+  padding-left: 5px;
+  border-bottom: solid 2px red;
+  border-right: solid 2px red;
 }
 
 .About a{
