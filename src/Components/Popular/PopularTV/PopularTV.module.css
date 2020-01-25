@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   margin: 20px auto;
   justify-content: center;
-  padding-bottom: 20px;
 }
 
 @media only screen and (min-width: 1920px) {

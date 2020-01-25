@@ -2,7 +2,6 @@
   height: calc(100vh - 135px);
   background: #212020;
   color: #fff;
-  padding-bottom: 30px;
 }
 
 .About p {
@@ -22,7 +21,7 @@
   border-right: solid 2px red;
 }
 
-.About a{
+.About a {
   background: #fff;
   border: none;
   color: #000;
@@ -33,7 +32,7 @@
 .About a:hover {
   background: #eee;
 }
-.InnerAbout{
+.InnerAbout {
   width: 350px;
   margin: 0 auto;
 }
@@ -65,7 +64,7 @@
 }
 
 .AboutForm button {
-border: none;
+  border: none;
   background: red;
   color: #fff;
   margin-top: 10px;
@@ -73,11 +72,19 @@ border: none;
   cursor: pointer;
 }
 
+@media only screen and (max-width: 650px) {
+  .About {
+    height: calc(100vh - 200px);
+    padding-bottom: 0;
+  }
+}
+
 @media only screen and (max-width: 350px) {
   .About {
-    min-height: 650px;
+    height: calc(100vh - 140px);
+    padding-bottom: 0;
   }
-  .InnerAbout{
-  width: 95%;
+  .InnerAbout {
+    width: 95%;
   }
 }
