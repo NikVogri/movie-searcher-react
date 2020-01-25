@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import classes from "./content-cast.module.css";
+import classes from "./Cast.module.css";
 import Actor from "./actor/actor";
-import useFetch from "../../../Hooks/useFetch";
-import Spinner from "../../../Components/Spinner/Spinner";
+import useFetch from "../../Hooks/useFetch";
+import Spinner from "../Spinner/Spinner";
 
 const ContentCast = ({ type, contentId }) => {
   const [viewCastNumber, setViewCastNumber] = useState(10);

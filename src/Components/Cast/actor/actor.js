@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./actor.module.css";
-import MissingPoster from "../../../../img/noPoster.jpeg";
+import MissingPoster from "../../../img/noPoster.jpeg";
 const actor = ({ profile_path, name, character }) => {
   return (
     <div className={classes.Actor}>

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./similar-content.module.css";
-import MissingPoster from "../../../../img/noPoster.jpeg";
+import MissingPoster from "../../../img/noPoster.jpeg";
 import { Link } from "react-router-dom";
 const SimilarContent = ({ type, id, poster_path, original_title, name }) => {
   return (

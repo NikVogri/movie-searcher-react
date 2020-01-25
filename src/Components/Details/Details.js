@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import classes from "./content-details.module.css";
-import MissingPoster from "../../../img/noPoster.jpeg";
-import Spinner from "../../../Components/Spinner/Spinner";
-import useFetch from "../../../Hooks/useFetch";
-import saveToLocalStorage from "../../../Util/saveToLocalStorage";
-import useStorage from "../../../Hooks/useStorage";
+import classes from "./details.module.css";
+import MissingPoster from "../../img/noPoster.jpeg";
+import Spinner from "../Spinner/Spinner";
+import useFetch from "../../Hooks/useFetch";
+import saveToLocalStorage from "../../Util/saveToLocalStorage";
+import useStorage from "../../Hooks/useStorage";
+
 const ContentDetails = ({ type, contentId }) => {
   const [addedToWatched, setAddedToWatched] = useState(false);
   const aboutData = useFetch(

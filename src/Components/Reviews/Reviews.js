@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./reviews.module.css";
 import Review from "./review/review";
-import useFetch from "../../../Hooks/useFetch";
-import Spinner from "../../../Components/Spinner/Spinner";
+import useFetch from "../../Hooks/useFetch";
+import Spinner from "../Spinner/Spinner";
 
 const Reviews = ({ type, contentId }) => {
   const aboutData = useFetch(

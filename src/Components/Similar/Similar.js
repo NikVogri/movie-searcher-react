@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./similar.module.css";
 import SimilarContent from "./similar-content/similar-content";
-import useFetch from "../../../Hooks/useFetch";
-import Spinner from "../../../Components/Spinner/Spinner";
+import useFetch from "../../Hooks/useFetch";
+import Spinner from "../Spinner/Spinner";
 
 const Similar = ({ type, contentId }) => {
   const aboutData = useFetch(

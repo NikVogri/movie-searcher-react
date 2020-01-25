@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import ContentDetails from "./content-details/content-details";
-import ContentCast from "./content-cast/content-cast";
-import Reviews from "./reviews/reviews";
-import Similar from "./similar/similar";
+import ContentDetails from "../../Components/Details/Details";
+import ContentCast from "../../Components/Cast/Cast";
+import Reviews from "../../Components/Reviews/Reviews";
+import Similar from "../../Components/Similar/Similar";
 
 const Detail = props => {
   useEffect(() => {
