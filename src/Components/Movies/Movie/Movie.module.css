@@ -10,22 +10,20 @@
 }
 
 @media only screen and (max-width: 650px) {
-  .Movie{
+  .Movie {
     width: 90vw;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .Movie{
+  .Movie {
     width: 98vw;
   }
 }
 
-
 .Sm {
   margin: 5px;
 }
-
 
 .Icons {
   font-size: 25px;
@@ -39,27 +37,27 @@
   transform: translate(-50%);
 }
 
-.Image{
+.Image {
   width: 225px;
   height: 325px;
   margin-bottom: 5px;
 }
 
 @media only screen and (max-width: 650px) {
-  .Image{
-  width: 75%;
-  height: auto;
-  margin-bottom: 5px;
-}
-.Icons{
-  font-size: 35px;
-  margin-top: 30px;
-}
+  .Image {
+    width: 75%;
+    height: auto;
+    margin-bottom: 5px;
+  }
+  .Icons {
+    font-size: 35px;
+    margin-top: 30px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
-  .Image{
-  width: 100%;
-  margin-bottom: 5px;
-}
+  .Image {
+    width: 100%;
+    margin-bottom: 5px;
+  }
 }

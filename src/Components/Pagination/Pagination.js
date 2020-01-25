@@ -1,12 +1,17 @@
-import React from 'react';
-import classes from './Pagination.module.css';
+import React from "react";
+import classes from "./Pagination.module.css";
 
-const Pagination = (props) => {
+const Pagination = ({ page, pageNumber, clickHandler }) => {
   return (
-    <div className={`${classes.Pagination} ${props.page === props.pageNumber ? classes.ActivePage : null}`} onClick={() => props.clickHandler()}>
-      {props.pageNumber}
+    <div
+      className={`${classes.Pagination} ${
+        page === pageNumber ? classes.ActivePage : null
+      }`}
+      onClick={() => clickHandler()}
+    >
+      {pageNumber}
     </div>
   );
-}
+};
 
 export default Pagination;

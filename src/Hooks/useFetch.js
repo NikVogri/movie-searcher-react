@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const useFetch = (url, type) => {
+const useFetch = url => {
   const [data, setData] = useState({
     loading: true,
     data: null,
@@ -9,13 +9,14 @@ const useFetch = (url, type) => {
   });
   useEffect(() => {
     const getData = () => {
-      axios.get(
-        `https://api.themoviedb.org/3${url}`)
-        .then(res => setData({ data: res.data, loading: false })).catch(() => setData({ error: true, loading: false }));
-    }
+      axios
+        .get(`https://api.themoviedb.org/3${url}`)
+        .then(res => setData({ data: res.data, loading: false }))
+        .catch(() => setData({ error: true, loading: false }));
+    };
     getData();
   }, [url]);
   return data;
-}
+};
 
 export default useFetch;
