@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./similar.module.css";
 import SimilarContent from "./similar-content/similar-content";
 import useFetch from "../../Hooks/useFetch";
-import Spinner from "../Spinner/Spinner";
 
 const Similar = ({ type, contentId }) => {
   const aboutData = useFetch(
@@ -15,8 +14,9 @@ const Similar = ({ type, contentId }) => {
     render = similarContent.map(similar => (
       <SimilarContent type={type} key={similar.id} {...similar} />
     ));
-  } else {
-    render = <p className="error-message">No similar content found</p>;
+    if (aboutData.data.results.length === 0) {
+      render = <p className="error-message">No similar content found</p>;
+    }
   }
 
   if (aboutData.error)
@@ -25,7 +25,6 @@ const Similar = ({ type, contentId }) => {
         Error loading data, please refresh the page!
       </p>
     );
-  if (aboutData.loading) render = <Spinner />;
 
   return (
     <div className={classes.Similar}>

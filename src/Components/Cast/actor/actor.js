@@ -13,8 +13,10 @@ const actor = ({ profile_path, name, character }) => {
         alt="cast member"
         className={classes.ActorImage}
       />
-      <p className={classes.CharacterName}>{character}</p>
-      <p className={classes.Name}>{name}</p>
+      <div className={classes.nameContainer}>
+        <p className={classes.CharacterName}>{character}</p>
+        <p className={classes.Name}>{name}</p>
+      </div>
     </div>
   );
 };

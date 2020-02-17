@@ -6,7 +6,7 @@
   padding: 75px;
   display: flex;
 }
-.TopDetailImage{
+.TopDetailImage {
   height: 375px;
   width: 250px;
 }
@@ -18,9 +18,9 @@
 }
 
 .TopDetailRight {
-margin-left: 15px;
-width: 600px;
-z-index: 10;
+  margin-left: 15px;
+  width: 600px;
+  z-index: 10;
 }
 .Description {
   font-size: 20px;
@@ -36,9 +36,13 @@ z-index: 10;
   right: 5px;
   top: 10px;
   z-index: 999;
-  color: yellow;
+  color: rgb(243, 243, 243);
+  transition: all 0.2s ease;
 }
-.Title{
+.Watched:hover {
+  transform: scale(1.1);
+}
+.Title {
   font-size: 55px;
   border-bottom: solid 1px red;
   margin-bottom: 15px;
@@ -52,7 +56,7 @@ z-index: 10;
   font-size: 30px;
   margin: 0 10px;
   cursor: pointer;
-} 
+}
 .Detail i:hover {
   color: red;
 }
@@ -73,53 +77,53 @@ z-index: 10;
   margin: 10px 0 0 0;
 }
 @media only screen and (max-width: 1300px) {
-.TopDetailRight {
-width: 400px;
+  .TopDetailRight {
+    width: 400px;
   }
   .Description {
-  font-size: 20px;
-  line-height: 1.3;
-}
+    font-size: 20px;
+    line-height: 1.3;
+  }
 }
 
 @media only screen and (max-width: 1300px) {
-.TopDetails {
-  padding: 50px 10px 50px 10px;
-}
-.Title {
-  font-size: 45px;
-}
+  .TopDetails {
+    padding: 50px 10px 50px 10px;
+  }
+  .Title {
+    font-size: 45px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-.TopDetails {
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-}
+  .TopDetails {
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.Watched {
-  right: 10px;
-  top: 5px;
-}
-.TopDetailLeft {
-  margin: 30px 0 0 0;
-  width: 100%;
-  order: 1;
-}
-.TopDetailRight {
-margin: 0;
-  width: 100%;
-  text-align: center;
-}
-.Description {
-  font-size: 18px;
-}
-.Detail i {
-  font-size: 30px;
-  margin: 0 3%;
-}
-.IconContainer {
-  margin-top: 30px;
-}
+  .Watched {
+    right: 10px;
+    top: 5px;
+  }
+  .TopDetailLeft {
+    margin: 30px 0 0 0;
+    width: 100%;
+    order: 1;
+  }
+  .TopDetailRight {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .Description {
+    font-size: 18px;
+  }
+  .Detail i {
+    font-size: 30px;
+    margin: 0 3%;
+  }
+  .IconContainer {
+    margin-top: 30px;
+  }
 }

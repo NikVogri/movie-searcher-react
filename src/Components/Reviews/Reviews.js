@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./reviews.module.css";
 import Review from "./review/review";
 import useFetch from "../../Hooks/useFetch";
-import Spinner from "../Spinner/Spinner";
 
 const Reviews = ({ type, contentId }) => {
   const aboutData = useFetch(
@@ -24,7 +23,6 @@ const Reviews = ({ type, contentId }) => {
         Error loading data, please refresh the page!
       </p>
     );
-  if (aboutData.loading) render = <Spinner />;
   return (
     <div className={classes.Reviews}>
       <div className="container">
