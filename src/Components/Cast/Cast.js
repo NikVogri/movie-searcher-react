@@ -7,6 +7,7 @@ import Spinner from "../Spinner/Spinner";
 const ContentCast = ({ type, contentId }) => {
   const [viewCastNumber, setViewCastNumber] = useState(10);
 
+  // on button click shows 20 or 10 cast members.
   const viewMoreCast = () => {
     if (viewCastNumber === 10) {
       setViewCastNumber(20);
@@ -21,20 +22,25 @@ const ContentCast = ({ type, contentId }) => {
     null
   );
 
+  // checks if there is data - this is to avoid unecessary errors
   if (fetchedData.data && fetchedData.data.cast.length !== 0) {
     const cast = fetchedData.data.cast.slice(0, viewCastNumber);
+    // map over all cast members
     render = cast.map(castMember => (
       <Actor key={castMember.id} {...castMember} />
     ));
   } else {
+    // in case of no items found then display this
     render = <p className="error-message">No actors or actresses found</p>;
   }
+  // in case of an error display error message
   if (fetchedData.error)
     render = (
       <p className="error-message">
         Error loading data, please refresh the page!
       </p>
     );
+  // displays spinner while fetching data
   if (fetchedData.loading) render = <Spinner />;
 
   return (

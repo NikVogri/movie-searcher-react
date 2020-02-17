@@ -1,20 +1,20 @@
 .TopImage {
-  height: 375px;
-  width: 250px;
-  transition: all .2s ease;
+  height: 260px;
+  width: 188px;
+  transition: all 0.2s ease;
   position: relative;
   z-index: 9;
 }
 
-.TopItem{
+.TopItem {
   position: relative;
   z-index: 999;
-  min-height: 375px;
-  width: 250px;
+  min-height: 260px;
+  width: 188px;
   color: #fff;
   text-align: center;
   font-size: 25px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   margin: 0 20px 0 20px;
 }
 .TopItem:hover h3 {
@@ -25,14 +25,15 @@
   opacity: 1 !important;
 }
 
-.TopItem:hover .TopInformation, .TopItem:active .TopInformation {
+/* .TopItem:hover .TopInformation,
+.TopItem:active .TopInformation {
   display: block;
 }
 
-.TopInformation{
+.TopInformation {
   -webkit-font-smoothing: antialiased;
-  height: 375px;
-  width: 250px;
+  height: 260px;
+  width: 188px;
   background: #000;
   opacity: 0.75;
   border-radius: 5px;
@@ -42,7 +43,7 @@
   transform: translate(-5%, -5%);
   z-index: 99;
   display: none;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   padding: 0 10px !important;
   text-align: center;
   color: #ccc;
@@ -52,7 +53,7 @@
   font-size: 16px;
 }
 
-.Rating{
+.Rating {
   margin-top: 45px;
   display: flex;
   justify-content: center;
@@ -66,34 +67,34 @@
 .TopVotes {
   font-size: 14px;
 }
-.TopViews{
+.TopViews {
   font-size: 10px;
 }
 
-.TopDescription{
+.TopDescription {
   margin: 30px 0 15px 0;
-}
+} */
 .TopContainer {
   margin-bottom: 30px;
 }
 
 @media only screen and (max-width: 650px) {
-.TopInformation {
-  transform: translate(0, 0);
-  height: 450px;
-  margin: 0;
-  padding: 0;
-  width: 100%;
+  .TopInformation {
+    transform: translate(0, 0);
+    height: 450px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
-  .HeartIcon{
+  .HeartIcon {
     top: 15px;
     right: 15px;
     font-size: 30px;
   }
 
-.TopInformation{
-  justify-content: center;
-  max-height: 375px;
-  border-radius: 0;
+  .TopInformation {
+    justify-content: center;
+    max-height: 375px;
+    border-radius: 0;
   }
 }

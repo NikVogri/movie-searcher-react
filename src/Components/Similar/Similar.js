@@ -9,6 +9,7 @@ const Similar = ({ type, contentId }) => {
     `/${type}/${contentId}/recommendations?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US&page=1`
   );
   let render;
+  // checks if all content is fetched
   if (aboutData.data && aboutData.data.length !== 0) {
     const similarContent = aboutData.data.results.slice(0, 5);
     render = similarContent.map(similar => (

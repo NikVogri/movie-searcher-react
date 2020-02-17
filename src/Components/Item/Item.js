@@ -26,7 +26,7 @@ const Item = ({
           />
           <h3>{title}</h3>
         </div>
-        <div className={classes.TopInformation}>
+        {/* <div className={classes.TopInformation}>
           <div className={classes.MainRating}>
             <div className={classes.Rating}>
               <i
@@ -50,7 +50,7 @@ const Item = ({
                   .join("/")
               : null}
           </p>
-        </div>
+        </div> */}
       </Link>
     </div>
   );

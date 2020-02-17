@@ -7,6 +7,7 @@ const useFetch = url => {
     data: null,
     error: false
   });
+  // gets data by url and returns it
   useEffect(() => {
     const getData = () => {
       axios

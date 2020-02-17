@@ -8,16 +8,20 @@ import useStorage from "../../Hooks/useStorage";
 
 const ContentDetails = ({ type, contentId }) => {
   const [addedToWatched, setAddedToWatched] = useState(false);
+  // get arbitrary data from API
   const aboutData = useFetch(
     `/${type}/${contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`
   );
+  // get external links data from API
   const externalIdData = useFetch(
     `/${type}/${contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`
   );
+  // checks which content was watched with custom hook (this is used to differenciate buttons)
   const watchedData = useStorage();
 
   const addToWatched = (data, type) => {
     setAddedToWatched(true);
+    // saves to local storage
     saveToLocalStorage(data, type);
   };
 
@@ -25,6 +29,7 @@ const ContentDetails = ({ type, contentId }) => {
   let renderWatchButton;
 
   if (aboutData.loading || externalIdData.loading) {
+    // waits until all data is fetched else it shows a spinner
     render = <Spinner style={{ height: "100vh" }} />;
   } else if (aboutData.error || externalIdData.error) {
     render = (
@@ -35,6 +40,7 @@ const ContentDetails = ({ type, contentId }) => {
   } else {
     let details;
     if (type === "movie") {
+      // if data is for a movie renders this
       details = (
         <>
           <p className="margin-top">
@@ -57,6 +63,7 @@ const ContentDetails = ({ type, contentId }) => {
         </>
       );
     } else {
+      // if data is for a tv show render this
       details = (
         <>
           <p className="margin-top">
@@ -72,10 +79,12 @@ const ContentDetails = ({ type, contentId }) => {
       );
     }
     if (watchedData) {
+      // checks if content was already watched
       const alreadyWatched = watchedData.find(
         el => el.id === aboutData.data.id
       );
       if (alreadyWatched || addedToWatched) {
+        // renders watched button depending on watched status
         renderWatchButton = (
           <i
             className="fa fa-eye watched"

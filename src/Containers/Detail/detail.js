@@ -5,6 +5,7 @@ import Reviews from "../../Components/Reviews/Reviews";
 import Similar from "../../Components/Similar/Similar";
 
 const Detail = props => {
+  // scrolls to top on prop change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [props]);

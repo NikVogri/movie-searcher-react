@@ -10,6 +10,7 @@ const Reviews = ({ type, contentId }) => {
   );
 
   let render;
+  // checks if all data is loaded, if none or if there's an error it returns a message.
   if (aboutData.data && aboutData.data.results.length !== 0) {
     render = aboutData.data.results.map(review => (
       <Review key={review.id} {...review} />
