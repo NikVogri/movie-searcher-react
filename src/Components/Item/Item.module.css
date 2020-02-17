@@ -17,6 +17,11 @@
   transition: all 0.2s ease;
   margin: 0 20px 0 20px;
 }
+@media only screen and (max-width: 850px) {
+  .TopItem {
+    margin: 0 10px 0 10px;
+  }
+}
 .TopItem:hover h3 {
   color: red;
 }

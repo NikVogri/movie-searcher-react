@@ -1,0 +1,41 @@
+.card {
+  min-height: 260px;
+  width: 188px;
+  margin: 0 20px;
+  cursor: pointer;
+  color: #fff;
+}
+.card span {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+.card h3 {
+  border-bottom: solid 1px red;
+  margin: 5px 0;
+}
+.card:hover h3 {
+  color: red;
+}
+.extra ul li {
+  margin: 3px 0;
+  text-align: left;
+  font-size: 14px;
+}
+/* .knownFor img {
+  height: 100px;
+  width: 60px;
+}
+.knownFor {
+  margin: 3px;
+} */
+.personImage {
+  height: 260px;
+  width: 188px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .card {
+    margin: 20px 20px;
+  }
+}
