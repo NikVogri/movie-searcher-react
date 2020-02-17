@@ -13,16 +13,18 @@
   justify-content: flex-start;
 }
 
-@media only screen and (max-width: 800px ){
+@media only screen and (max-width: 800px) {
   .SimilarContentContainer {
-  justify-content: center;
-}
-.SimilarContent {
-  padding: 10px;
-}
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+  .SimilarContent {
+    padding: 10px;
+  }
 }
 
-@media only screen and (max-width: 1300px ) and (min-width: 800px){
+@media only screen and (max-width: 1300px) and (min-width: 800px) {
   .SimilarContent {
     padding: 15px;
   }

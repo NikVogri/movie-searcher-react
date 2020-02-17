@@ -1,21 +1,19 @@
 .Actor {
-  height: 200px;
+  min-height: 200px;
   width: 200px;
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 5px;
+  align-content: stretch;
+  justify-content: baseline;
   text-align: center;
 }
 
-.ActorImage{
+.ActorImage {
   height: 120px;
   width: 100px;
-  border-radius: 120px;
 }
-
 .CharacterName {
   font-size: 18px;
   font-weight: 600;
@@ -23,5 +21,5 @@
   border-bottom: solid 2px red;
 }
 .Name {
-  font-size: 16px;;
+  font-size: 16px;
 }

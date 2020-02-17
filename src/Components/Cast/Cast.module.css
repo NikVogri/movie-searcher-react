@@ -2,8 +2,7 @@
   background: #161515;
   color: #fff;
 }
-
-.TopCast { 
+.TopCast {
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -23,12 +22,22 @@
 }
 
 .CastContainer {
- display: flex;
-flex-wrap: wrap;
-justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media only screen and (max-width: 800px) {
+  .CastContainer {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    /* align-items: flex-end; */
+  }
 }
 @media only screen and (max-width: 1200px) {
-.TopCast { 
-  padding: 50px 0;
-}
+  .TopCast {
+    padding: 50px 0;
+  }
 }
