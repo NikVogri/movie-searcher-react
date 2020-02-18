@@ -8,6 +8,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import CookieWarning from "./Components/CookieWarning/CookieWarning";
 import Detail from "./Containers/Detail/detail";
 import Watched from "./Containers/Watched/Watched";
+
 function App() {
   // this is for initial array in case it's users first time visiting the page.
   if (!localStorage.getItem("watched")) {

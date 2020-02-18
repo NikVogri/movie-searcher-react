@@ -108,6 +108,7 @@ const ContentDetails = ({ type, contentId }) => {
         <div className={classes.TopDetails}>
           <div className={classes.TopDetailLeft}>
             <img
+              title={aboutData.data.title || aboutData.data.name}
               src={
                 aboutData.data.poster_path
                   ? `https://image.tmdb.org/t/p/w500${aboutData.data.poster_path}`
