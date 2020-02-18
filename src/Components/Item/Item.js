@@ -14,7 +14,7 @@ const Item = ({
   description
 }) => {
   return (
-    <div className={classes.TopItem}>
+    <div className={classes.TopItem} title={title}>
       <Link to={`/${type}/${id}`}>
         <div className={classes.TopContainer}>
           <img

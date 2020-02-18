@@ -1,3 +1,8 @@
+.backgroundSpinner {
+  height: 100vh;
+  width: 100vw;
+  background: #212020;
+}
 .Loader {
   display: inline-block;
   width: 80px;
@@ -6,6 +11,7 @@
   top: 50%;
   left: 50%;
   z-index: 999999;
+  transform: translate(-50%, -50%);
 }
 .Loader:after {
   content: " ";
