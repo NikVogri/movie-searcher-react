@@ -6,7 +6,6 @@ const Popular = ({ topList, numberToDisplay, type }) => {
   const content = topList.slice(0, numberToDisplay);
   let render;
   if (type === "person") {
-    console.log(topList);
     render = content.map(person => (
       <ActorItem
         key={person.id}

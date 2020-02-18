@@ -35,14 +35,18 @@ a {
 .NavList li {
   margin: 0 8px;
 }
-
+.Logo {
+  width: 32px;
+  margin-right: 5px;
+  border-radius: 1px;
+}
 .NavList li a:hover {
   color: red;
 }
 
 @media only screen and (max-width: 1200px) {
   .InnerNav {
-  width: 100%;
+    width: 100%;
   }
 }
 
@@ -52,7 +56,7 @@ a {
   }
   .InnerNav {
     flex-direction: column;
-   align-items: center;
+    align-items: center;
   }
   .NavList {
     margin-top: 10px;

@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./ActorItem.module.css";
 
 const ActorItem = ({ name, image, knownFor }) => {
-  console.log(name, image, knownFor);
   return (
     <div className={styles.card}>
       <img

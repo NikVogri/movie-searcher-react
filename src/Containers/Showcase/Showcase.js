@@ -17,7 +17,6 @@ const Showcase = () => {
   const peopleData = useFetch(
     "/person/popular?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US"
   );
-  console.log(peopleData);
   const showNext = type => {
     if (type === "movie") {
       setShowButtonClickedMovie(20);

@@ -2,30 +2,71 @@
   position: relative;
   z-index: 99;
   height: calc(45vh - 60px);
+  min-height: 250px;
   background: black;
   overflow: hidden;
 }
-
-.Image {
+.heroText {
+  position: absolute;
+  z-index: 99999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.videoContainer {
   width: 100%;
   height: 100%;
-  filter: brightness(40%);
-  transform: scale(3);
-  /* transform: scale(1.25);
-  animation: zoomIn 30s ease;  */
+  pointer-events: none;
+}
+.logoSmall {
+  width: 35px;
+  border-radius: 5px;
+  transform: scale(1.1) rotate(-15deg) translateX(3px);
+  filter: brightness(90%);
 }
 
-h1 {
-  position: absolute;
-  display: inline-block;
-  z-index: 9999;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 50px;
+.desktopVideo {
+  transform: scale(3);
+  filter: brightness(55%);
+  width: 100%;
+  height: 100%;
+}
+.btnContainer {
+  margin-top: 25px;
+  display: flex;
+}
+.Btn {
   text-align: center;
-  border-bottom: solid 3px red;
+  background: rgb(204, 23, 23);
+  padding: 10px 30px;
+  box-shadow: 8px 5px 10px rgba(0, 0, 0, 0.5);
+  display: block;
+  transition: all 0.2s ease;
+}
+.Btn:hover {
+  transform: scale(1.05);
+  background: rgb(190, 25, 25);
+}
+.Btn:not(:first-child) {
+  margin-left: 25px;
+}
+.Image {
+  width: 120%;
+  filter: brightness(40%);
+  transform: scale(1.25);
+  animation: zoomIn 30s ease;
+}
+h1 {
+  max-width: 400px;
+  color: #fff;
+  font-size: 44px;
+  text-align: center;
+  text-shadow: 3px 3px 20px rgba(0, 0, 0, 0.4);
 }
 
 .ScrollDown::before {
@@ -39,7 +80,7 @@ h1 {
   height: 3rem;
   line-height: 4rem;
   text-align: center;
-  bottom: 2rem;
+  bottom: 4rem;
   margin-left: -3rem;
   left: 50%;
   animation: bounce 3s ease infinite;
@@ -48,7 +89,7 @@ h1 {
 
 @keyframes bounce {
   50% {
-    transform: translateY(-50%);
+    transform: translateY(-25%);
   }
   100% {
     transform: translateY(0);
@@ -66,7 +107,7 @@ h1 {
 }
 @media only screen and (max-width: 1000px) {
   h1 {
-    font-size: 45px;
+    font-size: 44px;
   }
   .ScrollDown {
     top: -18%;
@@ -75,31 +116,21 @@ h1 {
 
 @media only screen and (max-width: 1200px) {
   h1 {
-    font-size: 60px;
+    font-size: 44px;
   }
 }
 
 @media only screen and (max-width: 750px) {
-  .Image {
-    object-fit: cover;
-  }
   h1 {
-    font-size: 45px;
+    font-size: 38px;
     width: 65%;
+    line-height: 1.2;
   }
   .Header {
     height: calc(55vh - 100px);
   }
   .ScrollDown {
     top: -8%;
-  }
-  h1 {
-    top: 35%;
-    font-size: 40px;
-    line-height: 1.5;
-  }
-  .Image {
-    transform: scale(2);
   }
 }
 @keyframes zoomIn {
@@ -108,5 +139,14 @@ h1 {
   }
   100% {
     transform: scale(1.25);
+  }
+}
+@media only screen and (max-width: 400px) {
+  h1 {
+    font-size: 25px;
+    border: none;
+  }
+  .Btn {
+    padding: 10px 15px;
   }
 }

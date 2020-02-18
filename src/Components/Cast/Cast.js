@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./Cast.module.css";
 import Actor from "./actor/actor";
 import useFetch from "../../Hooks/useFetch";
