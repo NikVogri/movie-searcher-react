@@ -1,10 +1,12 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #212020;
@@ -13,7 +15,7 @@ body {
   background: salmon;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -26,7 +28,7 @@ code {
   color: black;
 }
 
-.ActiveFavourite{
+.ActiveFavourite {
   color: red;
 }
 
@@ -34,27 +36,27 @@ code {
   color: blue;
 }
 
-.active{
+.active {
   color: red;
 }
 
 .container {
-    width: 1200px;
-    margin: 0 auto;
+  width: 1200px;
+  margin: 0 auto;
 }
 @media only screen and (max-width: 1300px) {
   .container {
     width: 800px;
-}
+  }
 }
 
 @media only screen and (max-width: 900px) {
   .container {
     width: 90%;
-}
+  }
 }
 
-.error-message{
+.error-message {
   color: #fff;
   text-align: center;
 }
@@ -70,4 +72,8 @@ h2 {
 }
 .watched {
   color: red;
+}
+
+.fa-eye {
+  font-size: 25px !important;
 }
