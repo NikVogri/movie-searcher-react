@@ -106,14 +106,12 @@ const Showcase = () => {
       <Header />
       <div className={classes.Showcase}>
         <div className={classes.InnerShowcase}>
-          <div className={classes.TopContainer}>
-            <h2 style={{ color: "white" }}>Trending weekly movies</h2>
-            {renderTopMovies}
-            <h2 style={{ color: "white" }}>Trending weekly TV</h2>
-            {renderTopTv}
-            <h2 style={{ color: "white" }}>Trending people</h2>
-            {renderTopPeople}
-          </div>
+          <h2 style={{ color: "white" }}>Trending weekly movies</h2>
+          {renderTopMovies}
+          <h2 style={{ color: "white" }}>Trending weekly TV</h2>
+          {renderTopTv}
+          <h2 style={{ color: "white" }}>Trending people</h2>
+          {renderTopPeople}
         </div>
       </div>
     </React.Fragment>

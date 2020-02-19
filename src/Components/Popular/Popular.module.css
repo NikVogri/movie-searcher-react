@@ -5,14 +5,18 @@
   justify-content: center;
   margin-top: 20px;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 500px) {
   .TopContainer {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: scroll;
     justify-content: flex-start;
+    margin-bottom: 25px;
   }
 }
+
+/* @media only screen and (max-width: 400px) {
+} */
 @media only screen and (min-width: 1920px) {
   .TopContainer {
     width: 1450px !important;

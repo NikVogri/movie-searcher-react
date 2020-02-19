@@ -1,6 +1,7 @@
 .TopImage {
   height: 260px;
   width: auto;
+  min-width: 160px;
   max-width: 90%;
   transition: all 0.2s ease;
   position: relative;
