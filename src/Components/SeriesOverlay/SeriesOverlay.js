@@ -6,7 +6,6 @@ import SeriesOverlayBackdrop from "./SeriesOverlayBackdrop/SeriesOverlayBackdrop
 import Episode from "./Episode/Episode";
 const SeriesOverlay = ({ showId, show, setShowModal, numberOfSeasons }) => {
   const [seasonNumber, setSeasonNumber] = useState(1);
-
   const seasonData = useFetch(
     `/tv/${showId}/season/${seasonNumber}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`
   );
@@ -36,9 +35,16 @@ const SeriesOverlay = ({ showId, show, setShowModal, numberOfSeasons }) => {
       <>
         <div className={classes.modal}>
           <SeriesOverlayBackdrop show={show} setShow={setShowModal} />
-          <div className={classes.modalInner}>
-            <span className={classes.closeModal} onClick={setShowModal}>
-              Close
+          <div
+            className={`${classes.modalInner} ${show ? classes.active : null}`}
+          >
+            <span
+              className={classes.closeModal}
+              onClick={setShowModal}
+              role="img"
+              aria-label="close modal"
+            >
+              &#10060;
             </span>
             <select
               className={classes.seasonSelector}
