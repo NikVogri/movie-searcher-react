@@ -1,21 +1,23 @@
 .TopImage {
   height: 260px;
-  width: 188px;
+  width: auto;
+  max-width: 90%;
   transition: all 0.2s ease;
   position: relative;
   z-index: 9;
 }
-
+.contentTitle {
+  font-size: 24px !important;
+}
 .TopItem {
   position: relative;
   z-index: 999;
-  min-height: 260px;
+  min-height: 150px;
   width: 188px;
   color: #fff;
   text-align: center;
   font-size: 25px;
   transition: all 0.2s ease;
-  margin: 0 20px 0 20px;
 }
 @media only screen and (max-width: 850px) {
   .TopItem {

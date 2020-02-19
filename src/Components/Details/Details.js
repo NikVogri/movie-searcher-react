@@ -62,10 +62,16 @@ const ContentDetails = ({ type, contentId }) => {
           ) : null}{" "}
         </>
       );
-    } else {
+    } else if (type === "tv") {
       // if data is for a tv show render this
       details = (
         <>
+          <span
+            onClick={() => setShowModal(true)}
+            className={classes.showEpisodes}
+          >
+            Show Episodes
+          </span>
           <SeriesOverlay
             show={showModal}
             setShowModal={() => setShowModal(false)}
@@ -81,12 +87,6 @@ const ContentDetails = ({ type, contentId }) => {
               Homepage
             </a>
           ) : null}
-          <span
-            onClick={() => setShowModal(true)}
-            className={classes.showEpisodes}
-          >
-            Show Episodes
-          </span>
         </>
       );
     }

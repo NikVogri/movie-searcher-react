@@ -23,7 +23,7 @@
   z-index: 10;
 }
 .Description {
-  font-size: 20px;
+  font-size: 16px !important;
   line-height: 1.2;
 }
 
@@ -48,16 +48,16 @@
 }
 .showEpisodes {
   border: solid 1px red;
-  padding: 10px 30px;
   display: block;
-  margin: 5px 0;
+  padding: 5px 0;
+  margin-top: 15px;
   text-align: center;
   cursor: pointer;
-  /* width: 200px; */
+  width: 150px;
 }
 .TopDetailLeft p {
   margin: 5px 0 10px 0;
-  font-size: 20px;
+  font-size: 14px;
 }
 .Detail i {
   font-size: 30px;
@@ -68,7 +68,7 @@
 .Genre {
   display: flex;
   justify-content: center;
-  font-size: 16px;
+  font-size: 8px;
   margin: 10px 0;
   color: red;
 }
@@ -130,5 +130,8 @@
   }
   .IconContainer {
     margin-top: 30px;
+  }
+  .showEpisodes {
+    margin: 25px auto 0 auto;
   }
 }

@@ -2,17 +2,7 @@ import React from "react";
 import classes from "./Item.module.css";
 import MissingPoster from "../../img/noPoster.jpeg";
 import { Link } from "react-router-dom";
-const Item = ({
-  type,
-  id,
-  image,
-  title,
-  voteAverage,
-  votes,
-  popularity,
-  releaseDate,
-  description
-}) => {
+const Item = ({ type, id, image, title }) => {
   return (
     <div className={classes.TopItem} title={title}>
       <Link to={`/${type}/${id}`}>
@@ -24,7 +14,7 @@ const Item = ({
             alt="movie poster"
             className={classes.TopImage}
           />
-          <h3>{title}</h3>
+          <h3 className={classes.contentTitle}>{title}</h3>
         </div>
         {/* <div className={classes.TopInformation}>
           <div className={classes.MainRating}>

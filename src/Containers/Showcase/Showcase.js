@@ -5,8 +5,8 @@ import Header from "../../Components/Header/Header";
 import useFetch from "../../Hooks/useFetch";
 import Spinner from "../../Components/Spinner/Spinner";
 const Showcase = () => {
-  const [showButtonClickedMovie, setShowButtonClickedMovie] = useState(6);
-  const [showButtonClickedTV, setShowButtonClickedTV] = useState(6);
+  const [showButtonClickedMovie, setShowButtonClickedMovie] = useState(7);
+  const [showButtonClickedTV, setShowButtonClickedTV] = useState(7);
 
   const movieData = useFetch(
     "/trending/movie/week?api_key=dce6a338a810ffe30be7528d9a32bf13"
@@ -21,12 +21,12 @@ const Showcase = () => {
     if (type === "movie") {
       setShowButtonClickedMovie(20);
       if (showButtonClickedMovie === 20) {
-        setShowButtonClickedMovie(6);
+        setShowButtonClickedMovie(7);
       }
     } else if (type === "tv") {
       setShowButtonClickedTV(20);
       if (showButtonClickedTV === 20) {
-        setShowButtonClickedTV(6);
+        setShowButtonClickedTV(7);
       }
     }
   };

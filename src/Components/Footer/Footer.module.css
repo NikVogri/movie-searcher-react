@@ -3,20 +3,19 @@
   height: 75px;
   background: black;
   display: flex;
-  align-items: center; 
-  justify-content: center
+  align-items: center;
+  justify-content: center;
 }
 .Image {
   height: 50px;
   width: auto;
 }
 
-.Copyright { 
-  color: #fff; 
+.Copyright {
+  color: #fff;
   font-size: 16px;
   padding-left: 16px;
 }
-
 
 @media only screen and (max-width: 750px) {
   .Footer {
@@ -25,5 +24,8 @@
   }
   .Image {
     margin-bottom: 5px;
+  }
+  .Copyright {
+    padding-left: 0;
   }
 }
