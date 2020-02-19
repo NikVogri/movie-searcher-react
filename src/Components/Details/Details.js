@@ -5,9 +5,11 @@ import Spinner from "../Spinner/Spinner";
 import useFetch from "../../Hooks/useFetch";
 import saveToLocalStorage from "../../Util/saveToLocalStorage";
 import useStorage from "../../Hooks/useStorage";
-
+import SeriesOverlay from "../SeriesOverlay/SeriesOverlay";
 const ContentDetails = ({ type, contentId }) => {
   const [addedToWatched, setAddedToWatched] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   // get arbitrary data from API
   const aboutData = useFetch(
     `/${type}/${contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`
@@ -24,10 +26,8 @@ const ContentDetails = ({ type, contentId }) => {
     // saves to local storage
     saveToLocalStorage(data, type);
   };
-
   let render;
   let renderWatchButton;
-
   if (aboutData.loading || externalIdData.loading) {
     // waits until all data is fetched else it shows a spinner
     render = <Spinner style={{ height: "100vh" }} />;
@@ -66,6 +66,12 @@ const ContentDetails = ({ type, contentId }) => {
       // if data is for a tv show render this
       details = (
         <>
+          <SeriesOverlay
+            show={showModal}
+            setShowModal={() => setShowModal(false)}
+            showId={contentId}
+            numberOfSeasons={aboutData.data.number_of_seasons}
+          />
           <p className="margin-top">
             Episodes: {aboutData.data.number_of_episodes}
           </p>
@@ -74,7 +80,13 @@ const ContentDetails = ({ type, contentId }) => {
             <a href={aboutData.data.homepage} className={classes.Homepage}>
               Homepage
             </a>
-          ) : null}{" "}
+          ) : null}
+          <span
+            onClick={() => setShowModal(true)}
+            className={classes.showEpisodes}
+          >
+            Show Episodes
+          </span>
         </>
       );
     }

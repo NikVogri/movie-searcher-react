@@ -35,7 +35,6 @@
   position: absolute;
   right: 5px;
   top: 10px;
-  z-index: 999;
   color: rgb(243, 243, 243);
   transition: all 0.2s ease;
 }
@@ -47,7 +46,15 @@
   border-bottom: solid 1px red;
   margin-bottom: 15px;
 }
-
+.showEpisodes {
+  border: solid 1px red;
+  padding: 10px 30px;
+  display: block;
+  margin: 5px 0;
+  text-align: center;
+  cursor: pointer;
+  /* width: 200px; */
+}
 .TopDetailLeft p {
   margin: 5px 0 10px 0;
   font-size: 20px;

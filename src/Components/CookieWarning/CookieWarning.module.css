@@ -2,8 +2,8 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, .5);
-  z-index: 999999999;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
   font-size: 22px;
 }
 .InnerCookieWarning {
@@ -19,9 +19,9 @@
 }
 
 @media only screen and (max-width: 550px) {
- .InnerCookieWarning {
-   width: 100%;
- }
+  .InnerCookieWarning {
+    width: 100%;
+  }
 }
 .InnerCookieWarning p {
   margin-top: 15px;

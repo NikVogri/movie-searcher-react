@@ -1,0 +1,62 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.modalInner {
+  background: #050505;
+  padding: 5px 15px;
+  color: #fff;
+  z-index: 99999;
+  border-radius: 5px;
+  max-width: 800px;
+  min-width: 300px;
+  width: 80%;
+  border: solid 2px red;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.seasonSelector {
+  margin-top: 15px;
+  border: solid 2px red;
+  font-size: 16px;
+  background: #000;
+  color: #fff;
+  display: block;
+  height: 45px;
+  padding: 5px 30px;
+  border-radius: 5px;
+}
+.closeModal {
+  position: absolute;
+  color: red;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+}
+.closeModal:hover {
+  color: rgb(204, 23, 23);
+}
+.episodeContainer {
+  overflow-y: scroll;
+}
+.information {
+  text-align: center;
+}
+@media only screen and (max-width: 750px) {
+  .modal {
+    top: 50px;
+  }
+}
