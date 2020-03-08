@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "cd backend&&set NODE_ENV=development&&nodemon app.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

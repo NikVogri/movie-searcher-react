@@ -33,7 +33,6 @@ app.use((error, req, res, next) => {
 });
 
 // connect to datbase & start server
-console.log(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-cmnml.mongodb.net/filmetor?retryWrites=true&w=majority`,

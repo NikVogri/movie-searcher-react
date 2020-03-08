@@ -79,10 +79,29 @@ exports.loginUser = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
   // 1) get data from body & user from req.
   const { image, bio } = req.body;
-  console.log(req.user.userId);
-  // 2) check if user exists
-  // 3) update user data
+  const { userId } = req.user;
 
+  try {
+    // 2) check if user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User cannot be found");
+    }
+    // 3) update user information
+    if (image) {
+      user.image = image;
+    }
+    if (bio) {
+      user.bio = bio;
+    }
+    if (!bio && !image) {
+      throw new Error("Invalid input, please provide an image or bio");
+    }
+
+    user.save();
+  } catch (err) {
+    return next(new httpError(err.message, 500));
+  }
   res.status(200).json({
     status: "Success",
     msg: "Sucessfully updated user"
