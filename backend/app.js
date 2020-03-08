@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 app.use(bodyParser.json());
+
+// enable CORS
 app.use(cors());
 
 // default routes
@@ -26,6 +28,7 @@ app.use((error, req, res, next) => {
     return next(error);
   }
   // send this instead
+  console.log("here");
   res.status(error.code || 500).json({
     success: false,
     msg: error.message || "An unknown error occurred!"

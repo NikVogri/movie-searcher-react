@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 exports.createUser = async (req, res, next) => {
   // 1) get data from body
   const { name, email, password } = req.body;
-
   // 2) check if all required data is present
   if (!name || !email || !password) {
     return next(new httpError("Please enter all credentials", 400));
@@ -42,14 +41,22 @@ exports.createUser = async (req, res, next) => {
 
 exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body;
-
-  // 1) check if user exists with that email
-  const user = await User.findOne({
-    email
-  });
+  if (!email || !password) {
+    return next(new httpError("Please enter all credentials", 400));
+  }
   try {
+    // 1) check if user exists with that email
+    const user = await User.findOne({
+      email
+    });
     if (user) {
-      const passwordValidity = await bcrypt.compare(password, user.password);
+      const passwordValidity = await bcrypt.compare(
+        password,
+        user.password,
+        (err, result) => {
+          if (err) console.log("wrong");
+        }
+      );
       // 2) check if passwords match
       if (passwordValidity) {
         // 3) generate JWT

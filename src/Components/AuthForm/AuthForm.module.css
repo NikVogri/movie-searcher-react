@@ -17,7 +17,7 @@
   transition: transform 0.2s ease-in-out;
 }
 .switchButton {
-  border: solid 3px red;
+  border: solid 2px red;
   background: transparent;
   color: red;
   border-radius: 5px;

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import classes from "./AuthForm.module.css";
+import useLocalFetch from "../../Hooks/useLocalFetch";
 
 const AuthForm = () => {
   const [showSignup, setShowSignup] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const { error, isLoading, sendRequest } = useLocalFetch();
   const [formData, setFormData] = useState({
     name: {
       value: "",
@@ -23,7 +25,7 @@ const AuthForm = () => {
     }
   });
 
-  const formSubmitHandler = e => {
+  const formSubmitHandler = async e => {
     e.preventDefault();
 
     // check if passwords match
@@ -40,16 +42,32 @@ const AuthForm = () => {
     }
     // if it all data is valid then send request to back end.
     let formValidity;
+    let formBody;
 
     if (showSignup) {
       formValidity = validatorArray.every(el => el === true);
+      formBody = {
+        name: formData.name.value,
+        password: formData.password.value,
+        email: formData.email.value
+      };
     } else {
       formValidity = validatorArray[1] && validatorArray[2];
+      formBody = {
+        password: formData.password.value,
+        email: formData.email.value
+      };
     }
-    console.log(formValidity);
 
     if (formValidity) {
+      console.log(formBody);
       // send request
+      const data = await sendRequest(
+        `http://localhost:8000/api/user/${showSignup ? "register" : "login"}`,
+        "POST",
+        formBody
+      );
+      console.log(data);
     } else {
       setErrorMessage("Please provide all necessary information.");
     }
@@ -75,7 +93,8 @@ const AuthForm = () => {
   return (
     <>
       <h3 className={classes.title}>
-        Sign up to <span style={{ color: "red" }}>Filmetor</span>
+        {showSignup ? "Sign up" : "Log in"} to{" "}
+        <span style={{ color: "red" }}>Filmetor</span>
       </h3>
       <form onSubmit={formSubmitHandler}>
         {showSignup && (
