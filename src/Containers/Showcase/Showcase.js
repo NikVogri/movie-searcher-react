@@ -4,6 +4,7 @@ import Popular from "../../Components/Popular/Popular";
 import Header from "../../Components/Header/Header";
 import useFetch from "../../Hooks/useFetch";
 import Spinner from "../../Components/Spinner/Spinner";
+
 const Showcase = () => {
   const [showButtonClickedMovie, setShowButtonClickedMovie] = useState(7);
   const [showButtonClickedTV, setShowButtonClickedTV] = useState(7);

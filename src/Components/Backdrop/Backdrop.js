@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./SeriesOverlayBackdrop.module.css";
+import classes from "./Backdrop.module.css";
 
 const SeriesOverlayBackdrop = ({ show, setShow }) => {
   if (show) {

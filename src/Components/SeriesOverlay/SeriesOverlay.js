@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useFetch from "../../Hooks/useFetch";
 import classes from "./SeriesOverlay.module.css";
 import Spinner from "../Spinner/Spinner";
-import SeriesOverlayBackdrop from "./SeriesOverlayBackdrop/SeriesOverlayBackdrop";
+import SeriesOverlayBackdrop from "../Backdrop/Backdrop";
 import Episode from "./Episode/Episode";
 const SeriesOverlay = ({ showId, show, setShowModal, numberOfSeasons }) => {
   const [seasonNumber, setSeasonNumber] = useState(1);
