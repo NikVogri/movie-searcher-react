@@ -19,7 +19,7 @@ const Header = () => {
           className={classes.desktopVideo}
           src="https://www.youtube.com/embed/zAGVQLHvwOY?autoplay=1&mute=1&loop=1&showinfo=0&controls=0&iv_load_policy=3"
           frameborder="0"
-          autoplay="1"
+          autoPlay="1"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           loop="1"
         ></iframe>
