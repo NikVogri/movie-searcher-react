@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Showcase from "./Containers/Showcase/Showcase";
 import Footer from "./Components/Footer/Footer";
@@ -8,27 +9,73 @@ import Navigation from "./Components/Navigation/Navigation";
 import About from "./Containers/About/About";
 import CookieWarning from "./Components/CookieWarning/CookieWarning";
 import Detail from "./Containers/Detail/detail";
-import Watched from "./Containers/Watched/Watched";
+import MyList from "./Containers/MyList/MyList";
+import UserProfile from "./Containers/UserProfile/UserProfile";
 
-function App() {
-  // this is for initial array in case it's users first time visiting the page.
-  if (!localStorage.getItem("watched")) {
-    localStorage.setItem("watched", [JSON.stringify([])]);
+function App({ token }) {
+  let routes;
+  if (token) {
+    routes = (
+      <>
+        <Switch>
+          <Route path="/" exact>
+            <Showcase />
+          </Route>
+          <Route path="/about" exact>
+            <About />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/:type/:id" exact>
+            <Detail />
+          </Route>
+          <Route path="/my-list" exact>
+            <MyList />
+          </Route>
+          <Route path="/profile" exact>
+            <UserProfile />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </>
+    );
+  } else {
+    // if not authenticated
+    routes = (
+      <>
+        <Switch>
+          <Route path="/" exact>
+            <Showcase />
+          </Route>
+          <Route path="/about" exact>
+            <About />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/:type/:id" exact>
+            <Detail />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </>
+    );
   }
   return (
-    <React.Fragment>
+    <>
       <CookieWarning />
       <BrowserRouter>
         <Navigation />
-        <Route path="/" exact component={Showcase} />
-        <Route path="/search" component={Search} />
-        <Route path="/about" component={About} />
-        <Route path="/watched" component={Watched} />
-        <Route path="/:type/:id" component={Detail} />
+        {routes}
       </BrowserRouter>
       <Footer />
-    </React.Fragment>
+    </>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  token: state.user.token
+});
+
+export default connect(mapStateToProps)(App);

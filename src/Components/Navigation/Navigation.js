@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Navigation.module.css";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import Modal from "../Modal/Modal";
 import AuthForm from "../AuthForm/AuthForm";
@@ -33,19 +33,27 @@ const Navigation = ({ clearError, token }) => {
             <NavLink to="/search">Search</NavLink>
           </li>
           {token && (
-            <li>
-              <NavLink to="/watched">Watched</NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink to="/my-list">My list</NavLink>
+              </li>
+              <li>
+                <NavLink to="/profile">Profile</NavLink>
+              </li>
+              <Redirect to="/" />
+            </>
           )}
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
-          <li>
-            <span onClick={showModalHandler}>User</span>
-            <Modal show={showModal} setShow={hideModalHandler}>
-              <AuthForm />
-            </Modal>
-          </li>
+          {!token && (
+            <li>
+              <span onClick={showModalHandler}>Login / Signup</span>
+              <Modal show={showModal} setShow={hideModalHandler}>
+                <AuthForm />
+              </Modal>
+            </li>
+          )}
         </ul>
       </div>
     </div>
