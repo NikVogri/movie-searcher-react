@@ -1,10 +1,11 @@
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+
 import Showcase from "./Containers/Showcase/Showcase";
 import Footer from "./Components/Footer/Footer";
 import Search from "./Containers/Search/Search";
 import Navigation from "./Components/Navigation/Navigation";
 import About from "./Containers/About/About";
-import { BrowserRouter, Route } from "react-router-dom";
 import CookieWarning from "./Components/CookieWarning/CookieWarning";
 import Detail from "./Containers/Detail/detail";
 import Watched from "./Containers/Watched/Watched";

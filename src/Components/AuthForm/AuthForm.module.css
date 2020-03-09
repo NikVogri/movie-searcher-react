@@ -46,8 +46,7 @@
   border-radius: 5px;
 }
 .errorMessage {
-  color: red !important;
-  margin-top: 15px;
+  margin-top: 30px;
 }
 .title {
   margin: 30px 0;

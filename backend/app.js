@@ -15,26 +15,28 @@ app.use(cors());
 // default routes
 app.use("/api/user", userRoutes);
 app.use("/api/watched", watchedRoutes);
-// this runs if there is no response sent, because we do not support that route
+
+// if route is incorrect
 app.use((req, res, next) => {
-  const error = new httpError("Could not find this route.", 404);
+  const error = new httpError("Could not find this route.!!!", 404);
   throw error;
 });
 
 // error handler
 app.use((error, req, res, next) => {
+  console.log(error.message);
+  console.log(error.code);
   // in case headers have somehow been already sent
   if (res.headerSent) {
     return next(error);
   }
   // send this instead
-  console.log("here");
-  res.status(error.code || 500).json({
+  res.json({
+    statusCode: error.code,
     success: false,
     msg: error.message || "An unknown error occurred!"
   });
 });
-
 // connect to datbase & start server
 mongoose
   .connect(

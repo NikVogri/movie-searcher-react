@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Modal.module.css";
 import Backdrop from "../Backdrop/Backdrop";
 
-const Modal = ({ children, show, setShow, hideModalHandler }) => {
+const Modal = ({ children, show, setShow }) => {
   if (show) {
     return (
       <div className={classes.modal}>

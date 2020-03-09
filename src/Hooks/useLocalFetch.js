@@ -15,13 +15,14 @@ const useLocalFetch = () => {
     })
       .then(res => {
         setIsLoading(false);
+        if (!res.data.success) {
+          setError(res.data.msg);
+        }
         return res;
       })
       .catch(err => {
         setError(err.message);
-        setIsLoading(false);
       });
-    console.log(data);
     return data;
   }, []);
   return {

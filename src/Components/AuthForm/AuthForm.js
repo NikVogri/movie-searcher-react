@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import classes from "./AuthForm.module.css";
-import useLocalFetch from "../../Hooks/useLocalFetch";
+import Spinner from "../Spinner/Spinner";
+import { connect } from "react-redux";
+import {
+  loginUser,
+  createUser,
+  clearError
+} from "../../redux/actions/actionCreator";
 
-const AuthForm = () => {
+const AuthForm = ({ loginUser, createUser, clearError, isLoading, error }) => {
   const [showSignup, setShowSignup] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const { error, isLoading, sendRequest } = useLocalFetch();
   const [formData, setFormData] = useState({
     name: {
       value: "",
@@ -51,25 +56,23 @@ const AuthForm = () => {
         password: formData.password.value,
         email: formData.email.value
       };
+
+      if (formValidity) {
+        createUser(formBody);
+      } else {
+        setErrorMessage("Please provide all necessary information.");
+      }
     } else {
       formValidity = validatorArray[1] && validatorArray[2];
       formBody = {
         password: formData.password.value,
         email: formData.email.value
       };
-    }
-
-    if (formValidity) {
-      console.log(formBody);
-      // send request
-      const data = await sendRequest(
-        `http://localhost:8000/api/user/${showSignup ? "register" : "login"}`,
-        "POST",
-        formBody
-      );
-      console.log(data);
-    } else {
-      setErrorMessage("Please provide all necessary information.");
+      if (formValidity) {
+        loginUser(formBody);
+      } else {
+        setErrorMessage("Please provide all necessary information.");
+      }
     }
   };
 
@@ -88,6 +91,7 @@ const AuthForm = () => {
     e.preventDefault();
     setErrorMessage(null);
     setShowSignup(prevVal => !prevVal);
+    clearError();
   };
 
   return (
@@ -96,6 +100,7 @@ const AuthForm = () => {
         {showSignup ? "Sign up" : "Log in"} to{" "}
         <span style={{ color: "red" }}>Filmetor</span>
       </h3>
+      {isLoading && <Spinner />}
       <form onSubmit={formSubmitHandler}>
         {showSignup && (
           <div className={classes.inputGroup}>
@@ -125,9 +130,9 @@ const AuthForm = () => {
         )}
         <button className={classes.formButton}>Submit</button>
       </form>
-      {errorMessage && (
-        <span className={classes.errorMessage}>{errorMessage}</span>
-      )}
+      {errorMessage || error ? (
+        <p className={classes.errorMessage}>{errorMessage || error}</p>
+      ) : null}
       <button className={classes.switchButton} onClick={switchHandler}>
         Switch to {showSignup ? "LOGIN" : "SIGNUP"}
       </button>
@@ -135,4 +140,17 @@ const AuthForm = () => {
   );
 };
 
-export default AuthForm;
+const mapStateToProps = state => {
+  return {
+    error: state.user.errorMsg,
+    isLoading: state.user.isLoading
+  };
+};
+
+const mapDispatchToProps = {
+  loginUser,
+  createUser,
+  clearError
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);

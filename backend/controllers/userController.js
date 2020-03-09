@@ -34,7 +34,7 @@ exports.createUser = async (req, res, next) => {
   }
 
   res.status(200).json({
-    success: "true",
+    success: true,
     msg: "Successfully created new user"
   });
 };
@@ -50,13 +50,7 @@ exports.loginUser = async (req, res, next) => {
       email
     });
     if (user) {
-      const passwordValidity = await bcrypt.compare(
-        password,
-        user.password,
-        (err, result) => {
-          if (err) console.log("wrong");
-        }
-      );
+      const passwordValidity = await bcrypt.compare(password, user.password);
       // 2) check if passwords match
       if (passwordValidity) {
         // 3) generate JWT
@@ -68,7 +62,7 @@ exports.loginUser = async (req, res, next) => {
           { expiresIn: "1h" }
         );
         res.status(200).json({
-          status: "Success",
+          success: true,
           msg: "Sucessfully logged in",
           token
         });
@@ -110,7 +104,7 @@ exports.updateUser = async (req, res, next) => {
     return next(new httpError(err.message, 500));
   }
   res.status(200).json({
-    status: "Success",
+    success: true,
     msg: "Sucessfully updated user"
   });
 };

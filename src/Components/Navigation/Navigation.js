@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import classes from "./Navigation.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import Modal from "../Modal/Modal";
 import AuthForm from "../AuthForm/AuthForm";
+import { connect } from "react-redux";
+import { clearError } from "../../redux/actions/actionCreator";
 
-const Navigation = () => {
+const Navigation = ({ clearError, token }) => {
   const [showModal, setShowModal] = useState(false);
-
   const showModalHandler = () => {
     setShowModal(true);
   };
   const hideModalHandler = () => {
     setShowModal(false);
+    clearError();
   };
 
   return (
@@ -30,9 +32,11 @@ const Navigation = () => {
           <li>
             <NavLink to="/search">Search</NavLink>
           </li>
-          <li>
-            <NavLink to="/watched">Watched</NavLink>
-          </li>
+          {token && (
+            <li>
+              <NavLink to="/watched">Watched</NavLink>
+            </li>
+          )}
           <li>
             <NavLink to="/about">About</NavLink>
           </li>
@@ -48,4 +52,12 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = state => ({
+  token: state.user.token
+});
+
+const mapDispatchToProps = {
+  clearError
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
