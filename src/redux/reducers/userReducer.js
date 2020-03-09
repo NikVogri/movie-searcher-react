@@ -9,8 +9,8 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  console.log(action);
-  console.log(state);
+  // console.log(action);
+  // console.log(state);
   switch (action.type) {
     case actionTypes.LOGIN_USER_SUCCESS:
       return {

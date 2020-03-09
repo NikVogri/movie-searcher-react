@@ -3,14 +3,15 @@ import ContentDetails from "../../Components/Details/Details";
 import ContentCast from "../../Components/Cast/Cast";
 import Reviews from "../../Components/Reviews/Reviews";
 import Similar from "../../Components/Similar/Similar";
-
+import { getHistory, useParams } from "react-router-dom";
 const Detail = props => {
   // scrolls to top on prop change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [props]);
-  const contentId = props.match.params.id;
-  const type = props.match.params.type;
+  const params = useParams();
+  const contentId = params.id;
+  const type = params.type;
   return (
     <div>
       <ContentDetails contentId={contentId} type={type} />

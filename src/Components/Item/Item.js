@@ -14,7 +14,9 @@ const Item = ({ type, id, image, title }) => {
             alt="movie poster"
             className={classes.TopImage}
           />
-          <h3 className={classes.contentTitle}>{title}</h3>
+          <h3 className={classes.contentTitle}>
+            {title.length > 30 ? title.slice(0, 30).concat("...") : title}
+          </h3>
         </div>
         {/* <div className={classes.TopInformation}>
           <div className={classes.MainRating}>

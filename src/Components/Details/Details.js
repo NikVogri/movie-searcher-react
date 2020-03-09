@@ -4,10 +4,8 @@ import MissingPoster from "../../img/noPoster.jpeg";
 import Spinner from "../Spinner/Spinner";
 import useFetch from "../../Hooks/useFetch";
 import saveToLocalStorage from "../../Util/saveToLocalStorage";
-import useStorage from "../../Hooks/useStorage";
 import SeriesOverlay from "../SeriesOverlay/SeriesOverlay";
 const ContentDetails = ({ type, contentId }) => {
-  const [addedToWatched, setAddedToWatched] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   // get arbitrary data from API
@@ -18,16 +16,8 @@ const ContentDetails = ({ type, contentId }) => {
   const externalIdData = useFetch(
     `/${type}/${contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`
   );
-  // checks which content was watched with custom hook (this is used to differenciate buttons)
-  const watchedData = useStorage();
 
-  const addToWatched = (data, type) => {
-    setAddedToWatched(true);
-    // saves to local storage
-    saveToLocalStorage(data, type);
-  };
   let render;
-  let renderWatchButton;
   if (aboutData.loading || externalIdData.loading) {
     // waits until all data is fetched else it shows a spinner
     render = <Spinner style={{ height: "100vh" }} />;
@@ -90,31 +80,7 @@ const ContentDetails = ({ type, contentId }) => {
         </>
       );
     }
-    if (watchedData) {
-      // checks if content was already watched
-      const alreadyWatched = watchedData.find(
-        el => el.id === aboutData.data.id
-      );
-      if (alreadyWatched || addedToWatched) {
-        // renders watched button depending on watched status
-        renderWatchButton = (
-          <i
-            className="fa fa-eye watched"
-            aria-hidden="true"
-            title="Already watched"
-          />
-        );
-      } else {
-        renderWatchButton = (
-          <i
-            className="fa fa-eye"
-            aria-hidden="true"
-            title="Add to watched"
-            onClick={() => addToWatched(aboutData.data, "watched")}
-          />
-        );
-      }
-    }
+
     render = (
       <div className="container">
         <div className={classes.TopDetails}>
@@ -129,7 +95,14 @@ const ContentDetails = ({ type, contentId }) => {
               className={classes.TopDetailImage}
               alt="movie poster"
             />
-            <div className={classes.Watched}>{renderWatchButton}</div>
+            <div className={classes.Watched}>
+              <i
+                className="fa fa-eye"
+                aria-hidden="true"
+                title="Add to watched"
+                onClick={() => console.log("add to watched here")}
+              />
+            </div>
             <p className={classes.Date}>
               {aboutData.data.release_date
                 ? aboutData.data.release_date
