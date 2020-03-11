@@ -5,13 +5,14 @@ const useStorage = () => {
 
   const addToLocalStorage = useCallback((key, data) => {
     localStorage.setItem(key, data);
-  });
+  }, []);
 
   const getFromlocalStorage = useCallback(key => {
     const data = localStorage.getItem(key);
     setData(data);
-  });
-  return { data, addToLocalStorage };
+  }, []);
+
+  return { data, addToLocalStorage, getFromlocalStorage };
 };
 
 export default useStorage;

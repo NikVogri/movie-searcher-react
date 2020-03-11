@@ -3,7 +3,6 @@ import classes from "./details.module.css";
 import MissingPoster from "../../img/noPoster.jpeg";
 import Spinner from "../Spinner/Spinner";
 import useFetch from "../../Hooks/useFetch";
-import saveToLocalStorage from "../../Util/saveToLocalStorage";
 import SeriesOverlay from "../SeriesOverlay/SeriesOverlay";
 const ContentDetails = ({ type, contentId }) => {
   const [showModal, setShowModal] = useState(false);

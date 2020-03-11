@@ -3,7 +3,7 @@ import ContentDetails from "../../Components/Details/Details";
 import ContentCast from "../../Components/Cast/Cast";
 import Reviews from "../../Components/Reviews/Reviews";
 import Similar from "../../Components/Similar/Similar";
-import { getHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const Detail = props => {
   // scrolls to top on prop change
   useEffect(() => {

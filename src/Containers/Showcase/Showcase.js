@@ -15,9 +15,9 @@ const Showcase = () => {
   const tvData = useFetch(
     "/trending/tv/week?api_key=dce6a338a810ffe30be7528d9a32bf13"
   );
-  const peopleData = useFetch(
-    "/person/popular?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US"
-  );
+  // const peopleData = useFetch(
+  //   "/person/popular?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US"
+  // );
   const showNext = type => {
     if (type === "movie") {
       setShowButtonClickedMovie(20);
@@ -34,7 +34,7 @@ const Showcase = () => {
 
   let renderTopMovies;
   let renderTopTv;
-  let renderTopPeople;
+  // let renderTopPeople;
   // For movies
   if (movieData.data && movieData.data.results.length > 1) {
     renderTopMovies = (
@@ -82,25 +82,25 @@ const Showcase = () => {
   }
 
   // for people
-  if (peopleData.data && peopleData.data.results.length > 1) {
-    renderTopPeople = (
-      <div className={classes.topSection}>
-        <Popular
-          topList={peopleData.data.results}
-          numberToDisplay={showButtonClickedTV}
-          type="person"
-        />
-      </div>
-    );
-  } else if (tvData.error) {
-    renderTopTv = (
-      <p className={classes.ErrorMessage}>
-        Failed to load data, please refresh the page!
-      </p>
-    );
-  } else {
-    renderTopTv = <Spinner />;
-  }
+  // if (peopleData.data && peopleData.data.results.length > 1) {
+  //   renderTopPeople = (
+  //     <div className={classes.topSection}>
+  //       <Popular
+  //         topList={peopleData.data.results}
+  //         numberToDisplay={showButtonClickedTV}
+  //         type="person"
+  //       />
+  //     </div>
+  //   );
+  // } else if (tvData.error) {
+  //   renderTopTv = (
+  //     <p className={classes.ErrorMessage}>
+  //       Failed to load data, please refresh the page!
+  //     </p>
+  //   );
+  // } else {
+  //   renderTopTv = <Spinner />;
+  // }
 
   return (
     <React.Fragment>
@@ -111,8 +111,8 @@ const Showcase = () => {
           {renderTopMovies}
           <h2 style={{ color: "white" }}>Trending weekly TV</h2>
           {renderTopTv}
-          <h2 style={{ color: "white" }}>Trending people</h2>
-          {renderTopPeople}
+          {/* <h2 style={{ color: "white" }}>Trending people</h2>
+          {renderTopPeople} */}
         </div>
       </div>
     </React.Fragment>

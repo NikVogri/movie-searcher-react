@@ -9,7 +9,7 @@ import Navigation from "./Components/Navigation/Navigation";
 import About from "./Containers/About/About";
 import CookieWarning from "./Components/CookieWarning/CookieWarning";
 import Detail from "./Containers/Detail/detail";
-import MyList from "./Containers/MyList/MyList";
+// import MyList from "./Containers/MyList/MyList";
 import UserProfile from "./Containers/UserProfile/UserProfile";
 
 function App({ token }) {
@@ -30,9 +30,9 @@ function App({ token }) {
           <Route path="/:type/:id" exact>
             <Detail />
           </Route>
-          <Route path="/my-list" exact>
+          {/* <Route path="/my-list" exact>
             <MyList />
-          </Route>
+          </Route> */}
           <Route path="/profile" exact>
             <UserProfile />
           </Route>
