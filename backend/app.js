@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/user/userRoutes");
-const watchedRoutes = require("./routes/data/watchedRoutes");
+const watchedRoutes = require("./routes/user/watchedRoutes");
 const httpError = require("./util/httpError");
 const app = express();
 const mongoose = require("mongoose");
@@ -14,7 +14,7 @@ app.use(cors());
 
 // default routes
 app.use("/api/user", userRoutes);
-app.use("/api/watched", watchedRoutes);
+app.use("/api/content", watchedRoutes);
 
 // if route is incorrect
 app.use((req, res, next) => {
@@ -24,8 +24,6 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((error, req, res, next) => {
-  console.log(error.message);
-  console.log(error.code);
   // in case headers have somehow been already sent
   if (res.headerSent) {
     return next(error);

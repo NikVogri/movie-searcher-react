@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -9,11 +9,28 @@ import Navigation from "./Components/Navigation/Navigation";
 import About from "./Containers/About/About";
 import CookieWarning from "./Components/CookieWarning/CookieWarning";
 import Detail from "./Containers/Detail/detail";
-// import MyList from "./Containers/MyList/MyList";
+import Chat from "./Containers/Chat/Chat";
 import UserProfile from "./Containers/UserProfile/UserProfile";
+import { loginSuccess } from "./redux/actions/actionCreator";
+import { ChatkitProvider, TokenProvider } from "@pusher/chatkit-client-react";
 
-function App({ token }) {
+function App({ token, loginSuccess, userName }) {
   let routes;
+
+  useEffect(() => {
+    // get token if already authenticated from previous session.
+    const data = JSON.parse(localStorage.getItem("userAuth"));
+    if (data && data.expirationTime > new Date().getTime()) {
+      // check if token is still valid else remove local storage
+      loginSuccess(data);
+    }
+  }, [loginSuccess]);
+
+  const tokenProvider = new TokenProvider({
+    url:
+      "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/5bd72a76-5295-4426-a96c-3de983e02130/token"
+  });
+
   if (token) {
     routes = (
       <>
@@ -30,9 +47,16 @@ function App({ token }) {
           <Route path="/:type/:id" exact>
             <Detail />
           </Route>
-          {/* <Route path="/my-list" exact>
-            <MyList />
-          </Route> */}
+          <Route path="/chat" exact>
+            <ChatkitProvider
+              instanceLocator={"v1:us1:5bd72a76-5295-4426-a96c-3de983e02130"}
+              tokenProvider={tokenProvider}
+              userId={userName}
+            >
+              <Chat />
+            </ChatkitProvider>
+          </Route>
+
           <Route path="/profile" exact>
             <UserProfile />
           </Route>
@@ -75,7 +99,11 @@ function App({ token }) {
 }
 
 const mapStateToProps = state => ({
-  token: state.user.token
+  token: state.user.token,
+  userName: state.user.userName
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  loginSuccess
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

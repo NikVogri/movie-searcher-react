@@ -1,37 +1,46 @@
+const Watched = require("../models/userWatched");
 const User = require("../models/userModel");
 const httpError = require("../util/httpError");
+const mongoose = require("mongoose");
 
 exports.addToWatched = async (req, res, next) => {
-  // 1) get userId and id from req
+  const { contentId, contentType, name, imagePath } = req.body;
   const { userId } = req.user;
-  const { id } = req.body;
-  // 2) check if data is provided
-  if (!userId || !id) {
-    return next(new httpError("Something went wrong", 500));
+  // check if all data is present
+  if (!contentId || !contentType || !name || !imagePath || !userId) {
+    return next(new httpError("Provided information is invalid", 400));
   }
+  // create new item
+  const createdItem = new Watched({
+    contentId,
+    contentType,
+    name,
+    imagePath,
+    creator: userId
+  });
+  let user;
   try {
-    // 3) get user
-    const user = await User.findById(userId);
+    user = await User.findById(userId).populate("watched");
     if (!user) {
-      throw new Error("User cannot be found");
-    }
-    const { watched } = user;
-
-    // 4) check if watched id is already stored
-    const alreadyOnWatched = watched.filter(item => item === id);
-    if (alreadyOnWatched.length > 0) {
-      throw new Error("Already on watched list");
+      throw new Error("User could not be found");
     }
 
-    // 5) add watched item to watched list
-    const newWatched = [...watched, id];
-    user.watched = newWatched;
-    user.save();
+    if (user.watched.some(e => e.contentId === contentId)) {
+      throw new Error("Item already in list");
+    }
+
+    // create session
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    await createdItem.save({ session: sess });
+    user.watched.push(createdItem);
+    await user.save({ session: sess });
+    await sess.commitTransaction();
   } catch (err) {
     return next(new httpError(err.message, 500));
   }
-
   res.status(200).json({
-    success: true
+    success: true,
+    msg: "Successfully added new item to list"
   });
 };

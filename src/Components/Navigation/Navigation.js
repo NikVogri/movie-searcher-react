@@ -5,13 +5,18 @@ import Logo from "../../img/logo.png";
 import Modal from "../Modal/Modal";
 import AuthForm from "../AuthForm/AuthForm";
 import { connect } from "react-redux";
-import { clearError } from "../../redux/actions/actionCreator";
+import { clearError, logout } from "../../redux/actions/actionCreator";
 
-const Navigation = ({ clearError, token }) => {
+const Navigation = ({ clearError, token, logout }) => {
   const [showModal, setShowModal] = useState(false);
   const showModalHandler = () => {
     setShowModal(true);
   };
+
+  if (token && showModal) {
+    setShowModal(false);
+  }
+
   const hideModalHandler = () => {
     setShowModal(false);
     clearError();
@@ -35,7 +40,7 @@ const Navigation = ({ clearError, token }) => {
           {token && (
             <>
               <li>
-                <NavLink to="/my-list">My list</NavLink>
+                <NavLink to="/chat">Chat</NavLink>
               </li>
               <li>
                 <NavLink to="/profile">Profile</NavLink>
@@ -54,6 +59,11 @@ const Navigation = ({ clearError, token }) => {
               </Modal>
             </li>
           )}
+          {token && (
+            <li>
+              <span onClick={logout}>Logout</span>
+            </li>
+          )}
         </ul>
       </div>
     </div>
@@ -65,7 +75,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  clearError
+  clearError,
+  logout
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

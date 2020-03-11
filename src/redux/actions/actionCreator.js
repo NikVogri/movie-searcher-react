@@ -45,12 +45,20 @@ export const loginUser = formBody => {
       data: formBody
     })
       .then(res => {
-        console.log(res);
         dispatch(setLoading(false));
         if (!res.data.success) {
           // get message from retrieved object
           return dispatch(loginFail(res.data.msg));
         }
+        const expirationTime = new Date().getTime() + 1000 * 60 * 60;
+        localStorage.setItem(
+          "userAuth",
+          JSON.stringify({
+            token: res.data.token,
+            user: { name: res.data.user.name, id: res.data.user.id },
+            expirationTime
+          })
+        );
         dispatch(loginSuccess(res.data));
       })
       .catch(err => {
@@ -83,5 +91,12 @@ export const createUser = formBody => {
         dispatch(registrationFail(err.message));
         dispatch(setLoading(false));
       });
+  };
+};
+
+export const logout = () => {
+  localStorage.removeItem("userAuth");
+  return {
+    type: actionTypes.LOGOUT_USER
   };
 };

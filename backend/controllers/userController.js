@@ -64,7 +64,8 @@ exports.loginUser = async (req, res, next) => {
         res.status(200).json({
           success: true,
           msg: "Sucessfully logged in",
-          token
+          token,
+          user: { id: user.id, name: user.name }
         });
       } else {
         throw new Error("Invalid credentials");

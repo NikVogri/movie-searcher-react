@@ -8,7 +8,14 @@ import {
   clearError
 } from "../../redux/actions/actionCreator";
 
-const AuthForm = ({ loginUser, createUser, clearError, isLoading, error }) => {
+const AuthForm = ({
+  loginUser,
+  createUser,
+  clearError,
+  isLoading,
+  error,
+  createdUserSuccess
+}) => {
   const [showSignup, setShowSignup] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [formData, setFormData] = useState({
@@ -133,6 +140,11 @@ const AuthForm = ({ loginUser, createUser, clearError, isLoading, error }) => {
       {errorMessage || error ? (
         <p className={classes.errorMessage}>{errorMessage || error}</p>
       ) : null}
+      {createdUserSuccess ? (
+        <p className={classes.successMessage}>
+          User created Successfully, please login!
+        </p>
+      ) : null}
       <button className={classes.switchButton} onClick={switchHandler}>
         Switch to {showSignup ? "LOGIN" : "SIGNUP"}
       </button>
@@ -143,7 +155,8 @@ const AuthForm = ({ loginUser, createUser, clearError, isLoading, error }) => {
 const mapStateToProps = state => {
   return {
     error: state.user.errorMsg,
-    isLoading: state.user.isLoading
+    isLoading: state.user.isLoading,
+    createdUserSuccess: state.user.registrationSuccess
   };
 };
 

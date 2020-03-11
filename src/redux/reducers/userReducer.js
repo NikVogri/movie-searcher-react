@@ -2,21 +2,24 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   token: null,
-  loggedInTime: null,
+  userName: null,
+  userId: null,
   errorMsg: "",
   isLoading: false,
   registrationSuccess: false
 };
 
 const userReducer = (state = initialState, action) => {
-  // console.log(action);
+  console.log(action);
   // console.log(state);
   switch (action.type) {
     case actionTypes.LOGIN_USER_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         token: action.payload.token,
-        loggedInTime: new Date().getTime()
+        userName: action.payload.user.name,
+        userId: action.payload.user.id
       };
     case actionTypes.LOGIN_USER_FAIL:
       return {
@@ -38,8 +41,7 @@ const userReducer = (state = initialState, action) => {
     case actionTypes.LOGOUT_USER:
       return {
         ...state,
-        token: null,
-        loggedInTime: null
+        token: null
       };
     case actionTypes.REMOVE_ERROR_MESSAGE:
       return {

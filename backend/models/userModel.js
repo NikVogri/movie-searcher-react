@@ -26,7 +26,7 @@ const User = new Schema(
       default: "/defaultImage"
     },
     date: Date,
-    watched: Array
+    watched: [{ type: mongoose.Types.ObjectId, require: true, ref: "Watched" }]
   },
   { timestamps: true }
 );

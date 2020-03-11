@@ -1,11 +1,8 @@
 const express = require("express");
-const router = express.Router();
 const watchedController = require("../../controllers/watchedController");
 const userAuth = require("../../middleware/userAuth");
+const router = express.Router();
 
-////////////
-// type: POST
-// desc: add to user
-router.post("/", userAuth, watchedController.addToWatched);
+router.post("/add-to-watched", userAuth, watchedController.addToWatched);
 
 module.exports = router;
