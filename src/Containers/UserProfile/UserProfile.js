@@ -1,30 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import Item from "../../Components/Item/Item";
 import { fetchWatched } from "../../redux/actions/actionCreator";
+import ItemList from "../../Components/ItemList/ItemList";
+
 const UserProfile = ({ fetchWatched, userId, items }) => {
   useEffect(() => {
     fetchWatched(userId);
   }, [fetchWatched, userId]);
-  console.log(items);
 
-  return (
-    <div>
-      {items ? (
-        items.map(item => (
-          <Item
-            key={item.contentId}
-            type={item.contentType}
-            id={item.contentId}
-            image={item.imagePath}
-            title={item.name}
-          />
-        ))
-      ) : (
-        <p>No items added yet </p>
-      )}
-    </div>
-  );
+  return <div>{items && <ItemList type={"userFetch"} items={items} />}</div>;
 };
 
 const mapStateToProps = state => ({

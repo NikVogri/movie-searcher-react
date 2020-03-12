@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Showcase.module.css";
-import Popular from "../../Components/Popular/Popular";
+import ItemList from "../../Components/ItemList/ItemList";
 import Header from "../../Components/Header/Header";
 import useFetch from "../../Hooks/useFetch";
 import Spinner from "../../Components/Spinner/Spinner";
@@ -39,8 +39,8 @@ const Showcase = () => {
   if (movieData.data && movieData.data.results.length > 1) {
     renderTopMovies = (
       <div className={classes.topSection}>
-        <Popular
-          topList={movieData.data.results}
+        <ItemList
+          items={movieData.data.results}
           numberToDisplay={showButtonClickedMovie}
         />
         <p className={classes.NextButton} onClick={() => showNext("movie")}>
@@ -61,8 +61,8 @@ const Showcase = () => {
   if (tvData.data && tvData.data.results.length > 1) {
     renderTopTv = (
       <div className={classes.topSection}>
-        <Popular
-          topList={tvData.data.results}
+        <ItemList
+          items={tvData.data.results}
           numberToDisplay={showButtonClickedTV}
           type="tv"
         />
