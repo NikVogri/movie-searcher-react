@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import classes from "./Search.module.css";
 import Item from "../../Components/Item/Item";
 import axios from "axios";
-import Spinner from "../../Components/Spinner/Spinner";
 import Pagination from "../../Components/Pagination/Pagination";
 
 const Search = () => {
@@ -10,7 +9,7 @@ const Search = () => {
   const [selectValue, setselectValue] = useState("movie");
   const [inputValue, setinputValue] = useState("");
   const [firstMount, setfirstMount] = useState(true);
-  const [loading, setLoading] = useState(false);
+
   const [noResults, setnoResults] = useState(false);
   const [totalPages, setTotalpages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +17,6 @@ const Search = () => {
   useEffect(() => {
     if (!firstMount && inputValue !== "") {
       const inputChangeHandler = () => {
-        setLoading(true);
         axios
           .get(
             `https://api.themoviedb.org/3/search/${selectValue}?api_key=dce6a338a810ffe30be7528d9a32bf13&query=${inputValue}&page=${currentPage}&include_adult=false`
@@ -26,7 +24,6 @@ const Search = () => {
           .then(res => {
             setResults(res.data.results);
             setTotalpages(res.data.total_pages);
-            setLoading(false);
             setnoResults(false);
             if (res.data.total_results === 0) {
               setnoResults(true);
@@ -34,7 +31,6 @@ const Search = () => {
           })
           .catch(err => {
             console.log(err);
-            setLoading(false);
           });
       };
       inputChangeHandler();
@@ -84,10 +80,6 @@ const Search = () => {
         page={currentPage}
       />
     ));
-  }
-
-  if (loading) {
-    render = <Spinner />;
   }
 
   if (noResults) {

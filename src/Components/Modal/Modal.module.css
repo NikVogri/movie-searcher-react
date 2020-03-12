@@ -12,15 +12,15 @@
 
 .modalInner {
   background: #050505;
-  padding: 5px 15px;
+  padding: 50px 15px;
   color: #fff;
   z-index: 99999;
   border-radius: 5px;
-  max-width: 800px;
+  max-width: 500px;
   min-width: 300px;
   width: 80%;
   border: solid 2px red;
-  height: 600px;
+  min-height: 300px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -68,5 +68,10 @@
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@media only screen and (max-width: 400px) {
+  .modalInner {
+    padding: 20px;
   }
 }
