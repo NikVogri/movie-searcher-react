@@ -3,7 +3,7 @@ import axios from "axios";
 
 /////////
 // loading actions
-export const setLoading = status => ({
+const setLoading = status => ({
   type: actionTypes.SET_LOADING,
   payload: status
 });
@@ -21,17 +21,17 @@ export const loginSuccess = data => ({
   payload: data
 });
 
-export const loginFail = errorMsg => ({
+const loginFail = errorMsg => ({
   type: actionTypes.LOGIN_USER_FAIL,
   payload: errorMsg
 });
 
-export const registrationSuccess = data => ({
+const registrationSuccess = data => ({
   type: actionTypes.CREATE_USER_SUCCESS,
   payload: data
 });
 
-export const registrationFail = errorMsg => ({
+const registrationFail = errorMsg => ({
   type: actionTypes.CREATE_USER_FAIL,
   payload: errorMsg
 });
@@ -98,5 +98,42 @@ export const logout = () => {
   localStorage.removeItem("userAuth");
   return {
     type: actionTypes.LOGOUT_USER
+  };
+};
+
+///////////
+// watched actions
+
+export const addToWatched = (item, token) => {
+  return dispatch => {
+    axios({
+      method: "POST",
+      url: "http://localhost:8000/api/content/add-to-watched",
+      headers: { authorization: `bearer ${token}` },
+      data: item
+    })
+      .then(res => {
+        if (!res.data.success) {
+          // get message from retrieved object
+          return dispatch(addToWatchedFail(res.data.msg));
+        }
+        addToWatchedSuccess();
+      })
+      .catch(err => {
+        dispatch(addToWatchedFail(err.message));
+      });
+  };
+};
+
+const addToWatchedFail = errorMessage => {
+  return {
+    type: actionTypes.ADD_TO_WATCHED_FAIL,
+    payload: errorMessage
+  };
+};
+
+const addToWatchedSuccess = item => {
+  return {
+    type: actionTypes.ADD_TO_WATCHED_SUCCESS
   };
 };

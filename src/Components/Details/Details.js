@@ -4,9 +4,11 @@ import MissingPoster from "../../img/noPoster.jpeg";
 import Spinner from "../Spinner/Spinner";
 import useFetch from "../../Hooks/useFetch";
 import SeriesOverlay from "../SeriesOverlay/SeriesOverlay";
-const ContentDetails = ({ type, contentId }) => {
-  const [showModal, setShowModal] = useState(false);
+import { connect } from "react-redux";
+import { addToWatched } from "../../redux/actions/actionCreator";
 
+const ContentDetails = ({ type, contentId, token, addToWatched }) => {
+  const [showModal, setShowModal] = useState(false);
   // get arbitrary data from API
   const aboutData = useFetch(
     `/${type}/${contentId}?api_key=dce6a338a810ffe30be7528d9a32bf13&language=en-US`
@@ -15,6 +17,19 @@ const ContentDetails = ({ type, contentId }) => {
   const externalIdData = useFetch(
     `/${type}/${contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`
   );
+
+  // add movie to watched
+  const addToWatchedHandler = () => {
+    addToWatched(
+      {
+        contentId: contentId,
+        contentType: type,
+        name: aboutData.data.title || aboutData.data.name,
+        imagePath: aboutData.data.poster_path || "/noImage"
+      },
+      token
+    );
+  };
 
   let render;
   if (aboutData.loading || externalIdData.loading) {
@@ -94,14 +109,16 @@ const ContentDetails = ({ type, contentId }) => {
               className={classes.TopDetailImage}
               alt="movie poster"
             />
-            <div className={classes.Watched}>
-              <i
-                className="fa fa-eye"
-                aria-hidden="true"
-                title="Add to watched"
-                onClick={() => console.log("add to watched here")}
-              />
-            </div>
+            {token && (
+              <div className={classes.Watched}>
+                <i
+                  className="fa fa-eye"
+                  aria-hidden="true"
+                  title="Add to watched"
+                  onClick={addToWatchedHandler}
+                />
+              </div>
+            )}
             <p className={classes.Date}>
               {aboutData.data.release_date
                 ? aboutData.data.release_date
@@ -178,4 +195,12 @@ const ContentDetails = ({ type, contentId }) => {
   return <div className={classes.Detail}>{render}</div>;
 };
 
-export default ContentDetails;
+const mapStateToProps = state => ({
+  token: state.user.token
+});
+
+const mapDispatchToProps = {
+  addToWatched
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentDetails);
