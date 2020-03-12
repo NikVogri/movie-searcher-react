@@ -44,3 +44,21 @@ exports.addToWatched = async (req, res, next) => {
     msg: "Successfully added new item to list"
   });
 };
+
+exports.getWatched = async (req, res, next) => {
+  const { userId } = req.params;
+  try {
+    const { watched } = await User.findById(userId).populate("watched");
+    if (watched) {
+      res.status(200).json({
+        success: true,
+        msg: "Successfully fetched watched content",
+        items: watched
+      });
+    } else {
+      throw new Error("No content added yet :(");
+    }
+  } catch (err) {
+    return next(new httpError(err.message, 500));
+  }
+};
