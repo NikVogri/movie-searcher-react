@@ -116,26 +116,27 @@ export const addToWatched = (item, token) => {
       .then(res => {
         if (!res.data.success) {
           // get message from retrieved object
-          return dispatch({
-            type: actionTypes.ADD_TO_WATCHED_FAIL,
-            payload: res.data.msg
-          });
+          return dispatch(addToWatchedFail(res.data.msg));
         }
         // if fetch is successful
-        dispatch({
-          type: actionTypes.ADD_TO_WATCHED_SUCCESS,
-          payload: "Item added to watch list"
-        });
+        dispatch(addToWatchedSuccess());
       })
       .catch(err => {
         // if theres an internal error
-        dispatch({
-          type: actionTypes.ADD_TO_WATCHED_FAIL,
-          payload: err.message
-        });
+        dispatch(addToWatchedFail(err.message));
       });
   };
 };
+
+const addToWatchedFail = errorMessage => ({
+  type: actionTypes.ADD_TO_WATCHED_FAIL,
+  payload: errorMessage
+});
+
+const addToWatchedSuccess = () => ({
+  type: actionTypes.ADD_TO_WATCHED_SUCCESS,
+  payload: "Item added to watch list"
+});
 
 // fetch from list
 
@@ -146,27 +147,30 @@ export const fetchWatched = userId => {
     axios
       .get(`http://localhost:8000/api/content/watched/${userId}`)
       .then(res => {
+        // if fetch is unsuccessful
         if (!res.data.success) {
-          return dispatch({
-            type: actionTypes.FETCH_WATCHED_FAIL,
-            payload: res.data.msg
-          });
+          return dispatch(fetchWatchedFail(res.data.msg));
         }
+        // if fetch is successful
         dispatch(setLoading(false));
-        dispatch({
-          type: actionTypes.FETCH_WATCHED_SUCCESS,
-          payload: {
-            message: "Successfully fetched data",
-            items: res.data.items
-          }
-        });
+        dispatch(fetchWatchedSuccess(res.data.items));
       })
       .catch(err => {
-        dispatch({
-          type: actionTypes.ADD_TO_WATCHED_FAIL,
-          payload: err.message
-        });
+        // if fetch encounters
+        dispatch(fetchWatchedFail(err.message));
         dispatch(setLoading(false));
       });
   };
 };
+
+const fetchWatchedFail = errorMsg => ({
+  type: actionTypes.FETCH_WATCHED_FAIL,
+  payload: errorMsg
+});
+const fetchWatchedSuccess = items => ({
+  type: actionTypes.FETCH_WATCHED_SUCCESS,
+  payload: {
+    message: "Successfully fetched data",
+    items
+  }
+});
