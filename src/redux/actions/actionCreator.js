@@ -104,6 +104,7 @@ export const logout = () => {
 ///////////
 // watched actions
 
+// add to list
 export const addToWatched = (item, token) => {
   return dispatch => {
     axios({
@@ -115,25 +116,57 @@ export const addToWatched = (item, token) => {
       .then(res => {
         if (!res.data.success) {
           // get message from retrieved object
-          return dispatch(addToWatchedFail(res.data.msg));
+          return dispatch({
+            type: actionTypes.ADD_TO_WATCHED_FAIL,
+            payload: res.data.msg
+          });
         }
-        addToWatchedSuccess();
+        // if fetch is successful
+        dispatch({
+          type: actionTypes.ADD_TO_WATCHED_SUCCESS,
+          payload: "Item added to watch list"
+        });
       })
       .catch(err => {
-        dispatch(addToWatchedFail(err.message));
+        // if theres an internal error
+        dispatch({
+          type: actionTypes.ADD_TO_WATCHED_FAIL,
+          payload: err.message
+        });
       });
   };
 };
 
-const addToWatchedFail = errorMessage => {
-  return {
-    type: actionTypes.ADD_TO_WATCHED_FAIL,
-    payload: errorMessage
-  };
-};
+// fetch from list
 
-const addToWatchedSuccess = item => {
-  return {
-    type: actionTypes.ADD_TO_WATCHED_SUCCESS
+export const fetchWatched = userId => {
+  console.log(userId);
+  return dispatch => {
+    dispatch(setLoading(true));
+    axios
+      .get(`http://localhost:8000/api/content/watched/${userId}`)
+      .then(res => {
+        if (!res.data.success) {
+          return dispatch({
+            type: actionTypes.FETCH_WATCHED_FAIL,
+            payload: res.data.msg
+          });
+        }
+        dispatch(setLoading(false));
+        dispatch({
+          type: actionTypes.FETCH_WATCHED_SUCCESS,
+          payload: {
+            message: "Successfully fetched data",
+            items: res.data.items
+          }
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: actionTypes.ADD_TO_WATCHED_FAIL,
+          payload: err.message
+        });
+        dispatch(setLoading(false));
+      });
   };
 };

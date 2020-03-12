@@ -33,55 +33,6 @@
   opacity: 1 !important;
 }
 
-/* .TopItem:hover .TopInformation,
-.TopItem:active .TopInformation {
-  display: block;
-}
-
-.TopInformation {
-  -webkit-font-smoothing: antialiased;
-  height: 260px;
-  width: 188px;
-  background: #000;
-  opacity: 0.75;
-  border-radius: 5px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-5%, -5%);
-  z-index: 99;
-  display: none;
-  transition: all 0.5s ease;
-  padding: 0 10px !important;
-  text-align: center;
-  color: #ccc;
-}
-
-.TopDescription {
-  font-size: 16px;
-}
-
-.Rating {
-  margin-top: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  font-size: 32px;
-}
-.TopRating {
-  margin-left: 3px;
-}
-
-.TopVotes {
-  font-size: 14px;
-}
-.TopViews {
-  font-size: 10px;
-}
-
-.TopDescription {
-  margin: 30px 0 15px 0;
-} */
 .TopContainer {
   margin-bottom: 30px;
 }

@@ -14,7 +14,6 @@ const userReducer = (state = initialState, action) => {
   // console.log(state);
   switch (action.type) {
     case actionTypes.LOGIN_USER_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         token: action.payload.token,

@@ -9,7 +9,9 @@ const Item = ({ type, id, image, title }) => {
         <div className={classes.TopContainer}>
           <img
             src={
-              image ? `https://image.tmdb.org/t/p/w500${image}` : MissingPoster
+              image && image !== "/noImage"
+                ? `https://image.tmdb.org/t/p/w500${image}`
+                : MissingPoster
             }
             alt="movie poster"
             className={classes.TopImage}
@@ -18,31 +20,6 @@ const Item = ({ type, id, image, title }) => {
             {title.length > 30 ? title.slice(0, 30).concat("...") : title}
           </h3>
         </div>
-        {/* <div className={classes.TopInformation}>
-          <div className={classes.MainRating}>
-            <div className={classes.Rating}>
-              <i
-                className={`${classes.StarIcon} fa fa-star`}
-                id="star"
-                aria-hidden="true"
-              />
-              <p className={classes.TopRating}>{voteAverage}</p>
-            </div>
-            <p className={classes.TopVotes}>{votes} Votes</p>
-            <p className={classes.TopViews}>{popularity} Views</p>
-          </div>
-          <div className={classes.TopDescription}>
-            <p>{description.slice(0, 215)}</p>
-          </div>
-          <p className={classes.TopDate}>
-            {releaseDate
-              ? releaseDate
-                  .split("-")
-                  .reverse()
-                  .join("/")
-              : null}
-          </p>
-        </div> */}
       </Link>
     </div>
   );
