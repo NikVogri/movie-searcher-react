@@ -1,0 +1,35 @@
+.TopDetailRight {
+  margin-left: 15px;
+  width: 600px;
+  z-index: 10;
+}
+.Title {
+  font-size: 55px;
+  border-bottom: solid 1px red;
+  margin-bottom: 15px;
+}
+
+.Homepage {
+  color: red;
+  margin: 5px 0 0 0;
+}
+
+@media only screen and (max-width: 1300px) {
+  .TopDetailRight {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .Title {
+    font-size: 45px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .TopDetailRight {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+}

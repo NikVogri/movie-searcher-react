@@ -16,45 +16,11 @@
   max-width: 250px;
   position: relative;
 }
-
-.TopDetailRight {
-  margin-left: 15px;
-  width: 600px;
-  z-index: 10;
-}
 .Description {
   font-size: 16px !important;
   line-height: 1.2;
 }
 
-.Homepage {
-  color: red;
-  margin: 5px 0 0 0;
-}
-.Watched {
-  position: absolute;
-  right: 5px;
-  top: 10px;
-  color: rgb(243, 243, 243);
-  transition: all 0.2s ease;
-}
-.Watched:hover {
-  color: red;
-}
-.Title {
-  font-size: 55px;
-  border-bottom: solid 1px red;
-  margin-bottom: 15px;
-}
-.showEpisodes {
-  border: solid 1px red;
-  display: block;
-  padding: 5px 0;
-  margin-top: 15px;
-  text-align: center;
-  cursor: pointer;
-  width: 150px;
-}
 .TopDetailLeft p {
   margin: 5px 0 10px 0;
   font-size: 14px;
@@ -82,9 +48,6 @@
   margin: 10px 0 0 0;
 }
 @media only screen and (max-width: 1300px) {
-  .TopDetailRight {
-    width: 400px;
-  }
   .Description {
     font-size: 20px;
     line-height: 1.3;
@@ -95,9 +58,6 @@
   .TopDetails {
     padding: 50px 10px 50px 10px;
   }
-  .Title {
-    font-size: 45px;
-  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -107,20 +67,10 @@
     align-items: center;
     padding-top: 15px;
   }
-
-  .Watched {
-    right: 10px;
-    top: 5px;
-  }
   .TopDetailLeft {
     margin: 30px 0 0 0;
     width: 100%;
     order: 1;
-  }
-  .TopDetailRight {
-    margin: 0;
-    width: 100%;
-    text-align: center;
   }
   .Description {
     font-size: 18px;
@@ -131,8 +81,5 @@
   }
   .IconContainer {
     margin-top: 30px;
-  }
-  .showEpisodes {
-    margin: 25px auto 0 auto;
   }
 }
