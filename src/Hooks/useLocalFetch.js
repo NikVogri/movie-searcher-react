@@ -4,30 +4,28 @@ import { useState, useCallback } from "react";
 const useLocalFetch = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const sendRequest = async (url, type, body) => {
+  const [data, setData] = useState();
+  const sendRequest = useCallback(async (url, type, body) => {
     setIsLoading(true);
-    const data = await axios({
-      method: type,
-      url,
-      data: body
-    })
-      .then(res => {
-        setIsLoading(false);
-        if (!res.data.success) {
-          setError(res.data.msg);
-        }
-        return res;
-      })
-      .catch(err => {
-        setError(err.message);
+    try {
+      const data = await axios({
+        method: type,
+        url,
+        data: body
       });
-    return data;
-  };
+      const fetchedData = data.data.results;
+      setIsLoading(false);
+      return setData(fetchedData);
+    } catch (err) {
+      setIsLoading(false);
+      setError(err.message);
+    }
+  }, []);
 
   return {
     error,
     isLoading,
+    data,
     sendRequest
   };
 };

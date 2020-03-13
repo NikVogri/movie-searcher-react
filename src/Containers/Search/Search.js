@@ -9,7 +9,6 @@ const Search = () => {
   const [selectValue, setselectValue] = useState("movie");
   const [inputValue, setinputValue] = useState("");
   const [firstMount, setfirstMount] = useState(true);
-
   const [noResults, setnoResults] = useState(false);
   const [totalPages, setTotalpages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);

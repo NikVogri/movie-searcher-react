@@ -4,7 +4,7 @@ import { withChatkit } from "@pusher/chatkit-client-react";
 
 const Chat = props => {
   return (
-    <div>
+    <div className={classes.Chat}>
       {props.chatkit.isLoading
         ? "Connecting to Chatkit..."
         : `Hello ${props.chatkit.currentUser.name}!`}

@@ -6,7 +6,7 @@ import ItemList from "../../Components/ItemList/ItemList";
 const UserProfile = ({ fetchWatched, userId, items, token }) => {
   useEffect(() => {
     fetchWatched(userId, token);
-  }, [fetchWatched, userId]);
+  }, [fetchWatched, userId, token]);
 
   return <div>{items && <ItemList type={"userFetch"} items={items} />}</div>;
 };
