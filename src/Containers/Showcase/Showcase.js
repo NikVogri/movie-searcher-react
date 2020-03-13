@@ -80,28 +80,6 @@ const Showcase = () => {
   } else {
     renderTopTv = <Spinner />;
   }
-
-  // for people
-  // if (peopleData.data && peopleData.data.results.length > 1) {
-  //   renderTopPeople = (
-  //     <div className={classes.topSection}>
-  //       <Popular
-  //         topList={peopleData.data.results}
-  //         numberToDisplay={showButtonClickedTV}
-  //         type="person"
-  //       />
-  //     </div>
-  //   );
-  // } else if (tvData.error) {
-  //   renderTopTv = (
-  //     <p className={classes.ErrorMessage}>
-  //       Failed to load data, please refresh the page!
-  //     </p>
-  //   );
-  // } else {
-  //   renderTopTv = <Spinner />;
-  // }
-
   return (
     <React.Fragment>
       <Header />

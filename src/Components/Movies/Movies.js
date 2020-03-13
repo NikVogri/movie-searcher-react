@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import classes from "./Movies.module.css";
 import Movie from "./Movie/Movie";
-import Axios from "axios";
+import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 
 const Movies = ({ renderData }) => {
   const [movieList, setmovieList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    movieListHandler();
-  }, [renderData]);
-
-  const movieListHandler = () => {
+  const movieListHandler = useCallback(() => {
     setLoading(true);
-    Axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=dce6a3738a810ffe30be7528d9a32bf13&query=${renderData}`
-    )
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=dce6a3738a810ffe30be7528d9a32bf13&query=${renderData}`
+      )
       .then(res => {
         setmovieList(res.data.results);
         setLoading(false);
@@ -24,7 +21,12 @@ const Movies = ({ renderData }) => {
       .catch(err => {
         setLoading(false);
       });
-  };
+  });
+
+  useEffect(() => {
+    movieListHandler();
+  }, [renderData, movieListHandler]);
+
   let render = null;
   if (loading) {
     render = <Spinner />;
