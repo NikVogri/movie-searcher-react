@@ -30,6 +30,7 @@ const ContentDetails = ({
     `/${type}/${contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`
   );
   // add movie to watched
+  let watchedRender;
   const addToWatchedHandler = () => {
     addToWatched(
       {
@@ -40,6 +41,9 @@ const ContentDetails = ({
       },
       token
     );
+    watchedRender = (
+      <Watched alreadyWatched={!watched} addToWatched={addToWatchedHandler} />
+    );
   };
 
   useEffect(() => {
@@ -47,6 +51,7 @@ const ContentDetails = ({
       checkIfAlreadyOnWatched(contentId, token);
     }
   }, [contentId, token, checkIfAlreadyOnWatched, message]);
+
   if (aboutData.loading || externalIdData.loading) {
     return <Spinner style={{ height: "100vh" }} />;
   }
@@ -71,12 +76,13 @@ const ContentDetails = ({
               className={classes.TopDetailImage}
               alt="movie poster"
             />
-            {token && (
-              <Watched
-                alreadyWatched={!watched}
-                addToWatched={addToWatchedHandler}
-              />
-            )}
+            {token &&
+              (watchedRender || (
+                <Watched
+                  alreadyWatched={!watched}
+                  addToWatched={addToWatchedHandler}
+                />
+              ))}
             <p className={classes.Date}>
               {aboutData.data.release_date
                 ? aboutData.data.release_date
