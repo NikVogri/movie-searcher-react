@@ -62,3 +62,27 @@ exports.getWatched = async (req, res, next) => {
     return next(new httpError(err.message, 500));
   }
 };
+
+exports.checkIfWatched = async (req, res, next) => {
+  const { contentId } = req.params;
+  const { userId } = req.user;
+  // check if its already on list
+  try {
+    const user = await User.findById(userId).populate("watched");
+    if (!user.watched.some(e => e.contentId === contentId)) {
+      return res.status(200).json({
+        success: true,
+        msg: "Item not on list",
+        isOnList: false
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        msg: "Item already on list",
+        isOnList: true
+      });
+    }
+  } catch (err) {
+    return next(new httpError(err.message, 500));
+  }
+};

@@ -4,22 +4,22 @@ import ContentCast from "../../Components/Cast/Cast";
 import Reviews from "../../Components/Reviews/Reviews";
 import Similar from "../../Components/Similar/Similar";
 import { useParams } from "react-router-dom";
-const Detail = props => {
-  // scrolls to top on prop change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [props]);
+const Detail = () => {
   const params = useParams();
   const contentId = params.id;
   const type = params.type;
-  return (
-    <div>
-      <ContentDetails contentId={contentId} type={type} />
-      <ContentCast contentId={contentId} type={type} />
-      <Reviews contentId={contentId} type={type} />
-      <Similar contentId={contentId} type={type} />
-    </div>
-  );
+  if (params && contentId && type) {
+    return (
+      <div>
+        <ContentDetails contentId={contentId} type={type} />
+        <ContentCast contentId={contentId} type={type} />
+        <Reviews contentId={contentId} type={type} />
+        <Similar contentId={contentId} type={type} />
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Detail;

@@ -62,7 +62,6 @@ export const loginUser = formBody => {
         dispatch(loginSuccess(res.data));
       })
       .catch(err => {
-        console.log(err);
         dispatch(loginFail(err.message));
         dispatch(setLoading(false));
       });
@@ -78,7 +77,6 @@ export const createUser = formBody => {
       data: formBody
     })
       .then(res => {
-        console.log(res);
         dispatch(setLoading(false));
         if (!res.data.success) {
           // get message from retrieved object
@@ -87,7 +85,6 @@ export const createUser = formBody => {
         dispatch(registrationSuccess(res.data));
       })
       .catch(err => {
-        console.log(err);
         dispatch(registrationFail(err.message));
         dispatch(setLoading(false));
       });
@@ -140,12 +137,14 @@ const addToWatchedSuccess = () => ({
 
 // fetch from list
 
-export const fetchWatched = userId => {
-  console.log(userId);
+export const fetchWatched = (userId, token) => {
   return dispatch => {
     dispatch(setLoading(true));
-    axios
-      .get(`http://localhost:8000/api/content/watched/${userId}`)
+    axios({
+      method: "GET",
+      url: `http://localhost:8000/api/content/watched/${userId}`,
+      headers: { authorization: `bearer ${token}` }
+    })
       .then(res => {
         // if fetch is unsuccessful
         if (!res.data.success) {
@@ -173,4 +172,31 @@ const fetchWatchedSuccess = items => ({
     message: "Successfully fetched data",
     items
   }
+});
+
+export const checkIfAlreadyOnWatched = (contentId, token) => {
+  return dispatch => {
+    axios({
+      method: "GET",
+      url: `http://localhost:8000/api/content/watched/check/${contentId}`,
+      headers: { authorization: `bearer ${token}` }
+    })
+      .then(res => {
+        if (!res.data.success) {
+          // get message from retrieved object
+          return dispatch(fetchWatchedFail(res.data.msg));
+        }
+        // if fetch is successful
+        dispatch(checkIfAlreadyOnWatchedSuccess(res.data.isOnList));
+      })
+      .catch(err => {
+        // if theres an internal error
+        dispatch(fetchWatchedFail(err.message));
+      });
+  };
+};
+
+const checkIfAlreadyOnWatchedSuccess = status => ({
+  type: actionTypes.CHECK_IF_ON_WATCHED_SUCCESS,
+  payload: status
 });

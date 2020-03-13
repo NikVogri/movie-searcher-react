@@ -8,7 +8,7 @@ import Search from "./Containers/Search/Search";
 import Navigation from "./Components/Navigation/Navigation";
 import About from "./Containers/About/About";
 import CookieWarning from "./Components/CookieWarning/CookieWarning";
-import Detail from "./Containers/Detail/detail";
+import Detail from "./Containers/Detail/Detail";
 import Chat from "./Containers/Chat/Chat";
 import UserProfile from "./Containers/UserProfile/UserProfile";
 import { loginSuccess } from "./redux/actions/actionCreator";

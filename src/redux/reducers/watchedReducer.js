@@ -3,13 +3,13 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   watchedError: "",
   message: "",
+  alreadyWatched: false,
   items: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_WATCHED_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         message: action.payload
@@ -29,6 +29,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         watchedError: action.payload
+      };
+    case actionTypes.CHECK_IF_ON_WATCHED_SUCCESS:
+      return {
+        ...state,
+        alreadyWatched: action.payload
       };
     default:
       return state;

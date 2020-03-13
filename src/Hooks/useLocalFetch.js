@@ -5,9 +5,8 @@ const useLocalFetch = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendRequest = useCallback(async (url, type, body) => {
+  const sendRequest = async (url, type, body) => {
     setIsLoading(true);
-    console.log(url, type, body);
     const data = await axios({
       method: type,
       url,
@@ -24,7 +23,8 @@ const useLocalFetch = () => {
         setError(err.message);
       });
     return data;
-  }, []);
+  };
+
   return {
     error,
     isLoading,

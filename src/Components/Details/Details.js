@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./details.module.css";
 import MissingPoster from "../../img/noPoster.jpeg";
 import Spinner from "../Spinner/Spinner";
 import useFetch from "../../Hooks/useFetch";
 import SeriesOverlay from "../SeriesOverlay/SeriesOverlay";
 import { connect } from "react-redux";
-import { addToWatched } from "../../redux/actions/actionCreator";
+import {
+  addToWatched,
+  checkIfAlreadyOnWatched
+} from "../../redux/actions/actionCreator";
 
-const ContentDetails = ({ type, contentId, token, addToWatched }) => {
+const ContentDetails = ({
+  type,
+  contentId,
+  token,
+  addToWatched,
+  checkIfAlreadyOnWatched,
+  watched,
+  message
+}) => {
   const [showModal, setShowModal] = useState(false);
   // get arbitrary data from API
   const aboutData = useFetch(
@@ -17,7 +28,6 @@ const ContentDetails = ({ type, contentId, token, addToWatched }) => {
   const externalIdData = useFetch(
     `/${type}/${contentId}/external_ids?api_key=dce6a338a810ffe30be7528d9a32bf13`
   );
-
   // add movie to watched
   const addToWatchedHandler = () => {
     addToWatched(
@@ -30,6 +40,12 @@ const ContentDetails = ({ type, contentId, token, addToWatched }) => {
       token
     );
   };
+
+  useEffect(() => {
+    if (token) {
+      checkIfAlreadyOnWatched(contentId, token);
+    }
+  }, [contentId, token, checkIfAlreadyOnWatched, message]);
 
   let render;
   if (aboutData.loading || externalIdData.loading) {
@@ -109,13 +125,21 @@ const ContentDetails = ({ type, contentId, token, addToWatched }) => {
               className={classes.TopDetailImage}
               alt="movie poster"
             />
-            {token && (
+            {token && !watched ? (
               <div className={classes.Watched}>
                 <i
                   className="fa fa-eye"
                   aria-hidden="true"
                   title="Add to watched"
                   onClick={addToWatchedHandler}
+                />
+              </div>
+            ) : (
+              <div className={classes.Watched}>
+                <i
+                  className="fa fa-eye watched"
+                  aria-hidden="true"
+                  title="Already on watched list"
                 />
               </div>
             )}
@@ -196,11 +220,14 @@ const ContentDetails = ({ type, contentId, token, addToWatched }) => {
 };
 
 const mapStateToProps = state => ({
-  token: state.user.token
+  token: state.user.token,
+  watched: state.watched.alreadyWatched,
+  message: state.watched.message
 });
 
 const mapDispatchToProps = {
-  addToWatched
+  addToWatched,
+  checkIfAlreadyOnWatched
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentDetails);

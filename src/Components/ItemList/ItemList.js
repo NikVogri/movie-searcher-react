@@ -6,7 +6,6 @@ import ActorItem from "../ActorItem/ActorItem";
 const ItemList = ({ items, numberToDisplay, type }) => {
   const content = items.slice(0, numberToDisplay || 9999);
   let render;
-  console.log(content);
   if (type === "person") {
     render = content.map(person => (
       <ActorItem
