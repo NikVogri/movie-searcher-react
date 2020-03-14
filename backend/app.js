@@ -2,7 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/user/userRoutes");
 const watchedRoutes = require("./routes/user/watchedRoutes");
+const socket = require("socket.io");
 const httpError = require("./util/httpError");
+const http = require("http");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -10,7 +12,7 @@ const cors = require("cors");
 app.use(bodyParser.json());
 
 // enable CORS
-app.use(cors());
+app.use(cors({ credentials: true, origin: process.env.FRONT_LINK }));
 
 // default routes
 app.use("/api/user", userRoutes);
@@ -35,6 +37,26 @@ app.use((error, req, res, next) => {
     msg: error.message || "An unknown error occurred!"
   });
 });
+
+// sockets
+const server = http.createServer(app);
+const io = socket(server);
+io.listen(8001);
+
+io.on("connect", socket => {
+  console.log("here");
+  console.log("user connected", socket.id);
+
+  socket.on("chat", data => {
+    console.log(data);
+    io.sockets.emit("chat", data);
+  });
+
+  socket.on("typing", data => {
+    socket.broadcast.emit("typing", data);
+  });
+});
+
 // connect to datbase & start server
 mongoose
   .connect(
