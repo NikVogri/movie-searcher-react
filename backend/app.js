@@ -43,35 +43,35 @@ const server = http.createServer(app);
 const io = socket(server);
 io.listen(8001);
 
-let connectCounter = 0;
 let onlineUsers = [];
 
 io.on("connect", socket => {
-  console.log("user connected", socket.id);
   socket.on("addUser", data => {
-    console.log("here");
     if (!onlineUsers.includes(data)) {
-      onlineUsers = [...onlineUsers, data];
+      onlineUsers.push({ data, id: socket.id });
     }
-
-    console.log(onlineUsers);
+    socket.emit("getUsers", onlineUsers);
   });
 
-  socket.broadcast.emit("getUsers", onlineUsers);
-  connectCounter++;
-  socket.broadcast.emit("currentOnline", connectCounter);
+  socket.on("getInfo", () => {
+    socket.broadcast.emit("getUsers", onlineUsers);
+  });
+
   socket.on("chat", data => {
-    console.log(data);
     io.sockets.emit("chat", data);
   });
 
   socket.on("typing", data => {
     socket.broadcast.emit("typing", data);
+    setTimeout(() => {
+      socket.broadcast.emit("typing", "");
+    }, 3000);
   });
+
   socket.on("disconnect", () => {
-    connectCounter--;
-    socket.broadcast.emit("currentOnline", connectCounter);
-    console.log(connectCounter);
+    onlineUsers = onlineUsers.filter(user => user.id !== socket.id);
+
+    socket.broadcast.emit("getUsers", onlineUsers);
   });
 });
 
