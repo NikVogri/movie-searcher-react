@@ -43,10 +43,23 @@ const server = http.createServer(app);
 const io = socket(server);
 io.listen(8001);
 
-io.on("connect", socket => {
-  console.log("here");
-  console.log("user connected", socket.id);
+let connectCounter = 0;
+let onlineUsers = [];
 
+io.on("connect", socket => {
+  console.log("user connected", socket.id);
+  socket.on("addUser", data => {
+    console.log("here");
+    if (!onlineUsers.includes(data)) {
+      onlineUsers = [...onlineUsers, data];
+    }
+
+    console.log(onlineUsers);
+  });
+
+  socket.broadcast.emit("getUsers", onlineUsers);
+  connectCounter++;
+  socket.broadcast.emit("currentOnline", connectCounter);
   socket.on("chat", data => {
     console.log(data);
     io.sockets.emit("chat", data);
@@ -54,6 +67,11 @@ io.on("connect", socket => {
 
   socket.on("typing", data => {
     socket.broadcast.emit("typing", data);
+  });
+  socket.on("disconnect", () => {
+    connectCounter--;
+    socket.broadcast.emit("currentOnline", connectCounter);
+    console.log(connectCounter);
   });
 });
 
