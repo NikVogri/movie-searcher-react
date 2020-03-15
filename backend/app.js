@@ -79,7 +79,7 @@ io.on("connect", socket => {
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-cmnml.mongodb.net/filmetor?retryWrites=true&w=majority`,
-    { seUnifiedTopology: true, useNewUrlParser: true }
+    { useNewUrlParser: true }
   )
   .then(() => {
     console.log("Connected to database...");
