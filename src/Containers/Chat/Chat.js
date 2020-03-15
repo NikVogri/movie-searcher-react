@@ -4,30 +4,29 @@ import Message from "./Message/Message";
 import classes from "./Chat.module.css";
 import { v4 as uuidv4 } from "uuid";
 
-const socket = socketIOClient("http://localhost:8001");
+const socket = socketIOClient("https://filmetor-backend.herokuapp.com");
 
 const Chat = ({ username }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [userTyping, setUserTyping] = useState(null);
-  const [onlineUsersCount, setOnlineUsersCount] = useState(0);
+  const [onlineUsersCount, setOnlineUsersCount] = useState(1);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
   useEffect(() => {
     socket.emit("addUser", username);
+    socket.emit("getInfo");
   }, [username]);
 
   socket.on("getUsers", data => {
     setOnlineUsers(data);
-  });
-
-  socket.on("currentOnline", data => {
-    setOnlineUsersCount(data);
+    setOnlineUsersCount(data.length);
   });
 
   socket.on("chat", data => {
     setMessages([...messages, data]);
   });
+
   socket.on("typing", data => {
     setUserTyping(data);
   });
@@ -45,13 +44,22 @@ const Chat = ({ username }) => {
       socket.emit("chat", { username, message: input, id: uuidv4() });
     }
   };
+  const handleKeyPress = e => {
+    if (e.key === "Enter") {
+      if (input !== "") {
+        socket.emit("chat", { username, message: input, id: uuidv4() });
+        setInput("");
+      }
+    }
+  };
   return (
     <div className={classes.chat}>
       <div className={classes.messages}>
-        <p>
+        <p className={classes.onlineUsers}>
           Online users:
+          {onlineUsers.length < 1 && <span>{username}</span>}
           {onlineUsers.map(user => (
-            <p>{user}</p>
+            <span key={user.id}>{user.data}</span>
           ))}
         </p>
         {messages.length > 0 ? (
@@ -74,10 +82,11 @@ const Chat = ({ username }) => {
           placeholder="Enter your message.."
           onChange={inputHandler}
           value={input}
+          onKeyPress={handleKeyPress}
         />
         <button onClick={sendMessageHandler}>Send</button>
       </div>
-      <p>Currently online: {onlineUsersCount}</p>
+      <p style={{ color: "#fff" }}>Currently online: {onlineUsersCount}</p>
     </div>
   );
 };

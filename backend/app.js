@@ -4,7 +4,6 @@ const userRoutes = require("./routes/user/userRoutes");
 const watchedRoutes = require("./routes/user/watchedRoutes");
 const socket = require("socket.io");
 const httpError = require("./util/httpError");
-const http = require("http");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -38,14 +37,19 @@ app.use((error, req, res, next) => {
   });
 });
 
-// sockets
-const server = http.createServer(app);
-const io = socket(server);
-io.listen(8001);
+// start server
+const port = process.env.PORT || 5000;
+const server = app.listen(port, () => {
+  console.log(`Server has started on port ${port}`);
+});
 
+// sockets
+const io = socket(server, { origins: "*:*" });
+io.listen(8001);
 let onlineUsers = [];
 
-io.on("connect", socket => {
+io.on("connection", socket => {
+  console.log("user connected " + socket.id);
   socket.on("addUser", data => {
     if (!onlineUsers.includes(data)) {
       onlineUsers.push({ data, id: socket.id });
@@ -70,7 +74,7 @@ io.on("connect", socket => {
 
   socket.on("disconnect", () => {
     onlineUsers = onlineUsers.filter(user => user.id !== socket.id);
-
+    console.log("user disconnected");
     socket.broadcast.emit("getUsers", onlineUsers);
   });
 });
@@ -83,13 +87,6 @@ mongoose
   )
   .then(() => {
     console.log("Connected to database...");
-  })
-  .then(() => {
-    // start server if mongo connection was successful.
-    const port = process.env.PORT || 5000;
-    app.listen(port, () => {
-      console.log(`Server has started on port ${port}`);
-    });
   })
   .catch(err => {
     console.log(err.message);

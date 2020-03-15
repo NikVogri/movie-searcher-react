@@ -41,7 +41,7 @@ export const loginUser = formBody => {
     dispatch(setLoading(true));
     axios({
       method: "POST",
-      url: "http://localhost:8000/api/user/login",
+      url: "https://filmetor-backend.herokuapp.com/api/user/login",
       data: formBody
     })
       .then(res => {
@@ -73,7 +73,7 @@ export const createUser = formBody => {
     dispatch(setLoading(true));
     axios({
       method: "POST",
-      url: "http://localhost:8000/api/user/register",
+      url: "https://filmetor-backend.herokuapp.com/api/user/register",
       data: formBody
     })
       .then(res => {
@@ -106,7 +106,7 @@ export const addToWatched = (item, token) => {
   return dispatch => {
     axios({
       method: "POST",
-      url: "http://localhost:8000/api/content/add-to-watched",
+      url: "https://filmetor-backend.herokuapp.com/api/content/add-to-watched",
       headers: { authorization: `bearer ${token}` },
       data: item
     })
@@ -142,7 +142,7 @@ export const fetchWatched = (userId, token) => {
     dispatch(setLoading(true));
     axios({
       method: "GET",
-      url: `http://localhost:8000/api/content/watched/${userId}`,
+      url: `https://filmetor-backend.herokuapp.com/api/content/watched/${userId}`,
       headers: { authorization: `bearer ${token}` }
     })
       .then(res => {
@@ -178,7 +178,7 @@ export const checkIfAlreadyOnWatched = (contentId, token) => {
   return dispatch => {
     axios({
       method: "GET",
-      url: `http://localhost:8000/api/content/watched/check/${contentId}`,
+      url: `https://filmetor-backend.herokuapp.com/api/content/watched/check/${contentId}`,
       headers: { authorization: `bearer ${token}` }
     })
       .then(res => {

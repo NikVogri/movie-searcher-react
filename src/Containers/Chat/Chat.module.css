@@ -46,6 +46,12 @@
   font-size: 0.9rem;
   color: #ccc;
 }
+.onlineUsers {
+  color: #fff;
+}
+.onlineUsers span {
+  margin: 0 3px;
+}
 
 @media only screen and (max-width: 600px) {
   .chat {
